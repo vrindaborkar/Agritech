@@ -11,7 +11,7 @@ import Test from "./Test";
 import Ticket from "./Ticket";
 import FarmerNav from "./FarmerNav";
 import FarmerNavigation from "./FarmerNavigation";
-
+import Subscription from "./Subscription";
 const Farmer = () => {
   const [bookingDetails, setbookingDetails] = useState({
     farmer: "",
@@ -44,6 +44,7 @@ const Farmer = () => {
           element={<Ticket bookingDetails={bookingDetails} />}
         />
         <Route path="/mybookings" element={<MyBookings />} />
+        <Route path ="/subscription" element ={ <Subscription />} />
       </Route>
     </Routes>
   );
