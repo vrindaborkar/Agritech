@@ -37,30 +37,32 @@ function Test({ setbookingDetails, setValue }) {
   const [cashOnDelivery, setCashOnDelivery] = useState(false);
   const [totalStall, setTotalStalls] = useState(0);
   const [available, setAvailable] = useState(0);
-
+  const [date, setdate] = useState(0);
   const today = new Date();
   const todayFormatted = today.toISOString().slice(0, 10);
+  //console.log(todayFormatted)
+  //console.log(date)
 
+  
+  //console.log(date)
   useEffect(() => {
     setLoading(true);
+
     FarmerService.getMyStalls().then((response) => {
       setLoading(false);
       setdata(response.data);
     });
 
     FarmerService.getBookedStalls().then((response) => {
-
-      const res = response.data && response.data.filter((e) => e.location === `${Id}` && e.bookedAt === todayFormatted);
-      console.log(today.toISOString().slice(0, 10));
-      console.log(response.data.filter((e) => e.bookedAt === todayFormatted))
+      const res = response.data && response.data.filter((e) => e.location === `${Id}` && e.bookedAt === date);
       setAlreadyBooked(response.data);
       setAlreadyBookedLocation(res.length);
-
-      console.log("already booked", res.length);
-
+      console.log('alreadyBooked:',res)
     });
+
     handleOpen(true);
-  }, []);
+  }, [date, Id]);
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -78,7 +80,7 @@ function Test({ setbookingDetails, setValue }) {
   // useEffect(() => {
   //   const res = data && data.filter((e) => e.location === `${Id}`);
   //   setUpdatedData(res);
-  //   console.log("Data--->", UpdatedData);
+  //   //console.log("Data--->", UpdatedData);
 
   //   if (UpdatedData) {
   //     setTotalStalls(UpdatedData.length)
@@ -91,7 +93,7 @@ function Test({ setbookingDetails, setValue }) {
   useEffect(() => {
     const res = data && data.filter((e) => e.location === `${Id}`);
     setUpdatedData(res);
-    console.log("Data--->", UpdatedData);
+    //console.log("Data--->", UpdatedData);
   }, [Id, data]);
 
   useEffect(() => {
@@ -107,8 +109,8 @@ function Test({ setbookingDetails, setValue }) {
       (total, item) => item.stallPrice + total,
       0
     );
-    console.log(bookedStalls.length);
-    console.log("price", price)
+    //console.log(bookedStalls.length);
+    //console.log("price", price)
     if (bookedStalls.length === 0) {
       toast.warn("Failed to book stalls!", {
         position: "top-right",
@@ -127,7 +129,7 @@ function Test({ setbookingDetails, setValue }) {
       location: Id,
       bookedStalls: bookedStalls,
       bookedBy: userCurr.id,
-      bookedAt: dayjs(Date.now()).format("YYYY-MM-DD"),
+      bookedAt: date,
       isBooked: true,
     };
 
@@ -198,8 +200,8 @@ function Test({ setbookingDetails, setValue }) {
         0
       );
 
-      console.log(bookedStalls.length);
-      console.log("price", price)
+      //console.log(bookedStalls.length);
+      //console.log("price", price)
       if (bookedStalls.length === 0) {
         toast.warn("Failed to book stalls!", {
           position: "top-right",
@@ -222,12 +224,13 @@ function Test({ setbookingDetails, setValue }) {
         );
         initPayment(data.data);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
   };
 
   const initPayment = (data) => {
+    //console.log(date)
     let bookedStats = bookedStalls.toString();
     const options = {
       key: process.env.KEY_ID,
@@ -252,12 +255,12 @@ function Test({ setbookingDetails, setValue }) {
             orderId = "123"
           }
 
-
+          //console.log(date)
           const responseData = {
             location: Id,
             bookedStalls: bookedStalls,
             bookedBy: userCurr.id,
-            bookedAt: dayjs(Date.now()).format("YYYY-MM-DD"),
+            bookedAt: date,
             isBooked: true,
           };
 
@@ -316,7 +319,7 @@ function Test({ setbookingDetails, setValue }) {
               setNumberOfSeats(0);
             });
         } catch (error) {
-          console.log(error);
+          //console.log(error);
           setBookedStalls([]);
           setNumberOfSeats(0);
         }
@@ -330,12 +333,12 @@ function Test({ setbookingDetails, setValue }) {
   };
 
   const handleClick = (ev) => {
-    console.log("already ", alreadyBooked)
-    //console.log(userCurr)
+    //console.log("already ", alreadyBooked)
+    ////console.log(userCurr)
 
-    console.log("booked ", bookedStalls);
-    console.log("number of seats ", numberOfSeats);
-    console.log(ev.target)
+    //console.log("booked ", bookedStalls);
+    //console.log("number of seats ", numberOfSeats);
+    //console.log(ev.target)
     if (numberOfSeats && ev.target.className !== "booked") {
       const seatsToBook = parseInt(numberOfSeats, 20);
       if (bookedStalls.length <= seatsToBook) {
@@ -350,9 +353,9 @@ function Test({ setbookingDetails, setValue }) {
           setAvailable(available + 1);
         } else if (bookedStalls.length < numberOfSeats) {
           const item = UpdatedData.filter((e) => e._id === ev.target.id);
-          console.log("here booked");
+          //console.log("here booked");
           setAvailable(available - 1);
-          //console.log(userCurr)
+          ////console.log(userCurr)
           setBookedStalls([...bookedStalls, item[0]]);
         } else if (bookedStalls.length === seatsToBook) {
           const item = UpdatedData.filter((e) => e._id === ev.target.id);
@@ -361,7 +364,7 @@ function Test({ setbookingDetails, setValue }) {
         }
       }
     }
-    //console.log(bookedStalls.map(function(v,i){return v.stallPrice}));
+    ////console.log(bookedStalls.map(function(v,i){return v.stallPrice}));
 
   };
 
@@ -382,14 +385,75 @@ function Test({ setbookingDetails, setValue }) {
   };
 
 
+  const handlechange1 = (event) => {
+    //console.log(event.target.value)
+  if (event.target.value < todayFormatted) {
+    toast.warn("Please select today's date or a later date", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
+    setdate(todayFormatted);
+  }
+  else {
+    setdate(event.target.value);
+
+  }
+};
+
+
+
   return (
     <>
       {!Loading ? (
         <div className="Test">
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <h2 className="market-name">{Id}</h2>
           <div className="main_container_stalls">
             <Grid className="input-div-holder" container spacing={2}>
+
+              <Grid item xs={12} sm={6}>
+                <InputLabel className="stall-booking-lable">
+                  Enter Booking Date
+                </InputLabel>
+                <TextField
+                  inputlabelprops={{
+                    style: { fontSize: 14, fontFamily: "monospace" },
+                  }}
+                  name="booking-date"
+                  required
+                  fullWidth
+                  type="date"
+                  id="booking-date"
+                  autoFocus
+                  //setdate={setdate(date)}
+                  value={date}
+                  onChange={handlechange1}
+                  color="success"
+                  className="textfield"
+                />
+                {/* {//console.log(date)} */}
+              </Grid>
+            
               <Grid style={{ margin: "auto" }} item xs={12} sm={6}>
+
+              
                 <InputLabel className="stall-booking-lable">
                   Number Of Stall Required
                 </InputLabel>
@@ -415,9 +479,10 @@ function Test({ setbookingDetails, setValue }) {
                 />
               </Grid>
             </Grid>
-            <Grid className="advance-booking">
+            {/* <Grid className="advance-booking">
               <Link to="../advancebookings" className='advancebookinglink'>Advance booking !</Link>
-            </Grid>
+              
+            </Grid> */}
             <Grid className="stall-position-grid">
               <InputLabel className="stall-booking-lable">
                 Select Stall Position
@@ -441,28 +506,28 @@ function Test({ setbookingDetails, setValue }) {
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(16, 17)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(17, 18)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(18, 34)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                         </div>
                       )}
@@ -473,28 +538,28 @@ function Test({ setbookingDetails, setValue }) {
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(24, 25)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(25, 26)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(26, 50)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                         </div>
                       )}

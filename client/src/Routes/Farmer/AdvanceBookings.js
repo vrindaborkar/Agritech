@@ -20,9 +20,13 @@ import "react-toastify/dist/ReactToastify.css";
 import SelectSeatModal from "../../components/SelectSeatModal";
 import Box from "@mui/material/Box";
 import { Divider } from "@mui/material";
+import { Button} from "@mui/material";
 // import Spinner from '../../components/Spinner';
 const userCurr = AuthService.getCurrentUser();
-const today = new Date();
+var today = new Date();
+// var tomorrow = today.add(1).day();
+console.log(today.getDate() + 1)
+const replacement = today.getDate() + 1;
 const todayFormatted = today.toISOString().slice(0, 10);
 const locations = [
   { location: "Hadapsar" },
@@ -52,8 +56,10 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
   const { Id } = useParams();
   const currentDate = 0
   const lengthofUpdatedData = UpdatedData?.length;
-  //UpdatedData?.length
-  const handleChange = (e, newValue) => {
+  const [cashOnDelivery, setCashOnDelivery] = useState(false);
+
+  //function to input number of stalls
+  const handleChange = (e) => {
     if (e.target.value <= -1) {
       setNumberOfSeats(0);
       setvalue(0);
@@ -97,18 +103,99 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
     };
   }, []);
 
+
+  const confirmBookingCash = async (e) => {
+    const price = bookedStalls.reduce(
+      (total, item) => item.stallPrice + total,
+      0
+    );
+    console.log(bookedStalls.length);
+    console.log("price", price)
+    if (bookedStalls.length === 0) {
+      toast.warn("Failed to book stalls!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+    let bookedStats = bookedStalls.toString();
+    const responseData = {
+      location: Id,
+      bookedStalls: bookedStalls,
+      bookedBy: userCurr.id,
+      bookedAt: dayjs(Date.now()).format("YYYY-MM-DD"),
+      isBooked: true,
+    };
+
+    const stallsBooked = [];
+    bookedStalls.forEach((e) => {
+      stallsBooked.push(e.stallName);
+    });
+
+    // const price = bookedStalls.reduce(
+    //   (total, item) => item.stallPrice + total,
+    //   0
+    // );
+    const Url = "https://wingrowmarket.onrender.com/bookedstalls";
+    const orderId = "123"
+    axios
+      .post(Url, responseData, { headers: authHeader() })
+      .then((response) => {
+        const { data } = response;
+        if (data) {
+          setbookingDetails({
+            farmer: userCurr.firstname + " " + userCurr.lastname,
+            phone: userCurr.phone,
+            paymentDetails: orderId,
+            BookedStalls: stallsBooked,
+            stallsBooked: bookedStalls.length,
+            totalAmount: price,
+            address: bookedStalls[0].address
+          });
+        }
+        toast.success("stalls booked successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          navigate("../ticket");
+        }, 1000);
+      })
+      .catch((error) => {
+        toast.warn("Failed to book stalls!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setBookedStalls([]);
+        setNumberOfSeats(0);
+      });
+
+  }
+
   useEffect(() => {
     const res = data && data.filter((e) => e.location === `${location}`);
     console.log(res)
     setUpdatedData(res);
   }, [location, data, value]);
 
-
-  // useEffect(() => {
-  //   const res = data && data.filter((e) => e.location === `${Id}`);
-  //   setUpdatedData(res);
-  //   console.log("Data--->", UpdatedData);
-  // }, [Id, data]);
 
   useEffect(() => {
     if (UpdatedData) {
@@ -120,9 +207,12 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
 
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const confirmBooking = async (e) => {
+    if (cashOnDelivery) {
+      confirmBookingCash();
+    }
+    else{
     const price = bookedStalls.reduce(
       (total, item) => item.stallPrice + total,
       0
@@ -153,6 +243,7 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
     } catch (error) {
       console.log(error);
     }
+  }
   };
 
   const initPayment = (data) => {
@@ -248,9 +339,11 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
     const rzp = new window.Razorpay(options);
     rzp.open();
   };
+
+
+  //function to input date from user 
   const handlechange1 = (event) => {
     if (dayjs(event.target.value).format("YYYY-MM-DD") <= todayFormatted) {
-      setdate(todayFormatted)
       toast.warn("Please select a date after today\'s date", {
         position: "top-center",
         autoClose: 2000,
@@ -261,11 +354,9 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
         progress: undefined,
         theme: "light",
       });
-      // alert('here')
-      // alert(dayjs(event.target.value).format("YYYY-MM-DD") + " " + todayFormatted)
+      setdate(todayFormatted.replace(/.{0,2}$/, '') + replacement);
     }
     else {
-      //alert(dayjs(event.target.value).format("YYYY-MM-DD") + " " + todayFormatted)
       setdate(dayjs(event.target.value).format("YYYY-MM-DD"));
 
     }
@@ -275,7 +366,6 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
 
 
     console.log("already ", alreadyBooked)
-    //console.log(userCurr)
 
     console.log("booked ", bookedStalls);
     console.log("number of seats ", numberOfSeats);
@@ -356,7 +446,6 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
               id="booking-date"
               autoFocus
               value={date}
-              // setValue={(e)=>{setvalue(e.nativeEvent.value)}}
               onChange={handlechange1}
               color="success"
               className="textfield"
@@ -558,9 +647,25 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
               )}/-</div>
             </div>
           </Grid>
-          <div className="modal_btn">
-            <ConfirmModal confirmBooking={confirmBooking} />
-          </div>
+          {numberOfSeats !== 0 && bookedStalls.length !== 0 ? (
+            <div className="modalbtn">
+              <ConfirmModal setCashOnDelivery={setCashOnDelivery} confirmBooking={confirmBooking} />
+            </div>
+          ) : (
+            <Grid container alignItems="center" justifyContent="center">
+              <Grid item xs={6}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Button
+                    style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    PAY
+                  </Button>
+                  <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    PAY ON DELIVERY
+                  </Button>
+                </div>
+              </Grid>
+            </Grid>
+          )}
 
         </div>
       </div>
