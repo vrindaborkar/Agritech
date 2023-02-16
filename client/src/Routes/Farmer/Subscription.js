@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Subscription = () => {
   const user = AuthService.getCurrentUser()
-  const [sub,setSub] = useState();
+  const [sub,setSub] = useState([]);
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
   const API_URL = "http://localhost:4000/";
@@ -24,23 +24,27 @@ const Subscription = () => {
   const[validTill,setValidTill] = useState();
   useEffect( ()=>{
     const userId = user.id
-    UserService.getSub(userId).then((res)=>{
-      const {data} = res
-      setSub(data)
-      console.log(data)
-      const currentDate = new Date(data[0].date)
-      //console.log("data -",res)
-      //var newDate = new Date(currentDate.setMonth(currentDate.getMonth()+1));
-      //const validDate = String(newDate.getFullYear()) + String(newDate.getMonth()) + String(newDate.getDate());
-      //setValidTill(newDate)
-      //console.log(validDate)
-      const year= currentDate.getFullYear();
-      const month = Number(currentDate.getMonth()) + 2;
-      const date = currentDate.getDate();
-      const validDate = String(year) +"-" + String(month) + "-" + String(date)
-      console.log(validDate)
-      setValidTill(validDate)
-    })
+    if(sub.length === 0){
+      UserService.getSub(userId).then((res)=>{
+        const {data} = res
+        setSub(data)
+        console.log("data",data)
+        const currentDate = new Date(data[0].date)
+        //console.log("data -",res)
+        //var newDate = new Date(currentDate.setMonth(currentDate.getMonth()+1));
+        //const validDate = String(newDate.getFullYear()) + String(newDate.getMonth()) + String(newDate.getDate());
+        //setValidTill(newDate)
+        //console.log(validDate)
+        const year= currentDate.getFullYear();
+        const month = Number(currentDate.getMonth()) + 2;
+        const date = currentDate.getDate();
+        const validDate = String(year) +"-" + String(month) + "-" + String(date)
+        console.log(validDate)
+        setValidTill(validDate)
+      })
+    }
+    
+   
 
     
     // await axios.post(API_URL +'sub1',{userId},{headers:authHeader()})
@@ -72,7 +76,7 @@ const Subscription = () => {
     <div >
       <h1>Subscription Model</h1>
       {/* not Subscribe */}
-      {sub ? 
+      { sub.length !== 0 ? 
       <div>
         <h2>Subscibed</h2>
         
