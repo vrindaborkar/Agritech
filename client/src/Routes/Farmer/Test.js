@@ -22,7 +22,7 @@ import { Divider } from "@mui/material";
 
 const userCurr = AuthService.getCurrentUser();
 
-function Test({ setbookingDetails , setValue }) {
+function Test({ setbookingDetails, setValue }) {
   const navigate = useNavigate();
   const [data, setdata] = useState();
   const [UpdatedData, setUpdatedData] = useState();
@@ -30,31 +30,39 @@ function Test({ setbookingDetails , setValue }) {
   const [bookedStalls, setBookedStalls] = useState([]);
   const [Loading, setLoading] = useState();
   const { Id } = useParams();
-  const [value, setvalue] = useState();
+  const [value, setvalue] = useState(0);
   const [alreadyBooked, setAlreadyBooked] = useState();
-  const[alreadyBookedLocataion,setAlreadyBookedLocation] = useState(0);
+  const [alreadyBookedLocataion, setAlreadyBookedLocation] = useState(0);
   const [open, setOpen] = useState();
-  const[cashOnDelivery,setCashOnDelivery] = useState(false);
-  const[totalStall,setTotalStalls] = useState(0);
-  const[available,setAvailable] = useState(0);
+  const [cashOnDelivery, setCashOnDelivery] = useState(false);
+  const [totalStall, setTotalStalls] = useState(0);
+  const [available, setAvailable] = useState(0);
+  const [date, setdate] = useState(0);
+  const today = new Date();
+  const todayFormatted = today.toISOString().slice(0, 10);
+  //console.log(todayFormatted)
+  //console.log(date)
 
+  
+  //console.log(date)
   useEffect(() => {
     setLoading(true);
+
     FarmerService.getMyStalls().then((response) => {
       setLoading(false);
       setdata(response.data);
     });
 
     FarmerService.getBookedStalls().then((response) => {
-     const res = response.data && response.data.filter((e) => e.location === `${Id}`);
-     setAlreadyBooked(response.data);
-     setAlreadyBookedLocation(res.length-1);
-     
-      console.log("already booked",res.length-1);
-    
+      const res = response.data && response.data.filter((e) => e.location === `${Id}` && e.bookedAt === date);
+      setAlreadyBooked(response.data);
+      setAlreadyBookedLocation(res.length);
+      console.log('alreadyBooked:',res)
     });
+
     handleOpen(true);
-  }, []);
+  }, [date, Id]);
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -69,29 +77,40 @@ function Test({ setbookingDetails , setValue }) {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const res = data && data.filter((e) => e.location === `${Id}`);
+  //   setUpdatedData(res);
+  //   //console.log("Data--->", UpdatedData);
+
+  //   if (UpdatedData) {
+  //     setTotalStalls(UpdatedData.length)
+  //     setAvailable(totalStall - alreadyBookedLocataion)
+  //   }
+
+
+  // }, [Id, data]);
+
   useEffect(() => {
     const res = data && data.filter((e) => e.location === `${Id}`);
     setUpdatedData(res);
-    console.log("Data--->",data);
-
-    if(UpdatedData)
-    {
-      //setAvailable(UpdatedData.length);
-      setTotalStalls(UpdatedData.length)
-      
-      setAvailable(Math.abs(totalStall-alreadyBookedLocataion))
-    }
-    
-    
+    //console.log("Data--->", UpdatedData);
   }, [Id, data]);
-  
-  const confirmBookingCash = async(e) =>{
+
+  useEffect(() => {
+    if (UpdatedData) {
+      setTotalStalls(UpdatedData.length)
+      setAvailable(totalStall - alreadyBookedLocataion)
+    }
+  }, [UpdatedData]);
+
+
+  const confirmBookingCash = async (e) => {
     const price = bookedStalls.reduce(
       (total, item) => item.stallPrice + total,
       0
     );
-    console.log(bookedStalls.length);
-    console.log("price" ,price)
+    //console.log(bookedStalls.length);
+    //console.log("price", price)
     if (bookedStalls.length === 0) {
       toast.warn("Failed to book stalls!", {
         position: "top-right",
@@ -110,7 +129,7 @@ function Test({ setbookingDetails , setValue }) {
       location: Id,
       bookedStalls: bookedStalls,
       bookedBy: userCurr.id,
-      bookedAt: dayjs(Date.now()).format("YYYY-MM-DD"),
+      bookedAt: date,
       isBooked: true,
     };
 
@@ -124,7 +143,7 @@ function Test({ setbookingDetails , setValue }) {
     //   0
     // );
     const Url = "https://wingrowmarket.onrender.com/bookedstalls";
-    const orderId="123"
+    const orderId = "123"
     axios
       .post(Url, responseData, { headers: authHeader() })
       .then((response) => {
@@ -137,7 +156,7 @@ function Test({ setbookingDetails , setValue }) {
             BookedStalls: stallsBooked,
             stallsBooked: bookedStalls.length,
             totalAmount: price,
-            address :bookedStalls[0].address
+            address: bookedStalls[0].address
           });
         }
         toast.success("stalls booked successfully!", {
@@ -172,45 +191,46 @@ function Test({ setbookingDetails , setValue }) {
   }
 
   const confirmBooking = async (e) => {
-    if(cashOnDelivery){
+    if (cashOnDelivery) {
       confirmBookingCash();
     }
-    else{
-    const price = bookedStalls.reduce(
-      (total, item) => item.stallPrice + total,
-      0
-    );
-    
-    console.log(bookedStalls.length);
-    console.log("price" ,price)
-    if (bookedStalls.length === 0) {
-      toast.warn("Failed to book stalls!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      return;
-    }
-    try {
-      const orderUrl = "https://wingrowmarket.onrender.com/order";
-      const { data } = await axios.post(
-        orderUrl,
-        { amount: price * 100 },
-        { headers: authHeader() }
+    else {
+      const price = bookedStalls.reduce(
+        (total, item) => item.stallPrice + total,
+        0
       );
-      initPayment(data.data);
-    } catch (error) {
-      console.log(error);
+
+      //console.log(bookedStalls.length);
+      //console.log("price", price)
+      if (bookedStalls.length === 0) {
+        toast.warn("Failed to book stalls!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        return;
+      }
+      try {
+        const orderUrl = "https://wingrowmarket.onrender.com/order";
+        const { data } = await axios.post(
+          orderUrl,
+          { amount: price * 100 },
+          { headers: authHeader() }
+        );
+        initPayment(data.data);
+      } catch (error) {
+        //console.log(error);
+      }
     }
-  }
   };
 
   const initPayment = (data) => {
+    //console.log(date)
     let bookedStats = bookedStalls.toString();
     const options = {
       key: process.env.KEY_ID,
@@ -219,28 +239,28 @@ function Test({ setbookingDetails , setValue }) {
       order_id: data.id,
       bookedStalls: bookedStats,
       description: "Wingrow Agritech",
-      
+
       handler: async (response) => {
-        
+
         try {
 
           var orderId;
-          if(!cashOnDelivery){
+          if (!cashOnDelivery) {
             const verifyUrl = "https://wingrowmarket.onrender.com/verify";
             const { data } = await axios.post(verifyUrl, response, {
-            headers: authHeader(),
-          });
-           orderId = data.orderId;
-          }else{
+              headers: authHeader(),
+            });
+            orderId = data.orderId;
+          } else {
             orderId = "123"
           }
-          
 
+          //console.log(date)
           const responseData = {
             location: Id,
             bookedStalls: bookedStalls,
             bookedBy: userCurr.id,
-            bookedAt: dayjs(Date.now()).format("YYYY-MM-DD"),
+            bookedAt: date,
             isBooked: true,
           };
 
@@ -267,7 +287,7 @@ function Test({ setbookingDetails , setValue }) {
                   BookedStalls: stallsBooked,
                   stallsBooked: bookedStalls.length,
                   totalAmount: price,
-                  address :bookedStalls[0].address
+                  address: bookedStalls[0].address
                 });
               }
               toast.success("stalls booked successfully!", {
@@ -299,7 +319,7 @@ function Test({ setbookingDetails , setValue }) {
               setNumberOfSeats(0);
             });
         } catch (error) {
-          console.log(error);
+          //console.log(error);
           setBookedStalls([]);
           setNumberOfSeats(0);
         }
@@ -313,32 +333,29 @@ function Test({ setbookingDetails , setValue }) {
   };
 
   const handleClick = (ev) => {
-    console.log("already ", alreadyBookedLocataion)
-    //console.log(userCurr)
+    //console.log("already ", alreadyBooked)
+    ////console.log(userCurr)
 
-    console.log("booked " ,bookedStalls);
-    console.log("number of seats ",numberOfSeats);
-    console.log(ev.target)
+    //console.log("booked ", bookedStalls);
+    //console.log("number of seats ", numberOfSeats);
+    //console.log(ev.target)
     if (numberOfSeats && ev.target.className !== "booked") {
-      console.log("available:", (available))
       const seatsToBook = parseInt(numberOfSeats, 20);
       if (bookedStalls.length <= seatsToBook) {
-        
+
         if (bookedStalls.includes(ev.target.id)) {
-          console.log('hello')
+
           //if already selected then remove it
-          const newAvailable = Math.abs(bookedStalls.filter(
+          const newAvailable = bookedStalls.filter(
             (seat) => seat !== ev.target.id
-          ));
-          console.log("newavailable:",newAvailable)
-          
+          );
           setBookedStalls(newAvailable);
-          setAvailable(Math.abs(available + 1));
+          setAvailable(available + 1);
         } else if (bookedStalls.length < numberOfSeats) {
           const item = UpdatedData.filter((e) => e._id === ev.target.id);
-          console.log("here booked");
-          setAvailable(Math.abs(available - 1));
-          //console.log(userCurr)
+          //console.log("here booked");
+          setAvailable(available - 1);
+          ////console.log(userCurr)
           setBookedStalls([...bookedStalls, item[0]]);
         } else if (bookedStalls.length === seatsToBook) {
           const item = UpdatedData.filter((e) => e._id === ev.target.id);
@@ -347,52 +364,101 @@ function Test({ setbookingDetails , setValue }) {
         }
       }
     }
-    //console.log(bookedStalls.map(function(v,i){return v.stallPrice}));
-    
+    ////console.log(bookedStalls.map(function(v,i){return v.stallPrice}));
+
   };
 
   const lengthofUpdatedData = UpdatedData?.length;
   //UpdatedData?.length
-  const handleChange = (e , newValue) => {
-    // console.log(e.target);
-    setNumberOfSeats(e.target.value);
-    console.log(numberOfSeats)
-    setValue(e.target.value);
+  const handleChange = (e, newValue) => {
+    if (e.target.value <= -1) {
+      setNumberOfSeats(0);
+      setvalue(0);
+    }
+    else if (e.target.value <= available) {
+      setNumberOfSeats(e.target.value);
+      setvalue(e.target.value);
+    } else {
+      setNumberOfSeats(available);
+      setvalue(available);
+    }
   };
 
 
-// const up=()=>{
-//   setValue1(value1 + 1)
-//   setNumberOfSeats( value1+1)
-//   //console.log("number of seats:",numberOfSeats);
-//   //  console.log(value1) 
-//   // console.log("numderofseats on up:", numberOfSeats) 
-// }
-// const down=()=>{
-//   setValue1(value1 - 1)
-//   setNumberOfSeats( value1-1)
-//   //console.log("number of seats:", numberOfSeats);
-//   //  console.log(value1) 
-//   //  console.log("numderofseats on down:", numberOfSeats) 
-// }
+  const handlechange1 = (event) => {
+    //console.log(event.target.value)
+  if (event.target.value < todayFormatted) {
+    toast.warn("Please select today's date or a later date", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
+    setdate(todayFormatted);
+  }
+  else {
+    setdate(event.target.value);
+
+  }
+};
+
+
+
   return (
     <>
-      {/* <Link style={{ marginTop: '10px' }} className="backbtn green" to="/farmers" >
-        Back
-      </Link> */}
       {!Loading ? (
-        
         <div className="Test">
-        
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <h2 className="market-name">{Id}</h2>
           <div className="main_container_stalls">
             <Grid className="input-div-holder" container spacing={2}>
-              <Grid style={{margin:"auto"}} item xs={12} sm={6}>
+
+              <Grid item xs={12} sm={6}>
+                <InputLabel className="stall-booking-lable">
+                  Enter Booking Date
+                </InputLabel>
+                <TextField
+                  inputlabelprops={{
+                    style: { fontSize: 14, fontFamily: "monospace" },
+                  }}
+                  name="booking-date"
+                  required
+                  fullWidth
+                  type="date"
+                  id="booking-date"
+                  autoFocus
+                  //setdate={setdate(date)}
+                  value={date}
+                  onChange={handlechange1}
+                  color="success"
+                  className="textfield"
+                />
+                {/* {//console.log(date)} */}
+              </Grid>
+            
+              <Grid style={{ margin: "auto" }} item xs={12} sm={6}>
+
+              
                 <InputLabel className="stall-booking-lable">
                   Number Of Stall Required
                 </InputLabel>
-                <TextField 
-                // className="stall-booking-input"
+                <TextField
+                  // className="stall-booking-input"
                   inputlabelprops={{
                     style: { fontSize: 14, fontFamily: "monospace" },
                   }}
@@ -405,21 +471,18 @@ function Test({ setbookingDetails , setValue }) {
                   autoFocus
                   color="success"
                   className="textfield"
+                  value={value}
                   onChange={handleChange}
-                  // margin="normal"
-                  
-                />
 
-                {/* <input type="text" value={value1} onChange={(event) => setValue1(event.target.value)}  />
-                <button onClick={up}>+</button>
-                <button onClick={down}>-</button> */}
-                
-               
+                // margin="normal"
+
+                />
               </Grid>
             </Grid>
-            <Grid className="advance-booking">
-            <Link to="../advancebookings" className='advancebookinglink'>Advance booking !</Link>
-            </Grid>
+            {/* <Grid className="advance-booking">
+              <Link to="../advancebookings" className='advancebookinglink'>Advance booking !</Link>
+              
+            </Grid> */}
             <Grid className="stall-position-grid">
               <InputLabel className="stall-booking-lable">
                 Select Stall Position
@@ -443,28 +506,28 @@ function Test({ setbookingDetails , setValue }) {
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(16, 17)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(17, 18)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(18, 34)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                         </div>
                       )}
@@ -475,28 +538,28 @@ function Test({ setbookingDetails , setValue }) {
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(24, 25)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(25, 26)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                           <Stall
                             data={UpdatedData.slice(26, 50)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
-                            date={dayjs(Date.now()).format("YYYY-MM-DD")}
+                            date={date}
                           />
                         </div>
                       )}
@@ -559,9 +622,9 @@ function Test({ setbookingDetails , setValue }) {
                 <div className="stall-total-amount-holder">
                   <div className="total-amount">Total Amount</div>
                   <div className="total-amount">Rs.{bookedStalls.reduce(
-      (total, item) => item.stallPrice + total,
-      0
-    )}/-</div>
+                    (total, item) => item.stallPrice + total,
+                    0
+                  )}/-</div>
                 </div>
               </Grid>
             </Grid>
@@ -571,17 +634,17 @@ function Test({ setbookingDetails , setValue }) {
               </div>
             ) : (
               <Grid container alignItems="center" justifyContent="center">
-              <Grid item xs={6}>
-              <div style={{ display: "flex", justifyContent: "center"}}>
-                <Button 
-                style={{ width: "110px", height: "40px",paddingLeft:'5rem', paddingRight:'5rem', margin:'1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                PAY
-                </Button>
-                <Button style={{ width: "110px", height: "40px",paddingLeft:'5rem', paddingRight:'5rem', margin:'1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                PAY ON DELIVERY
-                </Button>
-                </div>
-              </Grid>  
+                <Grid item xs={6}>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      PAY
+                    </Button>
+                    <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      PAY ON DELIVERY
+                    </Button>
+                  </div>
+                </Grid>
               </Grid>
             )}
           </div>
@@ -594,5 +657,4 @@ function Test({ setbookingDetails , setValue }) {
 }
 
 export default Test;
-
 
