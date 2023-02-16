@@ -2,7 +2,7 @@ const Inward = require("../models/Inward");
 const Outward = require("../models/Outward");
 const jwt_decode =  require("jwt-decode");
 const User = require("../models/User");
-
+const Subscribe = require("../models/Subscibe")
 exports.getInward = async(req,res,next) => {
     let token = req.headers["x-access-token"];
     const { id } = jwt_decode(token)
@@ -33,7 +33,45 @@ exports.getUser = async(req, res) => {
     res.status(200).json(filter)
   }
 
+    // exports.getSub = async(req,res) =>{
+    //     let token = req.headers["x-access-token"];
+    //     const { id } = jwt_decode(token)
+    //     console.log(id)
+    //     const data = await Subscribe.find({"userId" : id});
+    //     console.log(data)
+    //     res.status(200).json(data);
+    // }
+    exports.getSub = async(req,res) =>{
+        const id= req.body.userId
+        console.log(id);
+        const data = await Subscribe.find({"userId" : id});
+        console.log(data)
+        res.status(200).json(data);
+    }
 
+    exports.postSub = async(req,res) =>{
+        // let token = req.headers["x-access-token"];
+        // const { id } = jwt_decode(token)
+        const data = {
+            
+            userId:req.body.userId,
+            date:req.body.date,
+            validity:req.body.validity,
+            stalls:req.body.stalls
+        }
+        console.log("success!!!!!")
+        //res.send(data)
+        
+        const postdata = await new Subscribe(data);
+        const resp = await postdata.save();
+    
+        if(!resp){
+            res.status(400).json({message:"An unknown error occured"})
+        }
+    
+        res.status(200).json({message:"Data added successfully"})
+        
+    }
 exports.getInwardData = async(req,res,next) => {
     const inwarddata = await Inward.find();
     res.send(inwarddata)

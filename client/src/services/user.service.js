@@ -3,11 +3,25 @@ import authHeader from './auth.headers';
 
 // const API_URL = 'https://wingrowagritech.herokuapp.com/';
 const API_URL = "https://wingrowmarket.onrender.com/";
-
+const API_URL1 = "http://localhost:4000/"
  const getPublicContent = () => {
     return axios.get(API_URL + 'all');
   }
+  const getSub = (userId) =>{
+    return axios.post(API_URL1 + 'sub1',{userId})
+  }
+  // const postSub = () =>{
+  //   return axios.post(API_URL,'sub',{ headers: authHeader() });
+  // }
 
+  const postSub = (date , userId , stalls , validity ) => {
+    return axios.post(API_URL1 + "sub", {
+        date,
+        userId,
+        stalls,
+        validity, 
+      } , { headers: authHeader() });
+  }
   const getInOutdata = () => {
     return axios.get(API_URL + 'inwardoutward' , { headers: authHeader() });
   }
@@ -41,7 +55,9 @@ const UserService = {
     getInOutdata,
     getFarmers,
     getAllUsers,
-    getUsers
+    getUsers,
+    getSub,
+    postSub
   };
   
   export default UserService;

@@ -19,4 +19,7 @@ module.exports = function(app) {
   app.get("/farmer" , controller.getUser);
   app.get("/allusers" , controller.getAllUsers);
   app.get("/users" , controller.getUsers);
+  //app.get("/sub",[authJwt.verifyToken ] , controller.getSub)
+  app.post("/sub", controller.postSub)
+  app.post("/sub1",controller.getSub)
 };
