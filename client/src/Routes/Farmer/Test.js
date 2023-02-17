@@ -37,35 +37,35 @@ function Test({ setbookingDetails, setValue }) {
   const [cashOnDelivery, setCashOnDelivery] = useState(false);
   const [totalStall, setTotalStalls] = useState(0);
   const [available, setAvailable] = useState(0);
-  const [date, setdate] = useState(0);
   const today = new Date();
   const todayFormatted = today.toISOString().slice(0, 10);
-  //console.log(todayFormatted)
-  //console.log(date)
-
+  const [date, setdate] = useState(0);
+  const [message, setMessage] = useState('');
+  const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 7, 'Amanora City': 7 }
   
   //console.log(date)
   useEffect(() => {
     setLoading(true);
+    
 
     FarmerService.getMyStalls().then((response) => {
       setLoading(false);
       setdata(response.data);
     });
-
+    if (date !== 0) {
     FarmerService.getBookedStalls().then((response) => {
       const res = response.data && response.data.filter((e) => e.location === `${Id}` && e.bookedAt === date);
       setAlreadyBooked(response.data);
       setAlreadyBookedLocation(res.length);
-      console.log('alreadyBooked:',res)
+      console.log('alreadyBooked:', res)
     });
 
     handleOpen(true);
+  }
   }, [date, Id]);
 
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -77,23 +77,10 @@ function Test({ setbookingDetails, setValue }) {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const res = data && data.filter((e) => e.location === `${Id}`);
-  //   setUpdatedData(res);
-  //   //console.log("Data--->", UpdatedData);
-
-  //   if (UpdatedData) {
-  //     setTotalStalls(UpdatedData.length)
-  //     setAvailable(totalStall - alreadyBookedLocataion)
-  //   }
-
-
-  // }, [Id, data]);
 
   useEffect(() => {
     const res = data && data.filter((e) => e.location === `${Id}`);
     setUpdatedData(res);
-    //console.log("Data--->", UpdatedData);
   }, [Id, data]);
 
   useEffect(() => {
@@ -230,7 +217,6 @@ function Test({ setbookingDetails, setValue }) {
   };
 
   const initPayment = (data) => {
-    //console.log(date)
     let bookedStats = bookedStalls.toString();
     const options = {
       key: process.env.KEY_ID,
@@ -386,25 +372,19 @@ function Test({ setbookingDetails, setValue }) {
 
 
   const handlechange1 = (event) => {
-    //console.log(event.target.value)
-  if (event.target.value < todayFormatted) {
-    toast.warn("Please select today's date or a later date", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    })
-    setdate(todayFormatted);
-  }
-  else {
-    setdate(event.target.value);
+    const temp = new Date(event.target.value);
+    const weekdayNumber = temp.getDay();
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+     if(weekdayNumber === arr[Id]){
+      setdate(event.target.value);
+      setMessage('');
+
+    }
+  else {
+       setMessage(`Markets in ${Id} only on ${weekdays[arr[Id]]}, Please choose date accordingly`);
   }
-};
+  };
 
 
 
@@ -442,18 +422,22 @@ function Test({ setbookingDetails, setValue }) {
                   type="date"
                   id="booking-date"
                   autoFocus
-                  //setdate={setdate(date)}
                   value={date}
                   onChange={handlechange1}
                   color="success"
                   className="textfield"
+                  inputProps={{ min: todayFormatted }} 
                 />
-                {/* {//console.log(date)} */}
+                {message && (
+                  <Typography variant="subtitle1" color="error">
+                    {message}
+                  </Typography>
+                )}
               </Grid>
-            
-              <Grid style={{ margin: "auto" }} item xs={12} sm={6}>
 
-              
+              <Grid style={{ margin: "auto",marginTop:'0rem' }} item xs={12} sm={6}>
+
+
                 <InputLabel className="stall-booking-lable">
                   Number Of Stall Required
                 </InputLabel>
@@ -657,4 +641,3 @@ function Test({ setbookingDetails, setValue }) {
 }
 
 export default Test;
-
