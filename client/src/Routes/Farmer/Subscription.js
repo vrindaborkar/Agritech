@@ -11,6 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+//import Razorpay from 'razorpay';
 
 import authHeader from "../../services/auth.headers";
 import { ToastContainer, toast } from "react-toastify";
@@ -41,6 +42,16 @@ const Subscription = () => {
     }
     return true;
 }
+
+useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  script.async = true;
+  document.body.appendChild(script);
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []);
   useEffect( ()=>{
     
     const userId = user.id
@@ -166,7 +177,7 @@ const Subscription = () => {
       //console.log("price", price)
       
       try {
-        const orderUrl = "https://wingrowmarket.onrender.com/order";
+        const orderUrl = API_URL+"order";
         const { data } = await axios.post(
           orderUrl,
           { amount: price * 100 },
@@ -174,7 +185,7 @@ const Subscription = () => {
         );
         initPayment(data.data);
       } catch (error) {
-        //console.log(error);
+        console.log(error);
       }
     }
   };
@@ -194,15 +205,13 @@ const Subscription = () => {
         try {
 
           var orderId;
-          if (!cashOnDelivery) {
+          
             const verifyUrl = "https://wingrowmarket.onrender.com/verify";
             const { data } = await axios.post(verifyUrl, response, {
               headers: authHeader(),
             });
             orderId = data.orderId;
-          } else {
-            orderId = "123"
-          }
+          
 
           //console.log(date)
           // const responseData = {
@@ -222,7 +231,7 @@ const Subscription = () => {
           //   (total, item) => item.stallPrice + total,
           //   0
           // );
-          const Url = "https://wingrowmarket.onrender.com/bookedstalls";
+          //const Url = "https://wingrowmarket.onrender.com/bookedstalls";
           const userId = user.id
         await  axios
       .post(API_URL+"sub",{date,userId,validity,stalls})

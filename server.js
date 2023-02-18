@@ -13,17 +13,24 @@ const fileUpload = require('express-fileupload')
 //    credentials:true,            //access-control-allow-credentials:true
 //    optionSuccessStatus:200,
 // };
-app.use(cors({
-  origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
-  credentials: true
-}))
+//THIS ONE MAIN
+// app.use(cors({
+//   origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+//   credentials: true
+// }))
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
 //   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authortization');
 //   res.setHeader('Acces-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
 // })
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 //app.use(cors(corsOptions));
