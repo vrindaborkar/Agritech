@@ -19,7 +19,7 @@ const Subscription = () => {
   const [sub,setSub] = useState([]);
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
-  const API_URL = "http://localhost:4000/";
+  const API_URL = "https://wingrowmarket.onrender.com/";
   const[stalls,setStalls] = useState();
   const[validTill,setValidTill] = useState();
   useEffect( ()=>{

@@ -152,15 +152,15 @@ export default function SignIn() {
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               </Avatar> */}
             <img className="form-logo" src="./logo.png" alt="form-logo" />
-            <Typography component="h1" variant="h5">
-              Welcome to Wingrowagritech
+            <Typography component="h1" variant="h5" className="form-link">
+              <span className="heading">Welcome to Wingrowagritech</span>
             </Typography>
             <Typography mt={2} component="h1" variant="h5">
-              Login here.
+              <span className="heading" >Login here.</span>
             </Typography>
             <TextField
               inputlabelprops={{
-                style: { fontSize: 16, fontFamily: "monospace" },
+                style: { fontSize: 16, fontFamily: 'Arturo' },
               }}
               margin="normal"
               required
@@ -172,7 +172,8 @@ export default function SignIn() {
               autoComplete="phone"
               autoFocus
               color="success"
-              className="textfield"
+              className="heading"
+              // className="textfield"
               onChange={handleChange}
             />
             {/* <TextField
@@ -206,8 +207,8 @@ export default function SignIn() {
               Login
             </Button>
             <Typography className="form-link" mt={2}>
-              New to Wingrow? 
-               <Link to="/Register" variant="body2" className="form-link signupWithUs">
+              <span className="heading">New to Wingrow?</span>
+               <Link to="/Register" variant="body2" className="form-link">
                  Signup with us
               </Link>
             </Typography>
