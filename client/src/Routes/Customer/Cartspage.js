@@ -16,7 +16,7 @@ const handlecheckout = () => {
   return (
     <div className='carts_page'>
       <div className='carts_head'>
-        <Link className='head_carts' to="../">Items</Link>
+        {/* <Link className='head_carts' to="../">Items</Link> */}
         <Link className='head_carts' to="../cartspage">Cart {Itemcount}</Link>
       </div>
       <div className='carts_container'>

@@ -4,6 +4,8 @@ import AuthService from '../../services/auth.service'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import FarmerService from '../../services/farmer.service'
+
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -27,13 +29,14 @@ const Subscription = () => {
   const [sub,setSub] = useState([]);
   const [open, setOpen] = useState();
   const [cashOnDelivery, setCashOnDelivery] = useState(false);
-
+  const[MyStalls,setMyStalls] = useState();
 
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
-  const API_URL = "http://localhost:4000/";
+  const API_URL = "https://wingrowmarket.onrender.com/";
   const[stalls,setStalls] = useState();
   const[validTill,setValidTill] = useState();
+  const[remStalls,setRemStalls] = useState(0);
   function isJson(str) {
     try {
         JSON.parse(str);
@@ -42,7 +45,14 @@ const Subscription = () => {
     }
     return true;
 }
-
+useEffect(() => {
+  FarmerService.getBookedStalls().then((res)=>{
+      const {data} = res;
+      setMyStalls(data.filter(e=>e.bookedBy === user.id))
+      console.log("the booked stalls are -- ", MyStalls.length)
+      setRemStalls(MyStalls.length)
+  })
+}, [user])
 useEffect(() => {
   const script = document.createElement("script");
   script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -72,6 +82,7 @@ useEffect(() => {
         const validDate = String(year) +"-" + String(month) + "-" + String(date)
         console.log(validDate)
         setValidTill(validDate)
+        setRemStalls(data[0].stalls-remStalls);
       })
     }
     
@@ -308,7 +319,8 @@ useEffect(() => {
         <h3>Start data - { sub[0].date}</h3>
         <h3>validity - {sub[0].validity}</h3>
         <h3> valid till - {validTill} </h3>
-
+        {/* <h3>stalls - {sub[0].stalls}</h3> */}
+        <h3>available - {remStalls}</h3>
 
       </div> :
       
@@ -418,5 +430,3 @@ useEffect(() => {
 };
 
 export default Subscription;
-
-//start date, month, userID
