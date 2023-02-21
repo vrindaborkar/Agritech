@@ -14,6 +14,7 @@ import Spinner from "../components/Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import firebase from "./firebase";
+import '../styles/Styles.css'
 //import Select from 'react-select';
 const user = AuthService.getCurrentUser();
 
@@ -331,16 +332,16 @@ export default function Register({ t, languages }) {
             <div id="sign-in-button"></div>
             <img className="form-logo" src="./logo.png" alt="form-logo" />
             <Typography className="form-heading" component="h1" variant="h5">
-              Welcome to Wingrowagritech
+              <span className="heading">Welcome to Wingrowagritech</span>
             </Typography>
             <Typography className="form-heading" mt={2} component="h1" variant="h5">
-              Signup with us
+              <span className="heading">Signup with us</span>
             </Typography>
             <Grid className="input-div-holder" container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   inputlabelprops={{
-                    style: { fontSize: 14, fontFamily: "monospace" },
+                    style: { fontSize: 14, fontFamily: "Arturo" },
                   }}
                   autoComplete="given-name"
                   name="firstname"
@@ -358,7 +359,7 @@ export default function Register({ t, languages }) {
               <Grid item xs={12} sm={6}>
                 <TextField
                   inputlabelprops={{
-                    style: { fontSize: 14, fontFamily: "monospace" },
+                    style: { fontSize: 14, fontFamily: "Arturo" },
                   }}
                   required
                   fullWidth
@@ -375,7 +376,7 @@ export default function Register({ t, languages }) {
               <Grid item xs={6}  >
                 <TextField
                   inputlabelprops={{
-                    style: { fontSize: 14, fontFamily: "monospace" },
+                    style: { fontSize: 14, fontFamily: "Arturo" },
                   }}
                   required
                   fullWidth
@@ -399,15 +400,15 @@ export default function Register({ t, languages }) {
                 size="large"
                 sx={{ mt: 2, mb: 2 }}
               >
-                Fetch Otp
+                <span className="heading">Fetch Otp</span>
               </Button>
               </Grid>
 
               <Grid item xs={6}  >
               
-              <TextField
+              <TextField 
                 inputlabelprops={{
-                  style: { fontSize: 14, fontFamily: "monospace" },
+                  style: { fontSize: 14, fontFamily: "Arturo"},
                 }}
                 required
                 fullWidth
@@ -445,7 +446,7 @@ export default function Register({ t, languages }) {
                 size="large"
                 sx={{ mt: 2, mb: 2 }}
               >
-                Submit OTP
+                <span className="heading">Submit OTP</span>
               </Button>
               </Grid>
 
@@ -456,11 +457,11 @@ export default function Register({ t, languages }) {
                 >
                   <InputLabel
                     inputlabelprops={{
-                      style: { fontSize: 14, fontFamily: "monospace" },
+                      style: { fontSize: 14, fontFamily: "Arturo" },
                     }}
                     id="demo-simple-select-helper-label"
                   >
-                    Type
+                    <span className="heading">Type</span>
                   </InputLabel>
                   <Select
                     sx={{ fontSize: "1.2rem" }}
@@ -473,22 +474,22 @@ export default function Register({ t, languages }) {
                     color="success"
                   >
                     <MenuItem
-                      sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                      sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                       value=""
                     >
-                      <em>Select</em>
+                      <em className="heading">Select</em>
                     </MenuItem>
                     <MenuItem
-                      sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                      sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                       value={"farmer"}
                     >
-                      Producer
+                      <span className="heading">Producer</span>
                     </MenuItem>
                     <MenuItem
-                      sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                      sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                       value={"customer"}
                     >
-                      Consumer
+                      <span className="heading">Consumer</span>
                     </MenuItem>
                   </Select>
                 </FormControl>
@@ -498,7 +499,7 @@ export default function Register({ t, languages }) {
                 <Grid item xs={12}>
                   <FormControl className='textfield' color="success" sx={{ width: "100%" }}>
                     <InputLabel id="demo-simple-select-helper-label">
-                      Producer Type
+                    <span className="heading">Producer Type</span>
                     </InputLabel>
                     <Select
                       sx={{ fontSize: "1.3rem" }}
@@ -510,49 +511,49 @@ export default function Register({ t, languages }) {
                       onChange={handleChange}
                     >
                       <MenuItem value="">
-                        <em>None</em>
+                        <em className="heading">None</em>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"farmers"}
                       >
-                        Farmer
+                        <span className="heading">Farmer</span>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"Organic farmers"}
                       >
-                        Organic Farmer
+                        <span className="heading">Organic Farmer</span>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"FPO/FPC"}
                       >
-                        FPO/FPC
+                        <span className="heading">FPO/FPC</span>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"Retailer"}
                       >
-                        Retailer
+                        <span className="heading">Retailer</span>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"Wholesaler"}
                       >
-                        Wholesaler
+                        <span className="heading">Wholesaler</span>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"Start-up"}
                       >
-                        Start Up
+                        <span className="heading">Start Up</span>
                       </MenuItem>
                       <MenuItem
-                        sx={{ fontSize: "1.3rem", fontFamily: "monospace" }}
+                        sx={{ fontSize: "1.3rem", fontFamily: "Arturo" }}
                         value={"Vocal for local producers"}
                       >
-                        Vocal for Local Producers
+                        <span className="heading">Vocal for Local Producers</span>
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -562,7 +563,7 @@ export default function Register({ t, languages }) {
               <Grid item xs={12}>
                 <TextField
                   inputlabelprops={{
-                    style: { fontSize: 14, fontFamily: "monospace" },
+                    style: { fontSize: 14, fontFamily: "Arturo"},
                   }}
                   fullWidth
                   name="address"
@@ -620,7 +621,7 @@ export default function Register({ t, languages }) {
                 size="large"
                 sx={{ mt: 3, mb: 2 }}
               >
-                register
+                <span className="heading">register</span>
               </Button>
             
 

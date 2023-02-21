@@ -1,12 +1,12 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"); */
-@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap'); */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   /* font-family: "Jost", sans-serif; */
-  font-family: 'Handlee', cursive;
+font-family: 'Arturo';
 }
 
 html {
@@ -54,6 +54,7 @@ li {
   margin-bottom: 0;
   padding-bottom: 0;
   grid-template-columns: 2rem 1fr 3fr 1rem 1rem;
+  font-family: 'Arturo';
 }
 
 .main_container {
@@ -103,6 +104,7 @@ li {
   width: 40%;
   height: 100%;
   padding: 4rem;
+  font-family: 'Arturo';
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 
@@ -210,6 +212,7 @@ li {
   align-items: center;
   font-size: 1.2rem;
   padding: 1rem;
+  font-family: 'Arturo';
 }
 
 /* T&C */
@@ -220,12 +223,13 @@ li {
   padding: 20px;
   overflow-y: scroll;
   text-align: justify;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Arturo';
   line-height: 1.5;
   align-items: center;
   flex-direction: column;
   border: 2px solid #80bb65;
   border-radius: 8px;
+  font-family: 'Arturo';
 }
 
 .terms_and_conditions::-webkit-scrollbar {
@@ -253,6 +257,9 @@ li {
   align-items: center;
   padding: 2rem;
 }
+.textfield{
+  font-family: 'Arturo';
+}
 
 .authContainer_register {
   width: 90vw;
@@ -263,6 +270,7 @@ li {
   align-items: center;
   padding: 2rem;
   margin: auto;
+  font-family: 'Arturo';
 }
 
 .register_details {
@@ -272,6 +280,7 @@ li {
   align-items: flex-start;
   width: 50%;
   padding: 0 2rem 2rem 2rem;
+  font-family: 'Arturo';
 }
 
 .ReactTags__tag {
@@ -321,6 +330,7 @@ li {
 
   .signup-btn {
     background: linear-gradient(91.3deg, #E03538 17.31%, #C4094C 88.09%) !important;
+    font-family: 'Arturo';
   }
 
   .register_details {
@@ -352,6 +362,7 @@ li {
     height: 100%;
     padding: 4rem;
     box-shadow: none;
+    font-family: 'Arturo';
   }
 }
 
@@ -371,6 +382,7 @@ li {
 
   .signup-btn {
     background: linear-gradient(91.3deg, #E03538 17.31%, #C4094C 88.09%) !important;
+    font-family: 'Arturo';
   }
 
   /* .logo,
@@ -388,6 +400,7 @@ li {
 
   html {
     font-size: 68%;
+    font-family: 'Arturo';
   }
 
   .main-nav {
@@ -480,6 +493,7 @@ li {
 @media (max-width: 798px) {
   html {
     font-size: 65%;
+    font-family: 'Arturo';
   }
 
   .main-nav {
@@ -491,10 +505,7 @@ li {
     height: 92vh;
   }
 
-  /* .logo,
-  .social-media ul {
-    height: 6rem;
-  } */
+  
 
   .social-media {
     /* height: 6rem; */
@@ -534,6 +545,7 @@ li {
     height: 100%;
     padding: 4rem;
     box-shadow: none;
+    font-family: 'Arturo';
   }
 }
 
@@ -586,13 +598,6 @@ li {
     border: none;
   }
 
-  /* .login_image {
-    bottom: 0;
-    margin: 0 2rem;
-    width: 40vw;
-    height: 20vh;
-    display: none;
-  } */
   .login_image {
     margin: 0 2rem;
     width: 70vw;
@@ -612,6 +617,7 @@ li {
     height: 100%;
     padding: 1rem;
     box-shadow: none;
+    font-family: 'Arturo';
   }
 
   .form-logo {
@@ -640,6 +646,12 @@ li {
   font-size: 15px !important;
   color: #000;
   text-decoration: none !important;
+  font-family: 'Arturo';
+}
+.heading{
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Arturo';
 }
 
 .signupWithUs {
@@ -671,6 +683,7 @@ li {
     background: linear-gradient(90deg,
         rgba(7, 149, 43, 1) 41%,
         rgba(13, 106, 2, 1) 100%);
+    font-family: 'Arturo';
   }
 
   .box {
@@ -739,7 +752,7 @@ input {
   font-size: 20px;
   font-weight: 400;
   /* font-family: 'Roboto', sans-serif; */
-  font-family: 'Handlee', cursive;
+  font-family: 'Arturo';
   margin: 0 0 10px;
 }
 
@@ -780,11 +793,8 @@ input {
   font-weight: 700;
   font-size: 8rem;
   line-height: 128.91%;
-  /* font-family: 'Roboto', sans-serif; */
-  font-family: 'Handlee', cursive;
+  font-family: 'Arturo';
   margin: 10px;
-  /* background: linear-gradient(105.42deg, #3AA54B 33.61%, #107C55 80.31%); */
-  /* -webkit-background-clip: text ; */
   -webkit-text-fill-color: #07952b;
 }
 
@@ -793,21 +803,19 @@ input {
   font-weight: 700;
   font-size: 4rem;
   line-height: 128.91%;
-  /* font-family: 'Roboto', sans-serif; */
-  font-family: 'Handlee', cursive;
+  font-family: 'Arturo';
   margin: 10px;
   -webkit-text-fill-color: #C4094C;
 }
 
 .next-int {
-  /* font-family: 'Roboto', sans-serif; */
-  font-family: 'Handlee', cursive;
+  font-family: 'Arturo';
   font-style: normal;
   font-weight: 400;
   font-size: 2rem;
   line-height: 128.91%;
   margin: 10px;
-  /* text-transform: capitalize; */
+  
 }
 
 .next {

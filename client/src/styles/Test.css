@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"); */
 
 .Test {
   min-height: 90vh;
@@ -22,6 +22,7 @@
   overflow-x: hidden; */
   width: 80%;
 }
+
 
 .StallsContainer {
   /* height: 300px; */
@@ -245,7 +246,7 @@
 
 .market-name {
   font-size: 30px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Arturo';
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1px;
@@ -306,7 +307,7 @@
 .stall-price {
   margin: 0 2px;
   font-size: 15px !important;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Arturo';
   font-weight: 400;
 }
 
@@ -411,6 +412,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   /* width: 10%; */
 
 }
+.middleStall {
+  display: none;
 }
 
 
@@ -420,3 +423,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-top: 20px;
 }
 
+}

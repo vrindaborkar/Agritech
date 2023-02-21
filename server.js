@@ -7,13 +7,13 @@ var bodyParser = require('body-parser');
 const path = require('path');
 const fileUpload = require('express-fileupload')
 
-// var corsOptions = {
-//   // origin: "http://wingrowagritech.herokuapp.com/"
-//     origin:'*', 
-//    credentials:true,            //access-control-allow-credentials:true
-//    optionSuccessStatus:200,
-// };
-//THIS ONE MAIN
+var corsOptions = {
+  // origin: "http://wingrowagritech.herokuapp.com/"
+    origin:'*', 
+  //  credentials:true,            //access-control-allow-credentials:true
+  //  optionSuccessStatus:200,
+};
+
 // app.use(cors({
 //   origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
 //   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.static('client/build'))
 app.use(fileUpload({
   useTempFiles:true

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import AuthService from "../../services/auth.service";
 import { ToastContainer, toast } from "react-toastify";
 
-
 const colors = {
   orange: "#FFBA5A",
   green: "#3aa54b30",
@@ -40,7 +39,7 @@ function Feedback() {
       seterror("Please Provide Feedback");
     } else {
       seterror("no error");
-      AuthService.feedback(feedback, currentValue).then(() => {
+      AuthService.feedback(feedback).then(() => {
         // Once posted, the user will be notified
         toast.success("Feedback Send", {
           position: "top-center",
@@ -105,19 +104,12 @@ function Feedback() {
               />
             );
           })}
-          
-          {}
-          {console.log(currentValue)}
         </div>
         <textarea
           name="feedback"
           value={feedback}
           //onChange={handleChange}
-          
-          onChange={(e) => {
-            setFeedback(e.target.value);
-            
-          }}
+          onChange={(e) => setFeedback(e.target.value)}
           placeholder="What's Your Feedback"
           style={styles.textarea}
         />

@@ -41,9 +41,26 @@ function Test({ setbookingDetails, setValue }) {
   const todayFormatted = today.toISOString().slice(0, 10);
   const [date, setdate] = useState(0);
   const [message, setMessage] = useState('');
+  const [message2, setMessage2] = useState('');
+ 
   const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 7, 'Amanora City': 7 }
+
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [add, setadd] = useState(0);
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mediaQuery.matches);
+
+    const listener = () => setIsMobile(mediaQuery.matches);
+    mediaQuery.addListener(listener);
+    
+    return () => 
+    {mediaQuery.removeListener(listener) 
+    }
+    
+  }, []);
   
-  //console.log(date)
   useEffect(() => {
     setLoading(true);
     
@@ -178,6 +195,7 @@ function Test({ setbookingDetails, setValue }) {
   }
 
   const confirmBooking = async (e) => {
+    if(bookedStalls.length!==0){
     if (cashOnDelivery) {
       confirmBookingCash();
     }
@@ -214,8 +232,23 @@ function Test({ setbookingDetails, setValue }) {
         //console.log(error);
       }
     }
+    console.length(bookedStalls.length)
+  }
+    else {
+      console.log('in')
+      toast.warn("Please select stalls!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
-
+  
   const initPayment = (data) => {
     let bookedStats = bookedStalls.toString();
     const options = {
@@ -350,6 +383,7 @@ function Test({ setbookingDetails, setValue }) {
         }
       }
     }
+    console.log()
     ////console.log(bookedStalls.map(function(v,i){return v.stallPrice}));
 
   };
@@ -357,6 +391,7 @@ function Test({ setbookingDetails, setValue }) {
   const lengthofUpdatedData = UpdatedData?.length;
   //UpdatedData?.length
   const handleChange = (e, newValue) => {
+    if(date!==0){
     if (e.target.value <= -1) {
       setNumberOfSeats(0);
       setvalue(0);
@@ -368,6 +403,10 @@ function Test({ setbookingDetails, setValue }) {
       setNumberOfSeats(available);
       setvalue(available);
     }
+  } 
+  else{
+      setMessage2(`Please select a date`);
+  }
   };
 
 
@@ -390,6 +429,7 @@ function Test({ setbookingDetails, setValue }) {
 
   return (
     <>
+      
       {!Loading ? (
         <div className="Test">
           <ToastContainer
@@ -404,8 +444,12 @@ function Test({ setbookingDetails, setValue }) {
             pauseOnHover
             theme="light"
           />
+          
           <h2 className="market-name">{Id}</h2>
           <div className="main_container_stalls">
+            <Link style={{ marginTop: '0px' }} className="backbtn green" to="/farmers/stallplaces" >
+              Back
+            </Link>
             <Grid className="input-div-holder" container spacing={2}>
 
               <Grid item xs={12} sm={6}>
@@ -459,9 +503,15 @@ function Test({ setbookingDetails, setValue }) {
                   onChange={handleChange}
 
                 // margin="normal"
-
+              
                 />
+                {message2 && (
+                  <Typography variant="subtitle1" color="error">
+                    {message2}
+                  </Typography>
+                )}
               </Grid>
+              
             </Grid>
             {/* <Grid className="advance-booking">
               <Link to="../advancebookings" className='advancebookinglink'>Advance booking !</Link>
@@ -481,38 +531,53 @@ function Test({ setbookingDetails, setValue }) {
                   </div>
                 </Grid>
                 <Grid>
+                  
                   {UpdatedData && Id ? (
                     <div className="stall_wrapper">
                       {lengthofUpdatedData === 34 && (
                         <div className="StallsContainer">
-                          <Stall
+                          {!isMobile&& <Stall
                             data={UpdatedData.slice(0, 16)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
                             date={date}
-                          />
-                          <Stall
+                          />}
+                          {isMobile && <Stall
+                            data={UpdatedData.slice(0, 17)}
+                            handleClick={handleClick}
+                            bookedStalls={bookedStalls}
+                            alreadyBooked={alreadyBooked}
+                            date={date}
+                          />}
+                          {!isMobile &&<Stall
                             data={UpdatedData.slice(16, 17)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
                             date={date}
-                          />
-                          <Stall
+                          />}
+                          {!isMobile &&<Stall
                             data={UpdatedData.slice(17, 18)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
                             date={date}
-                          />
-                          <Stall
+                          />}
+                          {!isMobile &&<Stall
                             data={UpdatedData.slice(18, 34)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
                             date={date}
-                          />
+                          />}
+                          {isMobile && <Stall
+                            data={UpdatedData.slice(17, 35)}
+                            handleClick={handleClick}
+                            bookedStalls={bookedStalls}
+                            alreadyBooked={alreadyBooked}
+                            date={date}
+                          />}
                         </div>
                       )}
                       {lengthofUpdatedData === 50 && (
@@ -524,20 +589,20 @@ function Test({ setbookingDetails, setValue }) {
                             alreadyBooked={alreadyBooked}
                             date={date}
                           />
-                          <Stall
+                          {!isMobile &&<Stall
                             data={UpdatedData.slice(24, 25)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
                             date={date}
-                          />
-                          <Stall
+                          />}
+                          {!isMobile &&<Stall
                             data={UpdatedData.slice(25, 26)}
                             handleClick={handleClick}
                             bookedStalls={bookedStalls}
                             alreadyBooked={alreadyBooked}
                             date={date}
-                          />
+                          />}
                           <Stall
                             data={UpdatedData.slice(26, 50)}
                             handleClick={handleClick}
@@ -602,6 +667,7 @@ function Test({ setbookingDetails, setValue }) {
                     <div className="stall-price">Booked</div>
                   </div>
                 </div>
+                {console.log(bookedStalls)}
                 <Divider className="divider" />
                 <div className="stall-total-amount-holder">
                   <div className="total-amount">Total Amount</div>
@@ -612,7 +678,7 @@ function Test({ setbookingDetails, setValue }) {
                 </div>
               </Grid>
             </Grid>
-            {numberOfSeats !== 0 && bookedStalls.length !== 0 ? (
+            {numberOfSeats !== 0  ? (
               <div className="modalbtn">
                 <ConfirmModal setCashOnDelivery={setCashOnDelivery} confirmBooking={confirmBooking} />
               </div>
@@ -628,9 +694,12 @@ function Test({ setbookingDetails, setValue }) {
                       PAY ON DELIVERY
                     </Button>
                   </div>
+                    
                 </Grid>
               </Grid>
-            )}
+            )
+            }
+            
           </div>
         </div>
       ) : (
