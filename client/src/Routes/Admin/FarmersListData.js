@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const FarmersListData = ({Farmers}) => {
   return (
@@ -42,7 +43,11 @@ const FarmersListData = ({Farmers}) => {
                             )
                         })
                         }
+                      <Link style={{ marginTop: '10px', marginLeft:'125px'}} className="backbtn green" to="/admin" >
+                          Back
+                      </Link>
                     </div>
+                  
                 </div>
             </div>
     </>

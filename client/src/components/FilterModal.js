@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Datepicker from '../components/Datepicker'
+import { Link } from "react-router-dom";
 
 
 export default function FilterModal(
@@ -24,7 +25,8 @@ export default function FilterModal(
         handleOpen,
         open,
         handleSearchmarkets,
-        handleSearchDate
+        handleSearchDate,
+        handleCloseModal = { handleCloseModal }
     }
     ) {
 
@@ -38,6 +40,9 @@ export default function FilterModal(
         aria-describedby="modal-modal-description"
       >
         <div className='box_filter'>
+                  <button className="closebtn" onClick={handleCloseModal}>
+                      &times;
+                  </button>
             <h2 style={{margin:"0 auto",fontSize: "30px"}}>Filters</h2>
                 <div className='header_items'>
                     <span className='date_picker_label'>Filter by date</span>
@@ -85,6 +90,7 @@ export default function FilterModal(
                 </FormControl>
                 <button className='filter_btn' onClick={handleSearchmarkets}>Search</button>
             </div>
+
         </div>
       </Modal>
     </div>

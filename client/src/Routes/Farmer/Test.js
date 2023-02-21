@@ -47,7 +47,6 @@ function Test({ setbookingDetails, setValue }) {
 
 
   const [isMobile, setIsMobile] = useState(false);
-  const [add, setadd] = useState(0);
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 767px)');
     setIsMobile(mediaQuery.matches);

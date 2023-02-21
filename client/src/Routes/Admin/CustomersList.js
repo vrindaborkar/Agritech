@@ -1,5 +1,6 @@
 import React from 'react'
 import Spinner from '../../components/Spinner'
+import {Link} from 'react-router-dom'
 
 const CustomersList = ({Customer}) => {
   return (
@@ -42,7 +43,11 @@ const CustomersList = ({Customer}) => {
                         {
                             Customer && Customer.length === 0 && <div className='farmers_entries_section'>No data available</div>
                         }
+                      <Link style={{ marginTop: '10px', marginLeft: '125px' }} className="backbtn green" to="/admin" >
+                          Back
+                      </Link>
                     </div>
+                  
                 </div>
             </div>
     </>

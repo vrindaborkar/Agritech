@@ -55,7 +55,7 @@ const Navbar = () => {
           <ul>
 
             <li className="medialinks">
-              <Link onClick={()=>{setShowMediaIcons(false)}} to="/">
+              <Link onClick={()=>{setShowMediaIcons(false)}} to="/home">
                 <div className="profile_wrapper">
                 <img className="profile_logo" src="https://i.pinimg.com/originals/0c/02/ce/0c02ce4850d6b88d44f87271ff5f4a71.png" alt="logo"/>
                 <p>Home</p>

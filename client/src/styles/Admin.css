@@ -2,6 +2,23 @@
 *{
     font-family: 'Arturo';
 }
+.backbtn {
+    display: inline-block;
+    width: 130px;
+    height: 40px;
+    margin-top: -570px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 0.5%;
+    border-radius: 30%;
+    font-size: 15px !important;
+    border-radius: 30px !important;
+    color: white;
+    font-family: karla;
+}
+.green {
+    background: linear-gradient(105.42deg, #3AA54B 33.61%, #107C55 80.31%);
+}
 
 .admin_main_component {
     width: 100%;
@@ -271,6 +288,8 @@
 .quantity{
     margin-top: 15px;
     margin-left: 10px;
+    position: relative;
+    left: 38.5px;
 }
 .amount{
     margin-top: 15px;

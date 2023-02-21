@@ -71,7 +71,7 @@ export default function SignIn() {
             });
             setTimeout(() => {
               navigate("/admin");
-              window.location.reload();
+            window.location.reload();
             }, 1000);
           }
           if (res.role === "customer") {

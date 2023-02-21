@@ -1,12 +1,15 @@
 import React from 'react'
 import Spinner from '../../components/Spinner'
+import {Link} from 'react-router-dom'
 
  const CancellationFeed = ({CancelledStalls , Farmers , handleRefundDelete}) =>  {
   return (
     <>
         {CancelledStalls && <div className='cancellation_feed'>
         <div className='cancellation_feed_container'>
+                  
             <h2 className='cancellation_header'>Cancellation Data</h2>
+                  
             <div className='cancellation_body'>
                 {
                     CancelledStalls && CancelledStalls.length !== 0 && CancelledStalls.map((e,i)=>{
@@ -36,6 +39,9 @@ import Spinner from '../../components/Spinner'
                     !CancelledStalls && <Spinner/>
                 }
             </div>
+                 <Link style={{ marginTop: '10px', marginLeft:'125px' }} className="backbtn green" to="/admin" >
+                      Back
+                  </Link> 
         </div>
         </div>}
     </>

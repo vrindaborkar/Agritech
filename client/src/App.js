@@ -27,8 +27,10 @@ const App = () => {
     <Suspense fallback={<Spinner/>}>
     <Routes>
       <Route path='/' element={<Main/>}>
-          <Route index element={<Home/>}/>
-        
+          <Route index element={<Register/>}/>
+            <Route path='/home' element={<Home />}>
+            </Route>
+
           <Route 
             path="customers/*" 
             element={
