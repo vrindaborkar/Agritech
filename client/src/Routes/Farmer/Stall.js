@@ -1,6 +1,7 @@
 import React from "react";
 
-const Stall = ({ data, handleClick, bookedStalls, alreadyBooked, date }) => {
+const Stall = ({ data, handleClick, bookedStalls, alreadyBooked, date, display }) => {
+ console.log(display)
   return (
     <div className={data.length > 18 ? "Stalls_info" : "Stalls_info_xl"}>
       {alreadyBooked &&
@@ -31,7 +32,8 @@ const Stall = ({ data, handleClick, bookedStalls, alreadyBooked, date }) => {
 
           return (
             // <div className={stallClass}>
-            <div style={{ cursor: "pointer" }} className="single-stall">
+            
+            <div style={{ cursor: "pointer",className:'display' }} className="single-stall">
 
               <img
                 className="stall-img"

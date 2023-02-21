@@ -10,21 +10,52 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
+//import Razorpay from 'razorpay';
+
 import authHeader from "../../services/auth.headers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConfirmModal from "../../components/ConfirmModal";
 
 const Subscription = () => {
+  const navigate = useNavigate();
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const user = AuthService.getCurrentUser()
   const [sub,setSub] = useState([]);
+  const [open, setOpen] = useState();
+  const [cashOnDelivery, setCashOnDelivery] = useState(false);
+
+
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
   const API_URL = "https://wingrowmarket.onrender.com/";
   const[stalls,setStalls] = useState();
   const[validTill,setValidTill] = useState();
+  function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  script.async = true;
+  document.body.appendChild(script);
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []);
   useEffect( ()=>{
+    
     const userId = user.id
-    if(sub.length === 0){
+    if(sub.length === 0  || isJson(sub[0]) ){
       UserService.getSub(userId).then((res)=>{
         const {data} = res
         setSub(data)
@@ -54,9 +85,203 @@ const Subscription = () => {
     // .catch((err)=>{
     //   console.log(err)
     // })
+    handleOpen(true);
+  },[])
+  const confirmBookingCash = async (e) => {
+    const price = 30*300*0.9;
+    console.log("Im here")
+    // let bookedStats = bookedStalls.toString();
+    // const responseData = {
+    //   bookedStalls: bookedStalls,
+    //   bookedBy: userCurr.id,
+    //   bookedAt: date,
+    //   isBooked: true,
+    // };
 
-  },[user])
- 
+    // const stallsBooked = [];
+    // bookedStalls.forEach((e) => {
+    //   stallsBooked.push(e.stallName);
+    // });
+
+    // const price = bookedStalls.reduce(
+    //   (total, item) => item.stallPrice + total,
+    //   0
+    // );
+   // e.preventDefault();
+    const userId= user.id;
+    
+    // console.log(userId)
+    // await axios.post(API_URL+"sub",{date,userId,validity,stalls})
+    //       .then((res)=>{
+    //         console.log("the return data ",res)
+    //         const {data} = res
+    //         setSub(data)
+    //       })
+    //       .catch((err)=>{
+    //         console.log(err)
+    //       })
+    //const Url = "https://wingrowmarket.onrender.com/bookedstalls";
+    const orderId = "123"
+    await axios
+      .post(API_URL+"sub",{date,userId,validity,stalls})
+      .then((response) => {
+        const { data } = response;
+        if (data) {
+          console.log("data--",data)
+            //setSub(data)
+            //window.location.reload(false)
+            navigate("/farmers/subscription");
+        }
+        toast.success("stalls booked successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          //navigate("/farmers/subscription");
+          window.location.reload(false)
+
+        }, 1000);
+      })
+      .catch((error) => {
+        toast.warn("Failed to book stalls!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setSub([])
+      });
+
+  }
+
+  const confirmBooking = async (e) => {
+    //e.preventDefault();
+    console.log("hellloooo")
+    if (cashOnDelivery) {
+      confirmBookingCash();
+    }
+    else {
+      const price = 300*30*0.9
+
+      //console.log(bookedStalls.length);
+      //console.log("price", price)
+      
+      try {
+        const orderUrl = API_URL+"order";
+        const { data } = await axios.post(
+          orderUrl,
+          { amount: price * 100 },
+          { headers: authHeader() }
+        );
+        initPayment(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const initPayment = (data) => {
+    //console.log(date)
+    //let bookedStats = bookedStalls.toString();
+    const options = {
+      key: process.env.KEY_ID,
+      amount: data.amount,
+      currency: data.currency,
+      order_id: data.id,
+      description: "Wingrow Agritech",
+
+      handler: async (response) => {
+
+        try {
+
+          var orderId;
+          
+            const verifyUrl = "https://wingrowmarket.onrender.com/verify";
+            const { data } = await axios.post(verifyUrl, response, {
+              headers: authHeader(),
+            });
+            orderId = data.orderId;
+          
+
+          //console.log(date)
+          // const responseData = {
+          //   location: Id,
+          //   bookedStalls: bookedStalls,
+          //   bookedBy: userCurr.id,
+          //   bookedAt: date,
+          //   isBooked: true,
+          // };
+
+          // const stallsBooked = [];
+          // bookedStalls.forEach((e) => {
+          //   stallsBooked.push(e.stallName);
+          // });
+
+          // const price = bookedStalls.reduce(
+          //   (total, item) => item.stallPrice + total,
+          //   0
+          // );
+          //const Url = "https://wingrowmarket.onrender.com/bookedstalls";
+          const userId = user.id
+        await  axios
+      .post(API_URL+"sub",{date,userId,validity,stalls})
+      .then((response) => {
+        const { data } = response;
+        if (data) {
+          console.log(data)
+            setSub(data)
+        }
+        toast.success("stalls booked successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          //navigate("/farmers/subscription");
+          window.location.reload(false)
+
+        }, 1000);
+      })
+            .catch((error) => {
+              toast.warn("Failed to book stalls!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            
+            });
+        } catch (error) {
+          //console.log(error);
+          setSub([])
+        }
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
   const handleSubmit  = async(e) => {
     e.preventDefault();
     const userId= user.id;
@@ -76,7 +301,7 @@ const Subscription = () => {
     <div >
       <h1>Subscription Model</h1>
       {/* not Subscribe */}
-      { sub.length !== 0 ? 
+      { (sub.length !== 0  ) ? 
       <div>
         <h2>Subscibed</h2>
         
@@ -160,7 +385,26 @@ const Subscription = () => {
                 </FormControl>
               </Grid>
 
-              <button type="submit">Proceed</button>
+              {/* <button type="submit">Proceed</button> */}
+              {validity && date ? (
+              <div className="modalbtn">
+                <ConfirmModal setCashOnDelivery={setCashOnDelivery} confirmBooking={confirmBooking} />
+              </div>
+            ) : (
+              <Grid container alignItems="center" justifyContent="center">
+                <Grid item xs={6}>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      PAY
+                    </Button>
+                    <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      PAY ON DELIVERY
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
+            )}
 
         </form>
       </div>

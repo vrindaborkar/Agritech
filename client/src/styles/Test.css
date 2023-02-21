@@ -23,6 +23,7 @@
   width: 80%;
 }
 
+
 .StallsContainer {
   /* height: 300px; */
   /* min-width: 300px; */
@@ -411,6 +412,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   /* width: 10%; */
 
 }
+.middleStall {
+  display: none;
 }
 
 
@@ -420,3 +423,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-top: 20px;
 }
 
+}
