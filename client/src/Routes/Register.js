@@ -177,6 +177,8 @@ export default function Register({ t, languages }) {
     // // const phone = values.mobile
     // const phoneNumber = "+91" + mobile
     console.log(phoneNumber);
+    
+
 
     const appVerifier = window.recaptchaVerifier;
     firebase
@@ -193,6 +195,29 @@ export default function Register({ t, languages }) {
         // Error; SMS not sent
         // ...
         console.log("SMS not sent");
+        toast.warn("Invalid phone", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setData({
+          phone: "",
+          password: "",
+          firstname: "",
+          lastname: "",
+          type: "",
+          farmertype: "",
+          address: "",
+        });
+        setTimeout(() => {
+          
+          window.location.reload(false);
+        }, 1000);
       });
   };
   const onSubmitOTP = (e) => {
