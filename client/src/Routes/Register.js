@@ -177,7 +177,7 @@ export default function Register({ t, languages }) {
     // // const phone = values.mobile
     // const phoneNumber = "+91" + mobile
     console.log(phoneNumber);
-    
+
 
 
     const appVerifier = window.recaptchaVerifier;
@@ -187,8 +187,19 @@ export default function Register({ t, languages }) {
       .then((confirmationResult) => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
+        toast.success("OTP SENT!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         window.confirmationResult = confirmationResult;
         console.log("OTP has been sent");
+
         // ...
       })
       .catch((error) => {
