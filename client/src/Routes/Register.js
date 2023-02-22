@@ -36,6 +36,7 @@ export default function Register({ t, languages }) {
 
   const navigate = useNavigate();
   const [Loading, setLoading] = useState(false);
+  
   const [data, setData] = useState({
     phone: "",
     password: "",
@@ -49,7 +50,7 @@ export default function Register({ t, languages }) {
   const [tags, setTags] = React.useState([]);
   const [tag1, setTag] = useState();
   const [error, seterror] = useState("");
-
+  const [disable,setDisable] = useState(false);
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
@@ -171,7 +172,8 @@ export default function Register({ t, languages }) {
     e.preventDefault();
     console.log("here")
     configureCaptcha();
-
+    setDisable(true);  
+    setTimeout(() =>{setDisable(false)},5000);
     const phoneNumber = "+91" + data.phone;
     // // console.log(values.mobile)
     // // const phone = values.mobile
@@ -379,7 +381,9 @@ export default function Register({ t, languages }) {
                   inputlabelprops={{
                     style: { fontSize: 14, fontFamily: "Arturo" },
                   }}
-                  autoComplete="given-name"
+                  // autoComplete="given-name"
+                  autoComplete="nope"
+
                   name="firstname"
                   value={data.firstname}
                   onChange={handleChange}
@@ -404,7 +408,7 @@ export default function Register({ t, languages }) {
                   name="lastname"
                   value={data.lastname}
                   onChange={handleChange}
-                  autoComplete="family-name"
+                  autoComplete="nope"
                   color="success"
                   className="textfield"
                 />
@@ -423,12 +427,14 @@ export default function Register({ t, languages }) {
                   onChange={handleChange}
                   color="success"
                   className="textfield"
+                  autoComplete="nope"
                 />
               </Grid>
               <Grid item xs ={6}>
               <Button
                 type="button"
                 fullWidth
+                disabled={disable}
                 onClick={ onSignInSubmit }
                 className="signup-btn"
                 variant="contained"
@@ -454,9 +460,10 @@ export default function Register({ t, languages }) {
                 id="password"
                 value={data.password}
                 onChange={handleChange}
-                autoComplete="new-password"
+                autoComplete="nope"
                 color="success"
                 className="textfield"
+                
               />
             
             

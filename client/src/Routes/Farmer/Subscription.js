@@ -33,7 +33,8 @@ const Subscription = () => {
 
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
-  const API_URL = "https://wingrowmarket.onrender.com/";
+  //const API_URL = "https://wingrowmarket.onrender.com/";
+  const API_URL = "http://localhost:4000/";
   const[stalls,setStalls] = useState();
   const[validTill,setValidTill] = useState();
   const[remStalls,setRemStalls] = useState(0);
@@ -46,13 +47,14 @@ const Subscription = () => {
     return true;
 }
 useEffect(() => {
+  
   FarmerService.getBookedStalls().then((res)=>{
       const {data} = res;
       setMyStalls(data.filter(e=>e.bookedBy === user.id))
       console.log("the booked stalls are -- ", MyStalls.length)
       setRemStalls(MyStalls.length)
   })
-}, [user])
+}, [])
 useEffect(() => {
   const script = document.createElement("script");
   script.src = "https://checkout.razorpay.com/v1/checkout.js";

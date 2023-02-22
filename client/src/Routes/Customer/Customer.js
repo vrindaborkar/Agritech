@@ -1,5 +1,5 @@
 import React  from "react";
-//import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import CustomersHome from "./CustomersHome";
 import Cartspage from "./Cartspage";
 import GlobalState from "../../cartContext/GlobalState";
@@ -7,20 +7,20 @@ import Checkout from "./Checkout";
 import CustomersLandingpage from "./CustomersLandingpage";
 import CustomerSnacks from "./CustomerSnacks";
 import './Customer.css'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
+// import {
+//   BrowserRouter as Router,
+//   Route
+// } from 'react-router-dom';
 const Customer = () => {
   return (
       <GlobalState>
-        <Router>
+        <Routes>
             <Route path='/' element={<CustomersLandingpage/>}/>
             <Route path='/customerhome' element={<CustomersHome/>}/>
             <Route path='/customersnacks' element={<CustomerSnacks/>}/>
             <Route path='/cartspage' element={<Cartspage/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
-        </Router>
+        </Routes>
       </GlobalState>
   )
 }
