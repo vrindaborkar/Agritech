@@ -672,6 +672,9 @@ li {
   .textfield div {
     border-radius: 30px;
   }
+  .logo_img_navbar{
+    width: 65px;
+  }
 
   .signup-btn {
     height: 40px;
