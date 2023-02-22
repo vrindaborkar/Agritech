@@ -96,26 +96,30 @@ a {
 }
 
 @media (max-width: 640px) {
-    .Box {
+.Box {
         max-height: 25rem;
         margin-bottom: 0.5rem;
+        max-width:100%;
     }
 
-    .row {
-        display: flex;
-        /* grid-gap: 10px; */
-        justify-content: space-around;
-        max-width: 50rem;
-    }
+  .row {
+      display: flex;
+      /* grid-gap: 10px; */
+      justify-content: space-around;
+      /* max-width: 50rem; */
+      margin-left: 0rem;
+      /* font-size: 0.5rem; */
+  }
 
-    .Heading {
-        font-size: 1.3rem;
-        
-    }
+   .Heading {
+    font-size: 0.9rem;
+}
 
     .FooterLink {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
+
+    
     a{
         margin-top: 0.4rem;
     }
