@@ -43,7 +43,7 @@ function Test({ setbookingDetails, setValue }) {
   const [message, setMessage] = useState('');
   const [message2, setMessage2] = useState('');
  
-  const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 7, 'Amanora City': 7 }
+  const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 2, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 7, 'Amanora City': 7 }
 
 
   const [isMobile, setIsMobile] = useState(false);
@@ -145,7 +145,7 @@ function Test({ setbookingDetails, setValue }) {
     //   (total, item) => item.stallPrice + total,
     //   0
     // );
-    const Url = "https://wingrowmarket.onrender.com/bookedstalls";
+    const Url = "http://localhost:4000/bookedstalls";
     const orderId = "123"
     axios
       .post(Url, responseData, { headers: authHeader() })
@@ -220,7 +220,7 @@ function Test({ setbookingDetails, setValue }) {
         return;
       }
       try {
-        const orderUrl = "https://wingrowmarket.onrender.com/order";
+        const orderUrl = "http://localhost:4000/order";
         const { data } = await axios.post(
           orderUrl,
           { amount: price * 100 },
@@ -264,7 +264,7 @@ function Test({ setbookingDetails, setValue }) {
 
           var orderId;
           if (!cashOnDelivery) {
-            const verifyUrl = "https://wingrowmarket.onrender.com/verify";
+            const verifyUrl = "http://localhost:4000/verify";
             const { data } = await axios.post(verifyUrl, response, {
               headers: authHeader(),
             });
@@ -291,7 +291,7 @@ function Test({ setbookingDetails, setValue }) {
             (total, item) => item.stallPrice + total,
             0
           );
-          const Url = "https://wingrowmarket.onrender.com/bookedstalls";
+          const Url = "http://localhost:4000/bookedstalls";
 
           axios
             .post(Url, responseData, { headers: authHeader() })
