@@ -33,7 +33,6 @@ const Subscription = () => {
 
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
-  //const API_URL = "https://wingrowmarket.onrender.com/";
   const API_URL = "http://localhost:4000/";
   const[stalls,setStalls] = useState();
   const[validTill,setValidTill] = useState();
@@ -219,7 +218,7 @@ useEffect(() => {
 
           var orderId;
           
-            const verifyUrl = "https://wingrowmarket.onrender.com/verify";
+            const verifyUrl = "http://localhost:4000/verify";
             const { data } = await axios.post(verifyUrl, response, {
               headers: authHeader(),
             });

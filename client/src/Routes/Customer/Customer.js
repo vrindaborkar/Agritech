@@ -17,9 +17,9 @@ const Customer = () => {
         <Routes>
             <Route path='/' element={<CustomersLandingpage/>}/>
             <Route path='/customerhome' element={<CustomersHome/>}/>
-            <Route path='/customersnacks' element={<CustomerSnacks/>}/>
-            <Route path='/cartspage' element={<Cartspage/>}/>
-            <Route path='/checkout' element={<Checkout/>}/>
+            {/* <Route path='/customersnacks' element={<CustomerSnacks/>}/> */}
+            {/* <Route path='/cartspage' element={<Cartspage/>}/> */}
+            {/* <Route path='/checkout' element={<Checkout/>}/> */}
         </Routes>
       </GlobalState>
   )
