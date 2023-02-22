@@ -607,7 +607,6 @@ li {
     right: 0;
     transform: rotate(311deg) translate(2px, 60px);
     z-index: -1;
-    overflow: auto
   }
 
   .login_details {
