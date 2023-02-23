@@ -36,7 +36,7 @@ module.exports = function(app) {
             // $body : "farmer " . $farmer  ,
             
             body : details ,
-            to: '+918888643025',
+            to: '+917498102556',
             from: '+15005550006'
           }).then(message => console.log(message))
            // here you can implement your fallback code

@@ -53,7 +53,7 @@ const Farmer = () => {
           />}
         />
         <Route path="/mybookings" element={<MyBookings />} />
-        {/* <Route path ="/subscription" element ={ <Subscription />} /> */}
+        <Route path ="/subscription" element ={ <Subscription />} />
       </Route>
     </Routes>
   );

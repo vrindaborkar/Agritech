@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import FarmerService from '../../services/farmer.service'
+import '../../styles/subscription.css'
 
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
@@ -310,20 +311,21 @@ useEffect(() => {
   }
 
   return (
-    <div >
-      <h1>Subscription Model</h1>
+    <div className="sub">
+      <h1 className="header">Subscription Model</h1>
       {/* not Subscribe */}
       { (sub.length !== 0  ) ? 
-      <div>
-        <h2>Subscibed</h2>
-        
-        <h3>Start data - { sub[0].date}</h3>
+      <div className="subscribe">
+
+        <h2 >Subscribed</h2>
+        <h3 >Start data - { sub[0].date}</h3>
         <h3>validity - {sub[0].validity}</h3>
         <h3> valid till - {validTill} </h3>
         {/* <h3>stalls - {sub[0].stalls}</h3> */}
         <h3>available - {remStalls}</h3>
 
-      </div> :
+      </div> 
+      :
       
       <div> 
         <h2>not Subscibed</h2>
