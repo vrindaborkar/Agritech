@@ -43,7 +43,7 @@ function Test({ setbookingDetails, setValue }) {
   const [message, setMessage] = useState('');
   const [message2, setMessage2] = useState('');
  
-  const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 2, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 7, 'Amanora City': 7 }
+  const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 0, 'Amanora City': 0 }
 
 
   const [isMobile, setIsMobile] = useState(false);
@@ -412,15 +412,15 @@ function Test({ setbookingDetails, setValue }) {
   const handlechange1 = (event) => {
     const temp = new Date(event.target.value);
     const weekdayNumber = temp.getDay();
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
+    const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+console.log(weekdayNumber)
      if(weekdayNumber === arr[Id]){
       setdate(event.target.value);
       setMessage('');
 
     }
   else {
-       setMessage(`Markets in ${Id} only on ${weekdays[arr[Id]]}, Please choose date accordingly`);
+       setMessage(`Markets in ${Id} only on ${weekdays[arr[Id]-1]}, Please choose date accordingly`);
   }
   };
 

@@ -49,9 +49,9 @@
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
-   grid-template-columns: repeat(2, 30%);
-    grid-gap: 10px;
-    margin: 70px auto 0 auto;
+  grid-template-columns: repeat(2, 30%);
+  grid-gap: 10px;
+  margin: 70px auto 0px auto;
 
   max-width: 80%;
 }
@@ -490,25 +490,31 @@
 }
 
 @media (max-width: 550px) {
+  .farmerScreen {
+    margin: 100px 20px;
+  }
   .places_market_component0 {
-    width: 80%;
+    width: 65%;
     margin: 1rem auto;
   }
   .places_market_component1 {
-    width: 80%;
+    width: 65%;
     margin: 1rem auto;
   }
   .places_market_component2 {
-    width: 80%;
+    width: 65%;
     margin: 1rem auto;
   }
   .places_market_component3 {
-    width: 80%;
+    width: 65%;
     margin: 1rem auto;
   }
 
   .links_farmersdata {
-    font-size: 10px;
+    font-size: 25px;
+    
+    padding: 10px 15px;
+    width: 145px;
   }
 }
 
