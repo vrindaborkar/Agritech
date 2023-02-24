@@ -286,25 +286,29 @@ li {
 .ReactTags__tag {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 0.5rem;
-  display: flex;
+  display:inline-flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
   width: 120px;
-  margin: 0.5rem;
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .ReactTags__tagInputField {
   padding: 0.5rem;
   width: 100%;
   border: 1px solid #379237;
+  margin-top: 1rem;
+}
+.tag-suggestions {
+  max-height: 100px;
+  overflow-y: scroll;
 }
 
 .ReactTags__selected {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
+  display: block;
 }
 
 @media (min-width: 1080px) {
