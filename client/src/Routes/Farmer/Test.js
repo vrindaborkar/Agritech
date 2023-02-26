@@ -256,7 +256,7 @@ function Test({ setbookingDetails, setValue }) {
       currency: data.currency,
       order_id: data.id,
       bookedStalls: bookedStats,
-      description: "Wingrow Agritech",
+      description: "Wingrow Market",
 
       handler: async (response) => {
 
@@ -690,7 +690,7 @@ console.log(weekdayNumber)
                       PAY
                     </Button>
                     <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      PAY ON DELIVERY
+                      PAY IN MARKET
                     </Button>
                   </div>
                     

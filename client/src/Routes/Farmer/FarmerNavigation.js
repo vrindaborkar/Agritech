@@ -20,9 +20,9 @@ function FarmerNavigation() {
               <Link className="links_farmersdata red" to="./farmershome">
                   Data
               </Link>
-              {/* <Link className="links_farmersdata green" to="./subscription">
+              <Link className="links_farmersdata green" to="./subscription">
                   Subscription
-              </Link> */}
+              </Link>
           </div>
     </div>
   )

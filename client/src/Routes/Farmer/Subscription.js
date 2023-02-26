@@ -328,7 +328,7 @@ useEffect(() => {
       :
       
       <div> 
-        <h2>not Subscibed</h2>
+        <h2>not Subscribed</h2>
         <form onSubmit={handleSubmit}>
         <Grid item xs={12} sm={6}>
             <InputLabel className="stall-booking-lable">
@@ -414,7 +414,7 @@ useEffect(() => {
                       PAY
                     </Button>
                     <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      PAY ON DELIVERY
+                      PAY IN MARKET
                     </Button>
                   </div>
                 </Grid>

@@ -179,16 +179,23 @@
 .third_section_header{
   margin-bottom: 1rem; 
   color: #111827; 
-  font-size: 3rem;
+  font-size: 2.5rem;
   line-height: 2rem; 
-  font-weight: 500; 
+  font-weight: bold; 
 }
 
 .third_section_p{
-  font-size: 2rem;
+  /* font-size: 1.75rem;
   line-height: 1.5rem; 
-  line-height: 1.625;
-  text-align: center;
+  /* line-height: 1.625; */
+  /* text-align: justify; */ 
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75rem;
+  margin-top: 1rem;
 }
 
 .location_component{
