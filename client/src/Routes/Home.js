@@ -37,17 +37,20 @@ const Home = () => {
                 <span>REVOLUTIONIZING THE STALL </span>
                 <span>BOOKING FOR DIRECT SELL</span>
           </h1>
-          <div data-aos="fade-up" className="first_section_btn">
+            <div data-aos="fade-up" className="first_section_btn">
                 <button onClick={()=>{navigate('/farmers/')}} className="bookstall_btn">
                     Book Stall
                 </button>
             </div>
+            
         </div>
+                
         <div className="first_section_image">
             <img className="image_header" alt="hero" src="./images/centerimagenew.png"/>
         </div>
+        
       </div>
-
+      
       {!mobile?
       <div className='second_section_wrapper'>
         <div className='second_section_aboutus'>
@@ -109,7 +112,7 @@ const Home = () => {
       <div className='third_section'>
             <div className="third_section_details">
                           <h1 className="third_section_header">Our Markets</h1>
-                          <p className="third_section_p">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+                          <p className="third_section_p">We organize weekly markets at key locations in Pune, which allows farmers to sell fresh produce directly to the customers, cutting out middlemen in the process. This allows customers to buy farm fresh produce at affordable rates, while the farmers who grow the produce get a fair price for it.</p>
                       </div>
           <div className='location_component'>
               <Location/>
