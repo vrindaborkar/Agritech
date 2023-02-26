@@ -160,7 +160,7 @@ export default function SignIn() {
             </Typography>
             <TextField
               inputlabelprops={{
-                style: { fontSize: 16, fontFamily: 'Arturo' },
+                style: { fontSize: 16, fontFamily: 'Arturo'},
               }}
               margin="normal"
               required
@@ -172,7 +172,7 @@ export default function SignIn() {
               autoComplete="phone"
               autoFocus
               color="success"
-              className="heading"
+              className="heading input"
               // className="textfield"
               onChange={handleChange}
             />
