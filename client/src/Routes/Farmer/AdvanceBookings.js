@@ -142,7 +142,7 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
     //   (total, item) => item.stallPrice + total,
     //   0
     // );
-    const Url = "http://localhost:4000/bookedstalls";
+    const Url = "https://wingrowmarket.com/bookedstalls";
     const orderId = "123"
     axios
       .post(Url, responseData, { headers: authHeader() })
@@ -233,7 +233,7 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
     }
     try {
       // const orderUrl = "https://wingrowagritech.herokuapp.com/order";
-      const orderUrl = "http://localhost:4000/order";
+      const orderUrl = "https://wingrowmarket.com/order";
       const { data } = await axios.post(
         orderUrl,
         { amount: price * 100 },
@@ -254,12 +254,12 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
       currency: data.currency,
       order_id: data.id,
       bookedStalls: bookedStats,
-      description: "Wingrow Agritech",
+      description: "Wingrow Market",
 
       handler: async (response) => {
 
         try {
-          const verifyUrl = "http://localhost:4000/verify";
+          const verifyUrl = "https://wingrowmarket.com/verify";
           const { data } = await axios.post(verifyUrl, response, {
             headers: authHeader(),
           });
@@ -282,7 +282,7 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
             (total, item) => item.stallPrice + total,
             0
           );
-          const Url = "http://localhost:4000/bookedstalls";
+          const Url = "https://wingrowmarket.com/bookedstalls";
 
           axios
             .post(Url, responseData, { headers: authHeader() })

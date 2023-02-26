@@ -34,7 +34,7 @@ const Subscription = () => {
 
   const[date,setDate] = useState();
   const[validity,setValidity] = useState();
-  const API_URL = "http://localhost:4000/";
+  const API_URL = "https://wingrowmarket.com/";
   const[stalls,setStalls] = useState();
   const[validTill,setValidTill] = useState();
   const[remStalls,setRemStalls] = useState(0);
@@ -211,7 +211,7 @@ useEffect(() => {
       amount: data.amount,
       currency: data.currency,
       order_id: data.id,
-      description: "Wingrow Agritech",
+      description: "Wingrow Market",
 
       handler: async (response) => {
 
@@ -219,7 +219,7 @@ useEffect(() => {
 
           var orderId;
           
-            const verifyUrl = "http://localhost:4000/verify";
+            const verifyUrl = "https://wingrowmarket.com/verify";
             const { data } = await axios.post(verifyUrl, response, {
               headers: authHeader(),
             });

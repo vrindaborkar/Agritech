@@ -3,8 +3,8 @@ import authHeader from "./auth.headers";
 
 // const API_URL = "https://wingrowagritech.herokuapp.com/auth/";
 // const API_URL = "https://wingrowmarket.onrender.com/auth/";
-const API_URL1 = "http://localhost:4000/auth/";
- const API_URL = "http://localhost:4000/auth/";
+const API_URL1 = "https://wingrowmarket.com/auth/";
+ const API_URL = "https://wingrowmarket.com/auth/";
 
 const register = (
   phone,

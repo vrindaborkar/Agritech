@@ -15,7 +15,7 @@ function Ticket ({bookingDetails}) {
     const twilioMsg = async() => {
         console.log("booking ",bookingDetails)
         
-        const orderUrl = "http://localhost:4000/twilio"; 
+        const orderUrl = "https://wingrowmarket.com/twilio"; 
         const {data} = await axios.post(orderUrl,{bookingDetails:bookingDetails},{headers:authHeader()});
         console.log(data)
     }

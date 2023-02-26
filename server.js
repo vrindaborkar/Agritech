@@ -8,10 +8,11 @@ const path = require('path');
 const fileUpload = require('express-fileupload')
 
 var corsOptions = {
-  // origin: "http://wingrowagritech.herokuapp.com/"
+  // origin: "https://wingrowmarket.com/",
     origin:'*', 
-  //  credentials:true,            //access-control-allow-credentials:true
-  //  optionSuccessStatus:200,
+   credentials:true,        
+  //  access-control-allow-credentials:true,
+   optionSuccessStatus:200,
 };
 
 // app.use(cors({

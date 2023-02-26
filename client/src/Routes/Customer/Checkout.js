@@ -33,7 +33,7 @@ const Checkout = () => {
     const confirmBooking = async() => {
       const amount = result * 100;
       try {
-        if(result){const orderUrl = "http://localhost:4000/order";
+        if(result){const orderUrl = "https://wingrowmarket.com/order";
         const {data} = await axios.post(orderUrl,{amount:amount},{headers:authHeader()})
         initPayment(data.data)}
       } catch (error) {
@@ -49,7 +49,7 @@ const Checkout = () => {
       amount:data.amount,
       currency:data.currency,
       order_id:data.id,
-      description:"Wingrow Agritech",
+      description:"Wingrow Market",
       
       handler:async(response) =>{
           try {
