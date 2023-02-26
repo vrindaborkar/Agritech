@@ -160,7 +160,7 @@ export default function SignIn() {
             </Typography>
             <TextField
               inputlabelprops={{
-                style: { fontSize: 16, fontFamily: 'Arturo'},
+                style: { fontSize: 16, fontFamily: 'Arturo' },
               }}
               margin="normal"
               required

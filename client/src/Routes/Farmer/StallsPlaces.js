@@ -35,10 +35,12 @@ useEffect(() => {
     <>
       
     {stalls && <div className='places_market_container'>
-        <Link style={{ marginTop: '10px' }} className="backbtn green" to="/farmers" >
+      <div className='backbtnflex'>
+        <Link style={{ marginTop: '10px' }} className="backbtn green flex" to="/farmers" >
           Back
         </Link>
         <h2 className='main_header_places'>Select Market From Below..</h2>
+      </div>
         <div className='places_wrapper'>
         {
             places && places.map((e,i)=>{

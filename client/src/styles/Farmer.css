@@ -69,6 +69,16 @@
   color: white;
   font-family: karla;
 }
+
+.backbtnflex{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.flex{
+  align-self: flex-start;
+}
 /*
 .links_farmersdata {
   padding: 15%;
