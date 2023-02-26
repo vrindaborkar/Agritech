@@ -6,8 +6,6 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import FarmerService from '../../services/farmer.service'
 import '../../styles/subscription.css'
-
-import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
