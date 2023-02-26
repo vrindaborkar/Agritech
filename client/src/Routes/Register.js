@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -15,18 +15,171 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import firebase from "./firebase";
 import '../styles/Styles.css'
+import Autocomplete from "@mui/material/Autocomplete";
 //import Select from 'react-select';
 const user = AuthService.getCurrentUser();
 
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-  space: 49
-};
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter, KeyCodes.space];
+
+const options = [
+  // Leaves
+  { label: "Amaranthus" },
+  { label: "Beet Root" },
+  { label: "Chukka- sorrel Leaves" },
+  { label: "Colocasia Leaves" },
+  { label: "Curry Leaves" },
+  { label: "Dill" },
+  { label: "Fenugreek Leaves" },
+  { label: "Green Amaranth" },
+  { label: "Spinach" },
+  { label: "Spring Onion" },
+  { label: "Sufflower" },
+  // Wild-Antic
+  { label: "Chilli" },
+  { label: " Colocasia Roots" },
+  { label: "Cucumber Madras" },
+  { label: "Kohlrabi" },
+  { label: "Onion White-Pandhara Kanda" },
+  { label: "Pointed Gourd" },
+  { label: "Pumpkin" },
+  { label: "Raw Jackfruit" },
+  { label: "Raw Papaya" },
+  { label: "Sambhar Kanda" },
+  { label: "Snake Gourd" },
+  { label: "Spiny Gourd" },
+  { label: "Sweet Potato" },
+  { label: "Yam" },
+  // Exotic
+  { label: "Asparagus" },
+  { label: "Avocado" },
+  { label: "Baby Corn" },
+  { label: "Baby Potato" },
+  { label: "Basil" },
+  { label: "Broccoli" },
+  { label: "Celery" },
+  { label: "Cherry Tomato" },
+  { label: "chinese Cabbage" },
+  { label: "Coccinia" },
+  { label: "Green Zucchini" },
+  { label: "Iceberg Lettuce" },
+  { label: "Parsley" },
+  { label: "Red Cabbage" },
+  { label: "Red Capsicum" },
+  { label: "Romaine Lettuce" },
+  { label: "Yellow Capsicum" },
+  { label: "Yellow Zucchini" },
+  { label: "Mushroom" },
+  { label: "Sweet Corn" },
+  { label: "Sweet Corn Grains" },
+  // Special stall
+  { label: "Cabbage" },
+  { label: "Potato (Agra)" },
+  { label: "Potato (Indore)" },
+  { label: "Potato (Talegav)" },
+  // Fruit Vegetables
+  { label: "Beans Double" },
+  { label: "Bitter Gourd" },
+  { label: "Brinjal Big" },
+  { label: "Brinjal Green" },
+  { label: "Brinjal Long Green" },
+  { label: "Brinjal Purple" },
+  { label: "Carrot" },
+  { label: "Cauliflower" },
+  { label: "Chavali Beans" },
+  { label: "Chickpeas - Chana sprouts" },
+  { label: "chilli - Bhavgagari Mirchi" },
+  { label: "Chilli Green" },
+  { label: "chilli Simple" },
+  { label: "Cluster Beans" },
+  { label: "Coconut" },
+  { label: "Colocasia Roots" },
+  { label: "Coriander" },
+  { label: "Cucumber" },
+  { label: "Cucumder Madras" },
+  { label: "Cucumber Madras- Sambar Kakadi" },
+  { label: "Cucumber Polyhouse- English Kakadi" },
+  { label: "Drum Sticks" },
+  { label: "Field Beans" },
+  { label: "Fresh Peeled Green Peas" },
+  { label: "Garlic" },
+  { label: "Ginger" },
+  { label: "Green Capsicum" },
+  { label: "Green Mango" },
+  { label: "Green Peas" },
+  { label: "Groundnut Pods" },
+  { label: "Tamarind" },
+  { label: "Lady Finger" },
+  { label: "Lemon Grass" },
+  { label: "Mint" },
+  { label: "Onion" },
+  { label: "Onion Sambhar" },
+  { label: "Lima Beans" },
+  { label: "Peeled Garlic" },
+  { label: "Potato" },
+  { label: "Radish" },
+  { label: "Ridgegourd" },
+  { label: "Sponge Gourd" },
+  { label: "Tomato" },
+  { label: "Wal" },
+  { label: "Wal Broad" },
+  { label: "Wal surati" },
+  { label: "Water Chestnuts" },
+  // Fruit Export
+  { label: "Apple Fuji" },
+  { label: "Apple Green" },
+  { label: "Apple Kinnaur" },
+  { label: "Apple Red Delicious" },
+  { label: "Apple Shimla Big" },
+  { label: "Kiwi" },
+  { label: "Litchi" },
+  { label: "Strawberry" },
+  // Fruit Summer
+  { label: "Grapes Black" },
+  { label: "Grapes Green" },
+  { label: "Jambhul" },
+  { label: "Mango Badami (For Juice)" },
+  { label: "Mango Devgad Hapus" },
+  { label: "Mango Keshar" },
+  { label: "Mango Lalbag" },
+  { label: "Mango Payri" },
+  { label: "Mango Ratnagiri Hapus" },
+  { label: "Mango Totapuri" },
+  { label: "Muskmelon" },
+  { label: "Watermelon Kiran" },
+  { label: "Watermelon Regular" },
+  // Fruit
+  { label: "Amla" },
+  { label: "Apple Gourd" },
+  { label: "Ashgourd" },
+  { label: "Banana" },
+  { label: "Custard-apple" },
+  { label: "Elaichi Banana" },
+  { label: "Figs" },
+  { label: "Guava" },
+  { label: "Jackfruit Peeled" },
+  { label: "Jujube - Ber" },
+  { label: "Orange Small" },
+  { label: "Orange Kinnow" },
+  { label: "Papaya" },
+  { label: "Pear Imported" },
+  { label: "Pomogranate" },
+  { label: "Raw Banana" },
+  { label: "Sapodilla" },
+  { label: "Sugarcane" },
+  { label: "Sweet Lime" },
+  { label: "Tender" },
+];
+
 
 export default function Register({ t, languages }) {
+
+  var num=1;
+  const newArray = options.map((option) => ({
+    id: String(num++),
+    text: option.label,
+  }));
+  console.log(newArray)
+
   useEffect(() => {
     if (!!user) {
       AuthService.logout();
@@ -51,26 +204,35 @@ export default function Register({ t, languages }) {
   const [tag1, setTag] = useState();
   const [error, seterror] = useState("");
   const [disable,setDisable] = useState(false);
+  // const handleDelete = (i) => {
+  //   setTags(tags.filter((tag, index) => index !== i));
+  // };
+
+  // const handleAddition = (tag) => {
+  //   console.log("here", tag1);
+  //   setTags([...tags, tag]);
+  //   setTag('');
+  // };
+
+  // const handleDrag = (tag, currPos, newPos) => {
+  //   const newTags = tags.slice();
+
+  //   newTags.splice(currPos, 1);
+  //   newTags.splice(newPos, 0, tag);
+
+  //   // re-render
+  //   setTags(newTags);
+  // };
+
   const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
-  };
-
-  const handleAddition = (tag) => {
-    console.log("here", tag1);
-    setTags([...tags, tag]);
-    setTag('');
-  };
-
-  const handleDrag = (tag, currPos, newPos) => {
-    const newTags = tags.slice();
-
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
-
-    // re-render
+    const newTags = tags.slice(0);
+    newTags.splice(i, 1);
     setTags(newTags);
   };
 
+  const handleAddition = (tag) => {
+    setTags([...tags, tag]);
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => {
@@ -333,6 +495,19 @@ export default function Register({ t, languages }) {
   const [isRtl, setIsRtl] = useState(false);
 
 
+  const suggestionsRef = useRef(null);
+
+  function handleScroll(event) {
+    event.preventDefault();
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    if (scrollTop === 0) {
+      // Scrolled to the top
+    } else if (scrollTop + clientHeight === scrollHeight) {
+      // Scrolled to the bottom
+    } else {
+      // Scrolled in the middle
+    }
+  }
 
 
   return (
@@ -375,6 +550,7 @@ export default function Register({ t, languages }) {
             <Typography className="form-heading" mt={2} component="h1" variant="h5">
               <span className="heading">Signup with us</span>
             </Typography>
+            
             <Grid className="input-div-holder" container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -621,27 +797,23 @@ export default function Register({ t, languages }) {
                 />
               </Grid>
               {data.type === "farmer" && (
-
-                <Grid item xs={6}  >
+                <Grid item xs={12}>
                   <ReactTags
-                    InputProps={{ style: { fontSize: 15 } }}
-                    inputlabelprops={{ style: { fontSize: 15 } }}
                     tags={tags}
-                    delimiters={delimiters}
+                    suggestions={newArray}
                     handleDelete={handleDelete}
                     handleAddition={handleAddition}
-                    handleDrag={handleDrag}
-                    inputFieldPosition="bottom"
-                    handleInputChange={console.log("hello-----", tags)}
-                    autocomplete
-                    color="success"
-                    className='textfield'
-                    placeholder="Add Selling Products Names and press enter"
+                    placeholder="Add new tag"
+                    allowNew={true}
+                    autofocus={false}
+                    minQueryLength={1}
+                    classNames={{
+                      suggestions: 'tag-suggestions'
+                    }}
                   />
 
-
                 </Grid>
-
+                
 
               )}
             </Grid>
