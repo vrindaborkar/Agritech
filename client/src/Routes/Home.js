@@ -5,7 +5,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css';
 import Footer from '../components/Footer';
 import useWindowDimensions from '../components/useWindowDimensions'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 
 
 const Home = () => {
@@ -42,7 +42,11 @@ const Home = () => {
                     Book Stall
                 </button>
             </div>
-            
+            <div data-aos="fade-up" className="first_section_btn">
+                <Link to="https://www.wingrowagritech.com/"><button  className="knowmore_btn">
+                    Know More
+                </button></Link>
+            </div>
         </div>
                 
         <div className="first_section_image">

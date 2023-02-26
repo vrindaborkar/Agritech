@@ -172,7 +172,7 @@ export default function SignIn() {
               autoComplete="phone"
               autoFocus
               color="success"
-              className="heading"
+              className="heading input"
               // className="textfield"
               onChange={handleChange}
             />

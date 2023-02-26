@@ -8,8 +8,7 @@ import authHeader from '../../services/auth.headers';
 
 function Ticket ({bookingDetails}) {
     useEffect(() => {
-        twilioMsg();
-        
+        twilioMsg(); 
     });
   
     const twilioMsg = async() => {

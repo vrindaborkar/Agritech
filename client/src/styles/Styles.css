@@ -4,7 +4,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; 
   /* font-family: "Jost", sans-serif; */
 font-family: 'Arturo';
 }
@@ -634,6 +634,9 @@ li {
   .ReactTags__tagInputField {
     border-radius: 20px;
   }
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorSuccess.MuiInputBase-fullWidth.MuiInputBase-formControl.css-bz6wus-MuiInputBase-root-MuiOutlinedInput-root {
+    border-radius: 35px;
+  }
 }
 
 /* Added */
@@ -659,6 +662,7 @@ li {
   font-weight: bold;
   font-family: 'Arturo';
 }
+
 
 .signupWithUs {
   color: red;
