@@ -151,12 +151,12 @@ export default function SignIn() {
           <form onSubmit={handleLogin} className="login_details">
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               </Avatar> */}
-            <img className="form-logo" src="./logo.png" alt="form-logo" />
+            <img className="form-logo" src=".\images\logo.png" alt="form-logo" />
             <Typography component="h1" variant="h5" className="form-link">
-              <span className="heading">Welcome to Wingrowagritech</span>
+              <span className="heading">Welcome to Wingrow Agritech</span>
             </Typography>
             <Typography mt={2} component="h1" variant="h5">
-              <span className="heading" >Login here.</span>
+              <span className="heading" >Login Here.</span>
             </Typography>
             <TextField
               inputlabelprops={{

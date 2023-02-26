@@ -207,8 +207,8 @@ export default function Register({ t, languages }) {
       .catch((error) => {
         // Error; SMS not sent
         // ...
-        console.log("SMS not sent");
-        toast.warn("Invalid phone", {
+        console.log("SMS Not Sent");
+        toast.warn("Invalid Phone Number", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -243,7 +243,7 @@ export default function Register({ t, languages }) {
         //User signed in successfully.
         const user = result.user;
         console.log(JSON.stringify(user));
-        alert("User is verified");
+        alert("User is Verified");
         //window.location.href = "/newpassword";
         //handleSubmit()
         // console.log("inside handleSubmit")
@@ -368,9 +368,9 @@ export default function Register({ t, languages }) {
             sx={{ mt: 3 }}
           >
             <div id="sign-in-button"></div>
-            <img className="form-logo" src="./logo.png" alt="form-logo" />
+            <img className="form-logo" src=".\images\logo.png" alt="form-logo" />
             <Typography className="form-heading" component="h1" variant="h5">
-              <span className="heading">Welcome to Wingrowagritech</span>
+              <span className="heading">Welcome to Wingrow Agritech</span>
             </Typography>
             <Typography className="form-heading" mt={2} component="h1" variant="h5">
               <span className="heading">Signup with us</span>
