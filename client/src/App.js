@@ -32,7 +32,7 @@ const App = () => {
             </Route>
 
           <Route 
-            path="customers/*" 
+            path="/home/customers/*" 
             element={
             <ProtectedRoute isAllowed={!!user && user.role === "customer"}>
               <Customer/>
@@ -41,7 +41,7 @@ const App = () => {
           </Route>
 
           <Route 
-            path='/farmers/*'
+            path='/home/farmers/*'
             element={
             <ProtectedRoute isAllowed={!!user && user.role === "farmer"}>
               <Farmer/>
@@ -73,7 +73,7 @@ const App = () => {
           <Route path='/Forgot' element={<Forgot/>}/>
           <Route path='/newpassword' element={<NewPassword/>}/>
           <Route path='/ResetPasswordSuccessful' element={<ResetPasswordSuccessful/>}/>
-          <Route path='/terms' element={<Terms/>}/>
+          <Route path='/home/terms' element={<Terms/>}/>
       </Route>
       <Route path="*" element={<NotFound/>} />
     </Routes>

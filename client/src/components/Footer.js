@@ -21,12 +21,12 @@ const Footer = () => {
 					</div>
 					<div className="Column">
 						<p className="Heading">Services</p>
-						<Link className="FooterLink" to="/">Home</Link>
+						<Link className="FooterLink" to="/home">Home</Link>
 						{/* <Link className="FooterLink" to="/customers">Customers</Link> */}
-						<Link className="FooterLink" to="farmers">Farmers</Link>
+						<Link className="FooterLink" to="/home/farmers">Farmers</Link>
 						{/* <Link className="FooterLink" to="/register">Register</Link> */}
 						{/* <Link className="FooterLink" to="/cart">Cart</Link> */}
-						<Link className="FooterLink" to="/farmers/">Stall Bookings</Link>
+						<Link className="FooterLink" to="/home/farmers/">Stall Bookings</Link>
 
 
 
@@ -34,13 +34,13 @@ const Footer = () => {
 					<div className="Column">
 						<p className="Heading">Contact Us</p>
 						<a className="FooterLink" href="mailto:connect@wingrowagritech.com">Contact </a>
-						<Link className="FooterLink" to="customers">Customers</Link>
+						<Link className="FooterLink" to="/home/customers">Customers</Link>
 
 					</div>
 
 					<div className="Column">
 						<p className="Heading">Legal</p>
-						<Link className="FooterLink" to="terms">Terms and Conditions </Link>
+						<Link className="FooterLink" to="/home/terms">Terms and Conditions </Link>
 					</div>
 
 					<div className="Column">
