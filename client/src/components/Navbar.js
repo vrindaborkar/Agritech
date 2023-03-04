@@ -21,6 +21,7 @@ const Navbar = () => {
     setshowFarmersBoard(false)
     setshowCustomerBoard(false)
     setShowAdminBoard(false)
+    window.location.reload();
   }
       
   useEffect(() => {

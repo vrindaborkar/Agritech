@@ -32,7 +32,7 @@ const App = () => {
             </Route>
 
           <Route 
-            path="/home/customers/*" 
+            path="/customers/*" 
             element={
             <ProtectedRoute isAllowed={!!user && user.role === "customer"}>
               <Customer/>
@@ -41,13 +41,30 @@ const App = () => {
           </Route>
 
           <Route 
-            path='/home/farmers/*'
+            path='/farmers/*'
             element={
             <ProtectedRoute isAllowed={!!user && user.role === "farmer"}>
               <Farmer/>
               </ProtectedRoute>
             }>
           </Route>
+            <Route
+              path="/home/customers/*"
+              element={
+                <ProtectedRoute isAllowed={!!user && user.role === "customer"}>
+                  <Customer />
+                </ProtectedRoute>
+              }>
+            </Route>
+
+            <Route
+              path='/home/farmers/*'
+              element={
+                <ProtectedRoute isAllowed={!!user && user.role === "farmer"}>
+                  <Farmer />
+                </ProtectedRoute>
+              }>
+            </Route>
 
           <Route 
             path="admin/*" 
