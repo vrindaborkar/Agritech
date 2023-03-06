@@ -33,8 +33,8 @@ const MyBookings = () => {
         data.lastname = user.lastname
         data.phone = user.phone
         console.log("data - ",data)
-        axios.post("https://wingrowmarket.com/cancelledstalls" , data , {headers:authHeader()})
-        axios.delete("https://wingrowmarket.com/bookedstalls" , { headers: authHeader()  , data:{id: DeleteId}})
+        axios.post("http://localhost:4000/cancelledstalls" , data , {headers:authHeader()})
+        axios.delete("http://localhost:4000/bookedstalls" , { headers: authHeader()  , data:{id: DeleteId}})
         .then(res =>  {
             if(res)
             {
