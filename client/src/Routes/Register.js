@@ -559,7 +559,9 @@ export default function Register({ t, languages }) {
                   }}
                   // autoComplete="given-name"
                   autoComplete="nope"
-
+                  inputProps={{
+      autoComplete: 'off'
+   }}
                   name="firstname"
                   value={data.firstname}
                   onChange={handleChange}
@@ -574,6 +576,9 @@ export default function Register({ t, languages }) {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                inputProps={{
+      autoComplete: 'off'
+   }}
                   inputlabelprops={{
                     style: { fontSize: 14, fontFamily: "Arturo" },
                   }}
@@ -591,6 +596,9 @@ export default function Register({ t, languages }) {
               </Grid>
               <Grid item xs={6}  >
                 <TextField
+                inputProps={{
+      autoComplete: 'off'
+   }}
                   inputlabelprops={{
                     style: { fontSize: 14, fontFamily: "Arturo" },
                   }}
@@ -625,6 +633,9 @@ export default function Register({ t, languages }) {
               <Grid item xs={6}  >
               
               <TextField 
+              inputProps={{
+      autoComplete: 'off'
+   }}
                 inputlabelprops={{
                   style: { fontSize: 14, fontFamily: "Arturo"},
                 }}
@@ -781,6 +792,9 @@ export default function Register({ t, languages }) {
 
               <Grid item xs={12}>
                 <TextField
+                inputProps={{
+      autoComplete: 'off'
+   }}
                   inputlabelprops={{
                     style: { fontSize: 14, fontFamily: "Arturo"},
                   }}
