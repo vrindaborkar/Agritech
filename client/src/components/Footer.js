@@ -85,17 +85,17 @@ const Footer = () => {
 						<h3>Wingrow<span>Market</span></h3>
 		
 						<p class="footer-links">
-							<a href="/home" class="link-1">Home</a>
+							<a href="/" class="link-1">Home</a>
 							
 							<a href="/customers">Customers</a>
 						
-							<a href="/home/farmers">Farmers</a>
+							<a href="/farmers">Farmers</a>
 						
 							<a href="/register">Register</a>
 							
 							<a href="/cart">Cart</a>
 							
-							<a href="/home/farmers/">Stall Bookings</a>
+							<a href="/farmers/stallplaces">Stall Bookings</a>
 						</p>
 		
 						<p class="footer-company-name">Wingrow Agritech.  All rights reserved.</p>
