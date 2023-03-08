@@ -38,23 +38,37 @@ const App = () => {
               }>
             </Route>
 
-            <Route
-              path='/farmers/*'
-              element={
-                <ProtectedRoute isAllowed={!!user && user.role === "farmer"}>
-                  <Farmer />
-                </ProtectedRoute>
-              }>
-            </Route>
 
-            <Route
-              path="admin/*"
-              element={
-                <ProtectedRoute isAllowed={!!user && user.role === "admin"}>
-                  <Admin />
-                </ProtectedRoute>
-              }>
-            </Route>
+          <Route 
+            path="/customers/*" 
+            element={
+            <ProtectedRoute isAllowed={!!user && user.role === "customer"}>
+              <Customer/>
+              </ProtectedRoute>
+            }>
+          </Route>
+
+          <Route 
+            path='/farmers/*'
+            element={
+            <ProtectedRoute isAllowed={!!user && user.role === "farmer"}>
+              <Farmer/>
+              </ProtectedRoute>
+            }>
+          </Route>
+
+          <Route 
+            path="/admin/*" 
+            element={
+            <ProtectedRoute isAllowed={!!user && user.role === "admin"}>
+              <Admin/>
+              </ProtectedRoute>
+            }>
+          </Route>
+
+            
+
+            
 
             <Route
               path="profile"
@@ -64,6 +78,7 @@ const App = () => {
                 </ProtectedRoute>
               }>
             </Route>
+
 
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

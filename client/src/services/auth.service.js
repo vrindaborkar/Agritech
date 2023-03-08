@@ -3,8 +3,11 @@ import authHeader from "./auth.headers";
 
 // const API_URL = "https://wingrowagritech.herokuapp.com/auth/";
 // const API_URL = "https://wingrowmarket.onrender.com/auth/";
-const API_URL1 = "http://localhost:4000/auth/";
- const API_URL = "http://localhost:4000/auth/";
+const API_URL1 = "https://wingrowmarket.com/auth/";
+ //const API_URL = "https://wingrowmarket.com/";
+const API_URL="http://localhost:4000/auth/";
+const { REACT_APP_API_URL } = process.env;
+//console.log("the url : ",REACT_APP_API_URL)
 
 const register = (
   phone,
@@ -16,7 +19,7 @@ const register = (
   address,
   tags
 ) => {
-  return axios.post(API_URL + "signup", {
+  return axios.post(REACT_APP_API_URL + "auth/signup", {
     phone,
     password,
     firstname,
@@ -29,7 +32,7 @@ const register = (
 };
 
 const login = (phone, password) => {
-  return axios.post(API_URL + "signin", {
+  return axios.post(REACT_APP_API_URL + "auth/signin", {
       phone,
       password,
     }).then((response) => {
@@ -43,7 +46,7 @@ const login = (phone, password) => {
 
 const addAddress = (address) => {
   return axios
-    .post(API_URL1 + "address", { address }, { headers: authHeader() })
+    .post(REACT_APP_API_URL + "auth/address", { address }, { headers: authHeader() })
     .then((response) => {
       console.log(response.data)
       return response.data;
@@ -52,7 +55,7 @@ const addAddress = (address) => {
 
 const addimage = (formData) => {
   return axios
-    .put(API_URL1 + "image", formData, { headers: authHeader() })
+    .put(REACT_APP_API_URL + "image", formData, { headers: authHeader() })
     .then((response) => {
       return response.data;
     });
@@ -67,7 +70,7 @@ const getCurrentUser = () => {
 };
 
 const feedback = (message,stars) => {
-  return axios.post(API_URL + "feedback", {
+  return axios.post(REACT_APP_API_URL + "feedback", {
     
     message,
     stars,
@@ -75,7 +78,7 @@ const feedback = (message,stars) => {
 };
 
 const newpassword = (phone, password) => {
-  return axios.post(API_URL + "newpassword", {
+  return axios.post(REACT_APP_API_URL + "newpassword", {
     phone,
     password,
   });

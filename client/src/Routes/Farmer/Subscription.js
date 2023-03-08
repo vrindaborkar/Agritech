@@ -6,6 +6,8 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import FarmerService from '../../services/farmer.service'
 import '../../styles/subscription.css'
+
+import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -416,7 +418,7 @@ useEffect(() => {
                       PAY
                     </Button>
                     <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      PAY IN MARKET
+                      PAY ON DELIVERY
                     </Button>
                   </div>
                 </Grid>
