@@ -56,7 +56,7 @@
   max-width: 80%;
 }
 .backbtn{
-  display: inline-block;
+  display:inline;
   width: 130px;
   height: 40px;
   margin-top: -570px;
@@ -501,7 +501,7 @@
 
 @media (max-width: 550px) {
   .farmerScreen {
-    margin: 100px 20px;
+    margin: 200px 0px;
   }
   .places_market_component0 {
     width: 65%;
@@ -602,7 +602,8 @@ sup {
   }
   .links_farmersdata {
     margin: 5px;
-    padding: 10px 15px;
+    padding: 30px 15px;
+    font-size: 15px;
 }
 .select-market-grid{
   padding-top: 20px !important;

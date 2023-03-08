@@ -266,9 +266,7 @@ export default function OutwardData() {
 
   return (
     <div className="data_container">
-      <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ marginTop: -'570px',  marginLeft: '10px'}}>
-        Back
-      </Link>
+      
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -284,6 +282,9 @@ export default function OutwardData() {
       <ThemeProvider theme={theme}>
         <Container className="main" component="main" maxWidth="sm">
           <CssBaseline />
+          <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px',marginTop: -'570px', marginLeft: '10px' }}>
+            Back
+          </Link>
           <Box
             className="box2"
             sx={{
@@ -297,6 +298,7 @@ export default function OutwardData() {
               width: "100%",
             }}
           >
+          
             <Typography component="h1" variant="h4">
               Farmer Outward Data!!
             </Typography>

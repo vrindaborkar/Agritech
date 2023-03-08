@@ -264,9 +264,7 @@ export default function InwardData() {
   return (
     
     <div className="data_container">
-      <Link className="backbtn green" to="/farmers">
-        Back
-      </Link>
+      
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -282,6 +280,9 @@ export default function InwardData() {
       <ThemeProvider theme={theme}>
         <Container className="main" component="main" maxWidth="sm">
           <CssBaseline />
+          <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px', marginTop: -'570px', marginLeft: '10px' }}>
+            Back
+          </Link>
           <Box
             className="box2"
             sx={{
