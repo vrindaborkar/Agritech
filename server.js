@@ -7,19 +7,19 @@ var bodyParser = require('body-parser');
 const path = require('path');
 const fileUpload = require('express-fileupload')
 
-var corsOptions = {
-  // origin: "http://wingrowagritech.herokuapp.com/"
-    origin:'*', 
-  //  credentials:true,            //access-control-allow-credentials:true
-  //  optionSuccessStatus:200,
-};
+// var corsOptions = {
+//   // origin: "http://wingrowagritech.herokuapp.com/"
+//     origin:'*', 
+//   //  credentials:true,            //access-control-allow-credentials:true
+//   //  optionSuccessStatus:200,
+// };
 
-app.use(cors({
-  origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
-  credentials: true
-}))
+// app.use(cors({
+//   origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+//   credentials: true
+// }))
 
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');

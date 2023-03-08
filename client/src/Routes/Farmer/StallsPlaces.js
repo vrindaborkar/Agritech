@@ -22,7 +22,8 @@ for(let key of set) places.push(key)
 
 useEffect(() => {
     FarmerService.getMyStalls()
-    .then(res => setStalls(res.data))
+    .then(res => {setStalls(res.data); console.log(res.data)})
+
   }, [])
 
   const handleClick = (ev) => {
