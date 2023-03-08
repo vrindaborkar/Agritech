@@ -49,7 +49,7 @@ const Checkout = () => {
       amount:data.amount,
       currency:data.currency,
       order_id:data.id,
-      description:"Wingrow Agritech",
+      description:"Wingrow Market",
       
       handler:async(response) =>{
           try {

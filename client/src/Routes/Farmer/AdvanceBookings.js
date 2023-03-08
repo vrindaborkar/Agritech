@@ -254,7 +254,7 @@ const AdvanceBookings = ({ setbookingDetails, setValue }) => {
       currency: data.currency,
       order_id: data.id,
       bookedStalls: bookedStats,
-      description: "Wingrow Agritech",
+      description: "Wingrow Market",
 
       handler: async (response) => {
 
