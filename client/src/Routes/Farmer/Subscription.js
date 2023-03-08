@@ -310,10 +310,14 @@ useEffect(() => {
 
   return (
     <div className="sub">
+      <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px', marginLeft: '-100px' }}>
+        Back
+      </Link>
       <h1 className="header">Subscription Model</h1>
       {/* not Subscribe */}
       { (sub.length !== 0  ) ? 
       <div className="subscribe">
+      
 
         <h2 >Subscribed</h2>
         <h3 >Start data - { sub[0].date}</h3>
@@ -325,7 +329,7 @@ useEffect(() => {
       </div> 
       :
       
-      <div> 
+        <div classname="box"> 
         <h2>not Subscribed</h2>
         <form onSubmit={handleSubmit}>
         <Grid item xs={12} sm={6}>
@@ -345,12 +349,12 @@ useEffect(() => {
               value={date}
               onChange = {(e) => {setDate(e.target.value) ;console.log("clicking");} }
               color="success"
-              className="textfield"
+              className="textfield field field1"
             />
           </Grid>
           <Grid item xs={12}>
                 <FormControl
-                  className="textfield"
+                  className="textfield field field2"
                   sx={{ width: "100%", fontSize: 14 }}
                 >
                   <InputLabel

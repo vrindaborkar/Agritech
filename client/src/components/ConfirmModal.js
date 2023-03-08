@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import "../styles/Test.css";
 import Grid from "@mui/material/Grid";
 // Added
+import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 
 const style = {
@@ -60,8 +61,11 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        
         <Box className="box" sx={style}>
+        
           <div className="terms_and_conditions">
+            
             <h1>Terms of service</h1>
             <br />
             <h2>WINGROW’S FARMERS MARKET</h2>
@@ -477,6 +481,7 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
             </p>
             <br />
             <Divider className="divider" />
+            
             <Button
               className="tnc_btn"
               onClick={() => {
@@ -486,6 +491,7 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
             >
               Confirm Booking
             </Button>
+            
           </div>
         </Box>
       </Modal>
