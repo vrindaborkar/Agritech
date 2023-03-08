@@ -1,12 +1,12 @@
 import axios from 'axios';
 import authHeader from './auth.headers';
 
-// const API_URL = 'https://wingrowagritech.herokuapp.com/';
+// const REACT_APP_API_URL = 'https://wingrowagritech.herokuapp.com/';
 // const API_URL = "https://wingrowmarket.onrender.com/";
- const API_URL = "http://localhost:4000/";
+const { REACT_APP_API_URL } = process.env;
 
  const postInward = (commodity , purchase_quantity , purchase_rate , market , time) => {
-    return axios.post(API_URL + "inward", {
+    return axios.post(REACT_APP_API_URL + "inward", {
         commodity,
         purchase_quantity,
         purchase_rate,
@@ -16,7 +16,7 @@ import authHeader from './auth.headers';
   }
 
   const postOutward = (commodity , sales_quantity , sales_rate , market , time) => {
-    return axios.post(API_URL + "outward", {
+    return axios.post(REACT_APP_API_URL + "outward", {
         commodity,
         sales_quantity,
         sales_rate,
@@ -26,31 +26,31 @@ import authHeader from './auth.headers';
   }
 
   const getInward = () => {
-    return axios.get(API_URL + 'inward', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'inward', { headers: authHeader() });
   }
 
   const getOutward = () => {
-    return axios.get(API_URL + 'outward', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'outward', { headers: authHeader() });
   }
 
   const getInwardData = () => {
-    return axios.get(API_URL + 'inwardData', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'inwardData', { headers: authHeader() });
   }
 
   const getOutwardData = () => {
-    return axios.get(API_URL + 'outwardData', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'outwardData', { headers: authHeader() });
   }
 
   const getMyStalls = () => {
-    return axios.get(API_URL + 'stalls', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'stalls', { headers: authHeader() });
   }
 
   const getBookedStalls = () => {
-    return axios.get(API_URL + 'bookedstalls', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'bookedstalls', { headers: authHeader() });
   }
 
   const getcancelledStalls = () => {
-    return axios.get(API_URL + 'cancelledstalls', { headers: authHeader() });
+    return axios.get(REACT_APP_API_URL + 'cancelledstalls', { headers: authHeader() });
   }
 
 

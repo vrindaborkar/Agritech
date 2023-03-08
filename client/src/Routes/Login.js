@@ -148,7 +148,7 @@ export default function SignIn() {
             src="./images/2.png"
             alt="logo"
           />
-          <form onSubmit={handleLogin} className="login_details">
+          <form autocomplete='new-password' onSubmit={handleLogin} className="login_details">
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               </Avatar> */}
             <img className="form-logo" src=".\images\logo.png" alt="form-logo" />
@@ -159,6 +159,10 @@ export default function SignIn() {
               <span className="heading" >Login Here.</span>
             </Typography>
             <TextField
+              inputProps={{
+                autoComplete: 'off'
+              }}
+
               inputlabelprops={{
                 style: { fontSize: 16, fontFamily: 'Arturo' },
               }}
@@ -169,7 +173,7 @@ export default function SignIn() {
               label="Mobile Number"
               name="phone"
               value={data.phone}
-              autoComplete="phone"
+              
               autoFocus
               color="success"
               className="heading input"
