@@ -42,7 +42,9 @@ function Test({ setbookingDetails, setValue }) {
   const [date, setdate] = useState(0);
   const [message, setMessage] = useState('');
   const [message2, setMessage2] = useState('');
- 
+  const [message3, setMessage3] = useState('Please select stalls');
+  const [selected,setSelected]=useState(0);
+
   const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 0, 'Amanora City': 0 }
 
 
@@ -356,7 +358,15 @@ function Test({ setbookingDetails, setValue }) {
 
     //console.log("booked ", bookedStalls);
     //console.log("number of seats ", numberOfSeats);
-    //console.log(ev.target)
+    console.log(ev.target.id+" "+selected)
+    if(ev.target.id === selected){
+      bookedStalls.pop();
+      setAvailable(available+1);
+      setSelected(0);
+      return
+    }
+    setSelected(ev.target.id);
+    console.log(selected)
     if (numberOfSeats && ev.target.className !== "booked") {
       const seatsToBook = parseInt(numberOfSeats, 20);
       if (bookedStalls.length <= seatsToBook) {
@@ -677,27 +687,61 @@ console.log(weekdayNumber)
                 </div>
               </Grid>
             </Grid>
-            {numberOfSeats !== 0  ? (
+            {console.log(selected)}
+           
+            { numberOfSeats !== 0 ? (
               <div className="modalbtn">
-                <ConfirmModal setCashOnDelivery={setCashOnDelivery} confirmBooking={confirmBooking} />
+              
+                <ConfirmModal setCashOnDelivery={setCashOnDelivery} confirmBooking={confirmBooking} selected = {selected}/>
               </div>
             ) : (
-              <Grid container alignItems="center" justifyContent="center">
-                <Grid item xs={6}>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Button
-                      style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      PAY
-                    </Button>
-                    <Button style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      PAY IN MARKET
-                    </Button>
-                  </div>
-                    
+               
+                <Grid container alignItems="center" justifyContent="center">
+                  <Grid item xs={6}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <Button
+                        style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                        onClick={() => {
+                          toast.warn("Please select stalls!", {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                          });
+                        }}
+                      >
+                        PAY
+                      </Button>
+                      <Button
+                        style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                        onClick={() => {
+                          toast.warn("Please select stalls!", {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                          });
+                        }}
+                      >
+                        PAY IN MARKET
+                      </Button>
+                      
+                    </div>
+                  </Grid>
                 </Grid>
-              </Grid>
+                
+            
             )
             }
+
             
           </div>
         </div>
