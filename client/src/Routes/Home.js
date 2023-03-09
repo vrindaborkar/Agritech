@@ -11,6 +11,7 @@ import Measures from '../components/Measures';
 
 
 const Home = () => {
+
   const [mobile, setmobile] = useState(false)
   useEffect(() => {
     AOS.init({
@@ -57,6 +58,7 @@ const Home = () => {
 
       </div>
 
+
       {/* corousal */}
       {/* <div id="carouselExampleCaptions" className="carousel slide " data-bs-ride="carousel">
    <div className="carousel-indicators">
@@ -99,7 +101,7 @@ const Home = () => {
      <span className="visually-hidden">Next</span>
    </button>
  </div> */}
-      <div className="transimgr hidden">
+      <div  data-aos="fade-left" className="transimgr">
         <img src="./images/cherry.png" alt="Skytsunami" />
       </div>
 
@@ -161,7 +163,7 @@ const Home = () => {
           </div>
         </div>
       }
-      <div className="transimg hidden">
+      <div data-aos="fade-right" className="transimg">
         <img src="./images/transpic.png" alt="Skytsunami" />
       </div>
 
@@ -170,19 +172,19 @@ const Home = () => {
         <div className='keys'>
           <div className='keyfeature_container'>
             <ol className="listed">
-              <li class="" className="hidden a">Market Visibility</li>
-              <li class="" className="hidden a">3rd part integration</li>
-              <li class="" className="hidden a">Analytics</li>
-              <li class="" className="hidden a">Paperless documentation</li>
+              <li class="" data-aos="fade-left" className="h a">Market Visibility</li>
+              <li class="" data-aos="fade-left" className="h a">3rd part integration</li>
+              <li class="" data-aos="fade-left" className="h a">Analytics</li>
+              <li class="" data-aos="fade-left" className="h a">Paperless documentation</li>
             </ol>
           </div>
           <img src='./images/pngwing.com.png' alt='img' className='keyfeature_container' />
           <div className='keyfeature_container'>
             <ol class="listed">
-              <li class="" className="hidden a">Mobile & web applications</li>
-              <li class="" className="hidden a">White labelled products</li>
-              <li class="" className="hidden a">Resource management</li>
-              <li class="" className="hidden a">On the go tracking</li>
+              <li class="" data-aos="fade-right"className="h a">Mobile & web applications</li>
+              <li class="" data-aos="fade-right"className="h a">White labelled products</li>
+              <li class="" data-aos="fade-right"className="h a">Resource management</li>
+              <li class="" data-aos="fade-right"className="h a">On the go tracking</li>
             </ol>
           </div>
         </div>
@@ -197,7 +199,7 @@ const Home = () => {
         </div>
         <img className="fourthsec_pic" src="./images/home_vegetables_pic4.webp"></img>
       </div>
-      <div className="transimgr hidden">
+      <div data-aos="fade-left" className="transimgr">
         <img src="./images/strawberry.png" alt="Skytsunami" />
       </div>
 
@@ -208,7 +210,7 @@ const Home = () => {
           <Measures />
         </div>
       </div>
-      <div className="transimg hidden">
+      <div data-aos="fade-right" className="transimg">
         <img src="./images/grapes.png" alt="Skytsunami" />
       </div>
 
