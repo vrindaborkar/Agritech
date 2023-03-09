@@ -11,21 +11,6 @@ import Measures from '../components/Measures';
 
 
 const Home = () => {
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      console.log(entry)
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-      else {
-        entry.target.classList.remove('show');
-      }
-    });
-  })
-
-  const hiddenElements = document.querySelectorAll('.hidden');
-  hiddenElements.forEach((el) => observer.observe(el));
   const [mobile, setmobile] = useState(false)
   useEffect(() => {
     AOS.init({
