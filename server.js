@@ -7,21 +7,21 @@ var bodyParser = require('body-parser');
 const path = require('path');
 const fileUpload = require('express-fileupload')
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 var corsOptions = {
   // origin: "http://wingrowagritech.herokuapp.com/"
     origin:'*', 
   //  credentials:true,            access-control-allow-credentials:true
   //  optionSuccessStatus:200,
 };
-=======
+//=======
 // var corsOptions = {
 //   // origin: "http://wingrowagritech.herokuapp.com/"
 //     origin:'*', 
 //   //  credentials:true,            //access-control-allow-credentials:true
 //   //  optionSuccessStatus:200,
 // };
->>>>>>> 9fab8b86ae322461a04a144517de7b8d42822b5d
+//>>>>>>> 9fab8b86ae322461a04a144517de7b8d42822b5d
 
 // app.use(cors({
 //   origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
