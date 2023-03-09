@@ -43,7 +43,24 @@ exports.signup = async(req , res , next)=>{
         res.status(200).send(data)
   }
   
+exports.checkPhone =(req,res) =>{
+  User.findOne({
+    phone: req.body.phone
+  })
+    .exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
 
+      if (user) {
+        return res.status(404).send({ message: "Found" });
+      }
+      else{
+        return res.status(200).send({message:"NFound"})
+      }
+    })
+}
 exports.signin = (req, res) => {
   console.log("hello inside signin")
     User.findOne({

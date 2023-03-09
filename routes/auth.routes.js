@@ -20,4 +20,5 @@ module.exports = function(app) {
   app.put("/image" , controller.postPic)
  app.post("/address", controller.addAddress);
   app.post("/auth/newpassword", controller.newpassword);
+  app.post("/check",controller.checkPhone)
 };
