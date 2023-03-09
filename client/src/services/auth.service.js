@@ -44,7 +44,7 @@ const login = (phone, password) => {
     });
 };
 const check = (phone) => {
-  return axios.post(REACT_APP_API_URL + "/check" ,{
+  return axios.post(REACT_APP_API_URL + "check" ,{
     phone
   }).then((response) =>{
     return response.data

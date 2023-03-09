@@ -392,7 +392,7 @@ export default function Register({ t, languages }) {
         });
         setTimeout(() => {
           
-          window.location.reload(false);
+          //window.location.reload(false);
         }, 1000);
       });
       },
@@ -418,7 +418,7 @@ export default function Register({ t, languages }) {
         });
         setTimeout(() => {
           navigate("/login");
-          window.location.reload();
+         // window.location.reload();
         }, 1000);
       }
     );
@@ -445,7 +445,7 @@ export default function Register({ t, languages }) {
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
     
-        console.log("erroe in sumbitotp")
+        console.log("error in sumbitotp")
       });
   };
   const [isClearable, setIsClearable] = useState(true);

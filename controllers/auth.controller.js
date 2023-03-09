@@ -48,15 +48,14 @@ exports.checkPhone =(req,res) =>{
     phone: req.body.phone
   })
     .exec((err, user) => {
-      if (err) {
-        res.status(500).send({ message: err });
-        return;
-      }
+     
 
       if (user) {
+        console.log("user found",user);
         return res.status(404).send({ message: "Found" });
       }
       else{
+        console.log("user nt found ");
         return res.status(200).send({message:"NFound"})
       }
     })
