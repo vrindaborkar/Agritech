@@ -14,12 +14,6 @@ const fileUpload = require('express-fileupload')
 //   //  optionSuccessStatus:200,
 // };
 // 
-// var corsOptions = {
-//   // origin: "http://wingrowagritech.herokuapp.com/"
-//     origin:'*', 
-//   //  credentials:true,            //access-control-allow-credentials:true
-//   //  optionSuccessStatus:200,
-// };
 
 
 // app.use(cors({

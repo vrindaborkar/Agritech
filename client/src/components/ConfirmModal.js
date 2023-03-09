@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "../styles/Test.css";
 import Grid from "@mui/material/Grid";
+import { ToastContainer, toast } from "react-toastify";
 // Added
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
@@ -23,7 +24,7 @@ const style = {
   p: 1.5,
 };
 
-export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
+export default function ConfirmModal({ confirmBooking,setCashOnDelivery,selected }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,22 +40,52 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
       <Grid container alignItems="center" justifyContent="center">
               <Grid item xs={6}>
               <div style={{ display: "flex", justifyContent: "center"}}>
+            {selected === 0 ? (
+              <Button onClick={() => toast.warn("Please select stalls!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              })} style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              PAY</Button>
+            ) : (
+
                 <Button 
                 onClick={handleOpen}
                 style={{ width: "110px", height: "40px", paddingLeft:'5rem', paddingRight:'5rem', margin:'1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 PAY
                 </Button>
+            )}
+
+            {selected === 0 ? (
+              <Button onClick={() => toast.warn("Please select stalls!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              })} style={{ width: "110px", height: "40px", paddingLeft: '5rem', paddingRight: '5rem', margin: '1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                PAY ON DELIVERY</Button>
+            ) : (
                 <Button 
                 onClick={() =>{handleOpen(); setCashOnDelivery(true)}}
                 style={{ width: "110px", height: "40px", paddingLeft:'5rem', paddingRight:'5rem', margin:'1rem', color: 'white', background: "linear-gradient(90deg, #07952b 41%, #0d6a02)", borderRadius: "20px", textAlign: "center", marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 PAY ON DELIVERY
                 </Button>
+            )}
                 </div>
               </Grid>  
               </Grid>
 
-
-
+      {/* {selected === 0 ? console.log('error') : ( */}
+       
       <Modal
         open={open}
         onClose={handleClose}
@@ -63,12 +94,16 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
       >
         
         <Box className="box" sx={style}>
+          
         
           <div className="terms_and_conditions">
+            <button className="closebtn" onClick={handleClose} style={{ marginLeft: '-250px', marginTop: '-15px' }}>
+              &times;
+            </button>
             
             <h1>Terms of service</h1>
             <br />
-            <h2>WINGROW’S FARMERS MARKET</h2>
+            <h2 style={{textAlign:'center'}}>WINGROW’S FARMERS MARKET</h2>
             <h3 class="city">ROLE OF WINGROW AGRITECH</h3>
             <p>
               <li>
@@ -494,7 +529,10 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery }) {
             
           </div>
         </Box>
+       
+     
       </Modal>
+      {/* )} */}
     </div>
   );
 }

@@ -128,7 +128,7 @@ a {
 
 /* new footer */
 .footer-distributed{
-	background: rgba(255, 0, 0, 0.7);
+	background: rgba(255, 0, 0, 0.6);
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
@@ -153,13 +153,13 @@ a {
 /* The company logo */
 
 .footer-distributed h3{
-	color:  #65a765;
+	color: white;
 	font: normal 36px 'Open Sans', cursive;
 	margin: 0;
 }
 
 .footer-distributed h3 span{
-	color: white;
+	color: black;
 }
 
 /* Footer links */

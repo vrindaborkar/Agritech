@@ -33,6 +33,9 @@ export default function ConfirmDelete({Delete , id}) {
       >
         <Box sx={style}>
           <div className='terms_and_conditions'>
+            <button className="closebtn" onClick={handleClose} style={{ marginLeft: '-250px', marginTop: '-15px' }}>
+              &times;
+            </button>
             <h1>Terms of service</h1>
             <br/>
             <h2>WINGROW’S FARMERS MARKET</h2>

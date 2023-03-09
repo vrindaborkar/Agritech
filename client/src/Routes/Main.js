@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import '../styles/Styles.css'
 
 const Main = () => {
+  
   return (
     <div className='main_wrapper_component'>
         <Navbar/>
