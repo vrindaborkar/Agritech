@@ -25,8 +25,8 @@ ChartJS.register(
 
 
 const FarmersHome = () => {
-  const [InwardData, setInwardData] = useState();
-  const [OutwardData, setOutwardData] = useState();
+  const [InwardData, setInwardData] = useState([]);
+  const [OutwardData, setOutwardData] = useState([]);
   const [salesQuantity, setSalesQuantity] = useState(0);
   const [salesRate, setSalesRate] = useState(0);
   const [purchaseQuantity, setPurchaseQuantity] = useState(0);
@@ -97,6 +97,7 @@ const FarmersHome = () => {
 
     FarmerService.getOutward().then((res) => {
       setOutwardData(res.data);
+       console.log("data ",res.data)
     });
   }, []);
 

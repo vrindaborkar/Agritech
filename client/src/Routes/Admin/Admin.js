@@ -1,7 +1,9 @@
 import React,{useState , useEffect} from 'react'
 import { Routes, Route } from "react-router-dom";
 import AdminMain from './AdminMain';
+import Adminrev from './Adminrev';
 import AdminHome from './AdminHome';
+
 import FarmersListData from './FarmersListData';
 import CustomersList from './CustomersList';
 import CancellationFeed from './CancellationFeed';
@@ -198,7 +200,8 @@ const Admin = () => {
                 Customer={Customer}
             />}
             />
-
+          <Route path='/adminrev' element={<Adminrev/>}/>
+          
           <Route path='/listoffarmers' element={<FarmersListData Farmers={Farmers}/>}/>
           <Route path='/listofCustomers' element={<CustomersList Customer={Customer}/>}/>
           <Route path='/cancelledstalls' element={<CancellationFeed Farmers={Farmers} CancelledStalls={CancelledStalls} handleRefundDelete={handleRefundDelete}/>}/>
