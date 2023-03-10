@@ -5,15 +5,15 @@ import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
 
 const FarmersHome = () => {
-  const [InwardData, setInwardData] = useState();
-  const [OutwardData, setOutwardData] = useState();
+  const [InwardData, setInwardData] = useState([]);
+  const [OutwardData, setOutwardData] = useState([]);
   const [salesQuantity, setSalesQuantity] = useState(0);
   const [salesRate, setSalesRate] = useState(0);
   const [purchaseQuantity, setPurchaseQuantity] = useState(0);
   const [purchaseRate, setPurchaseRate] = useState(0);
   const today = new Date();
   const todayFormatted = today.toISOString().slice(0, 10);
-  const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 0, 'Amanora City': 0 }
+  const arr = { 'Hadapsar': 5, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 0, 'Amanora City': 0 }
 
  
   const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -26,7 +26,7 @@ const FarmersHome = () => {
 
     FarmerService.getOutward().then((res) => {
       setOutwardData(res.data);
-      // console.log(res.data)
+       console.log("data ",res.data)
     });
   }, []);
 
