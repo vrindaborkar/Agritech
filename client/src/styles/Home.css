@@ -514,21 +514,6 @@
 }
 
 /* key feature */
-.hidden{
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateX(-100%);
-  transition: all 2s;
-}
-
-#home{
-  padding-bottom: 120px;
-}
-.show{
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
-}
 
 @media(prefers-reduced-motion){
   .hidden{
@@ -672,3 +657,5 @@ ol.listed li.a:before {
     margin-left: 75%;
   }
 }
+  
+

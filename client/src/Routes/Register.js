@@ -336,15 +336,16 @@ export default function Register({ t, languages }) {
     configureCaptcha();
     setDisable(true);  
     setTimeout(() =>{setDisable(false)},5000);
+    //check if the user exists
+
     const phoneNumber = "+91" + data.phone;
-    // // console.log(values.mobile)
-    // // const phone = values.mobile
-    // const phoneNumber = "+91" + mobile
+   
     console.log(phoneNumber);
 
-
-
-    const appVerifier = window.recaptchaVerifier;
+    AuthService.check(data.phone)
+    .then(
+      () => {
+        const appVerifier = window.recaptchaVerifier;
     firebase
       .auth()
       .signInWithPhoneNumber(phoneNumber, appVerifier)
@@ -391,9 +392,40 @@ export default function Register({ t, languages }) {
         });
         setTimeout(() => {
           
-          window.location.reload(false);
+          //window.location.reload(false);
         }, 1000);
       });
+      },
+      (error) => {
+        toast.warn("User Already Exists", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setData({
+          phone: "",
+          password: "",
+          firstname: "",
+          lastname: "",
+          type: "",
+          farmertype: "",
+          address: "",
+        });
+        setTimeout(() => {
+          navigate("/login");
+         // window.location.reload();
+        }, 1000);
+      }
+    );
+    
+
+
+    
   };
   const onSubmitOTP = (e) => {
     e.preventDefault();
@@ -406,86 +438,14 @@ export default function Register({ t, languages }) {
         const user = result.user;
         console.log(JSON.stringify(user));
         alert("User is Verified");
-        //window.location.href = "/newpassword";
-        //handleSubmit()
-        // console.log("inside handleSubmit")
-        // seterror("");
+        
 
-        // const { phone, firstname, lastname, farmertype, type } = data;
-
-        // if (!phone.match("[0-9]{10}")) {
-        //   seterror("Please provide valid phone number");
-        // } else if (firstname.length === 0 && lastname.length === 0) {
-        //   seterror("Please provide valid first and last name");
-        // } else if (type.length === 0) {
-        //   seterror("Please select type");
-        // } else if (type === "farmer" && farmertype.length === 0) {
-        //   seterror("select producer type");
-        // } else if (type === "farmer" && tags.length === 0) {
-        //   seterror("select atleast one commodity and press enter");
-        // } else {
-        //   seterror("no error");
-        //   setLoading(true);
-        //   AuthService.register(
-        //     data.phone,
-        //     data.password,
-        //     data.firstname,
-        //     data.lastname,
-        //     data.type,
-        //     data.farmertype,
-        //     data.address,
-        //     tags
-        //   ).then(
-        //     () => {
-        //       toast.success("Registration successful!", {
-        //         position: "top-center",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //       });
-        //       setTimeout(() => {
-        //         navigate("/registeration-successfull");
-        //         window.location.reload();
-        //       }, 1000);
-        //     },
-        //     (error) => {
-        //       toast.warn("User Already Exists", {
-        //         position: "top-center",
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //       });
-        //       setData({
-        //         phone: "",
-        //         password: "",
-        //         firstname: "",
-        //         lastname: "",
-        //         type: "",
-        //         farmertype: "",
-        //         address: "",
-        //       });
-        //       setTimeout(() => {
-        //         navigate("/login");
-        //         window.location.reload();
-        //       }, 1000);
-        //     }
-        //   );
-        // }
-
-        // ...
+        
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
-        // ...
-        console.log("erroe in sumbitotp")
+    
+        console.log("error in sumbitotp")
       });
   };
   const [isClearable, setIsClearable] = useState(true);
