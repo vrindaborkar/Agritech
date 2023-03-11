@@ -1,6 +1,6 @@
 const express = require('express');
 //const client = require('twilio')('ACa84acedb4869f922ee9165fbfcd0a264', '055a4b55623929289576b9dded4bc3fb');
-const client = require('twilio')('ACa84acedb4869f922ee9165fbfcd0a264', 'a6da65194c0f49691b4205b8d8dc5982');
+const client = require('twilio')('ACa84acedb4869f922ee9165fbfcd0a264', '411250b244977a3659c9cdefe52d4049');
 
 
 module.exports = function(app) {
@@ -26,7 +26,9 @@ module.exports = function(app) {
                             paymentDetails: ${farmer['paymentDetails']} ,
                             BookedStalls: ${farmer['BookedStalls']} ,
                             stallsBooked: ${farmer['stallsBooked']} ,
-                            totalAmount: ${farmer['totalAmount']}
+                            totalAmount: ${farmer['totalAmount']},
+                            address: ${farmer['address']}
+                            
                             `;
             // console.log(details, farmer['phone']);
             
