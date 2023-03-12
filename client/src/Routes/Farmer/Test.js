@@ -454,11 +454,12 @@ console.log(weekdayNumber)
             theme="light"
           />
           
-          <h2 className="market-name">{Id} ONLY ON {weekdays[arr[Id] - 1]}</h2>
+          
           <div className="main_container_stalls">
             <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px', marginTop: -'570px', marginLeft: '10px' }}>
               Back
             </Link>
+            <h2 className="market-name" style={{ textAlign: 'center',marginTop:'20px' }}>{Id} ONLY ON {weekdays[arr[Id] - 1]}</h2>
             <Grid className="input-div-holder" container spacing={2}>
 
               <Grid item xs={12} sm={6}>
