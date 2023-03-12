@@ -391,12 +391,27 @@ const FarmersHome = () => {
               }
 
             >
+              <div className="inwardData">
+                <h3 style={{ padding: "1rem 0" }}>Market Day's</h3>
+                <div className="farmersdata_container">
+                  <div className="farmerdata_items">
+                    <p>Monday    : None</p>
+                    <p>Tuesday   : None</p>
+                    <p>Wednesday : Hadapsar</p>
+                    <p>Thursday  : Kharadi, Karve Nagar</p>
+                    <p>Friday    : Bramha Sun City</p>
+                    <p>Saturday  : Wanawadi</p>
+                    <p>Sunday    : Magarpatta, Amonora City</p>
+                  </div>
+                </div>
+              </div>
               <Bar
                 data={data}
                 options={options}
               >
 
               </Bar>
+              
             </div>
           
             
