@@ -7,27 +7,24 @@ var bodyParser = require('body-parser');
 const path = require('path');
 const fileUpload = require('express-fileupload')
 
-// var corsOptions = {
-//   // origin: "http://wingrowagritech.herokuapp.com/"
-//     origin:'*', 
-//   //  credentials:true,            access-control-allow-credentials:true
-//   //  optionSuccessStatus:200,
+const https = require('https');
+const fs = require('fs');
+
+
+// // certificates
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/wingrowmarket.com/privkey.pem','utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/wingrowmarket.com/cert.pem','utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/wingrowmarket.com/chain.pem','utf8');
+
+// const credentials = {
+//   key: privateKey,
+//   cert: certificate,
+//   ca: ca
+
 // };
-// 
 
+// const https_server = https.createServer(credentials,app)
 
-// app.use(cors({
-//   origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
-//   credentials: true
-// }))
-
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authortization');
-//   res.setHeader('Acces-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-// })
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
@@ -71,3 +68,11 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 app.timeout = 120000;
+
+
+// const PORT = process.env.PORT || 4000;
+// https_server.listen('8443',() => {
+//   console.log("https server running at 8443");
+// })
+
+// app.timeout = 120000;

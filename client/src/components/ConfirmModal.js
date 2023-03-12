@@ -97,8 +97,7 @@ export default function ConfirmModal({ confirmBooking,setCashOnDelivery,selected
           
         
           <div className="terms_and_conditions">
-            <button className="closebtn" onClick={handleClose} style={{ marginLeft: '-250px', marginTop: '-15px' }}>
-              &times;
+            <button className="closebtn" onClick={handleClose}>              &times;
             </button>
             
             <h1>Terms of service</h1>
