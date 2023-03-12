@@ -230,6 +230,12 @@
   background: linear-gradient(90deg, #0d6a02, #07952b 41%);
 }
 
+.closebtn {
+  margin-top: -9px;
+  margin-left: 71px;
+  position: fixed;
+}
+
 @keyframes spinner-zp9dbg {
   to {
     transform: rotate(1turn);
@@ -423,4 +429,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-top: 20px;
 }
 
+}
+
+@media (min-width: 360px) {
+  .closebtn {
+    margin-top: -10px;
+    margin-left: 288px;
+  }
+}
+
+@media (min-width: 374px) {
+  .closebtn {
+    margin-top: -10px;
+    margin-left: 308px;
+  }
+}
+
+
+@media (min-width: 392px) {
+  .closebtn {
+    margin-top: -10px;
+    margin-left: 323px;
+  }
+}
+
+@media (min-width: 550px) {
+  .closebtn {
+    margin-top: -10px;
+    margin-left: 335px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .closebtn {
+    margin-top: -10px;
+    margin-left: 715px;
+  }
 }
