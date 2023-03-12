@@ -44,7 +44,7 @@ function Ticket ({bookingDetails}) {
             </div>
             <h2 className="thanks">Thank You !</h2>
             <div className="bookings_buttons">
-                <button onClick={()=>{navigate('/farmers')}} className="btns_bookings">Continue Booking</button>
+                <button onClick={()=>{navigate('/farmers/stallplaces')}} className="btns_bookings">Continue Booking</button>
                 <button onClick={()=>{navigate('../mybookings')}} className="btns_bookings">Check booked stalls</button>
             </div>
         </div> : <Spinner/>}

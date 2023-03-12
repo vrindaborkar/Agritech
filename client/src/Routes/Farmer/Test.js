@@ -46,7 +46,7 @@ function Test({ setbookingDetails, setValue }) {
   const [selected,setSelected]=useState(0);
 
   const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'wanawadi': 6, 'Magarpatta': 0, 'Amanora City': 0 }
-
+  const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -422,7 +422,7 @@ function Test({ setbookingDetails, setValue }) {
   const handlechange1 = (event) => {
     const temp = new Date(event.target.value);
     const weekdayNumber = temp.getDay();
-    const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    
 console.log(weekdayNumber)
      if(weekdayNumber === arr[Id]){
       setdate(event.target.value);
@@ -454,7 +454,7 @@ console.log(weekdayNumber)
             theme="light"
           />
           
-          <h2 className="market-name">{Id}</h2>
+          <h2 className="market-name">{Id} ONLY ON {weekdays[arr[Id] - 1]}</h2>
           <div className="main_container_stalls">
             <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px', marginTop: -'570px', marginLeft: '10px' }}>
               Back
