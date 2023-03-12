@@ -101,359 +101,165 @@ const FarmersHome = () => {
     });
   }, []);
 
-
-  useEffect(() => {
-    let totalSalesQuantity = 0;
+  function calculateSalesQuantity(i,y){
+    let temp = 0;
     if (OutwardData) {
       OutwardData.forEach((e) => {
-        if (arr[e.market] === 0) {
+        if (arr[e.market] === i) {
           console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
+          temp += e.sales_quantity;
         }
       });
-      setSundaySalesQuantity(totalSalesQuantity);
+      y(temp);
     }
-  }, [OutwardData]);
-  useEffect(() => {
-    let totalSalesQuantity = 0;
+  }
+
+  function calculateSalesRate(i, y) {
+    let temp = 0;
     if (OutwardData) {
       OutwardData.forEach((e) => {
-        if (arr[e.market] === 6) {
+        if (arr[e.market] === i) {
           console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
+          temp += e.sales_rate;
         }
       });
-      setSaturdaySalesQuantity(totalSalesQuantity);
+      y(temp);
     }
-  }, [OutwardData]);
+  }
 
-  useEffect(() => {
-    let totalSalesQuantity = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 5) {
-          console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
-        }
-      });
-      setFridaySalesQuantity(totalSalesQuantity);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesQuantity = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 4) {
-          console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
-        }
-      });
-      setThursdaySalesQuantity(totalSalesQuantity);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesQuantity = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 3) {
-          console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
-
-        }
-      });
-      setWednesdaySalesQuantity(totalSalesQuantity);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesQuantity = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 2) {
-          console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
-        }
-      });
-      setTuesdaySalesQuantity(totalSalesQuantity);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesQuantity = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 1) {
-          console.log('yes')
-          totalSalesQuantity += e.sales_quantity;
-        }
-      });
-      setMondaySalesQuantity(totalSalesQuantity);
-    }
-  }, [OutwardData]);
-
-
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 0) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-        }
-      });
-      setSundaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 6) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-        }
-      });
-      setSaturdaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 5) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-        }
-      });
-      setFridaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 4) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-        }
-      });
-      setThursdaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 3) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-
-        }
-      });
-      setWednesdaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 2) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-        }
-      });
-      setTuesdaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-
-  useEffect(() => {
-    let totalSalesRate = 0;
-    if (OutwardData) {
-      OutwardData.forEach((e) => {
-        if (arr[e.market] === 1) {
-          console.log('yes')
-          totalSalesRate += e.sales_rate;
-        }
-      });
-      setMondaySalesRate(totalSalesRate);
-    }
-  }, [OutwardData]);
-
-
-
-  useEffect(() => {
-    let totalPurchaseRate = 0;
+  function calculatePurchaseRate(i, y) {
+    let temp = 0;
     if (InwardData) {
       InwardData.forEach((e) => {
-        if (arr[e.market] === 0) {
-          totalPurchaseRate += e.purchase_rate;
+        if (arr[e.market] === i) {
+          console.log('yes')
+          temp += e.purchase_rate;
         }
       });
-      setSundayPurchaseRate(totalPurchaseRate);
+      y(temp);
     }
-  }, [InwardData]);
+  }
 
-  useEffect(() => {
-    let totalPurchaseRate = 0;
+  function calculatePurchaseQuality(i, y) {
+    let temp = 0;
     if (InwardData) {
       InwardData.forEach((e) => {
-        if (arr[e.market] === 6) {
-          totalPurchaseRate += e.purchase_rate;
+        if (arr[e.market] === i) {
+          console.log('yes')
+          temp += e.purchase_quantity;
         }
       });
-      setSaturdayPurchaseRate(totalPurchaseRate);
+      y(temp);
     }
-  }, [InwardData]);
+  }
+
 
   useEffect(() => {
-    let totalPurchaseRate = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 5) {
-          totalPurchaseRate += e.purchase_rate;
-        }
-      });
-      setFridayPurchaseRate(totalPurchaseRate);
+    for(let i=0;i<7;i++){
+      if(i===0){
+        calculateSalesQuantity(0, setSundaySalesQuantity)
+      }
+      else if(i===1){
+        calculateSalesQuantity(1, setMondaySalesQuantity)
+      }
+      else if(i===2){
+        calculateSalesQuantity(2, setTuesdaySalesQuantity);
+      }
+      else if(i===3){
+        calculateSalesQuantity(3, setWednesdaySalesQuantity)
+      }
+      else if(i===4){
+        calculateSalesQuantity(4, setThursdaySalesQuantity)
+      }
+      else if(i===5){
+        calculateSalesQuantity(5, setFridaySalesQuantity)
+      }
+      else if(i===6){
+        calculateSalesQuantity(6, setSaturdaySalesQuantity)
+      }
     }
-  }, [InwardData]);
+  }, [OutwardData]);
+
 
   useEffect(() => {
-    let totalPurchaseRate = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 4) {
-          totalPurchaseRate += e.purchase_rate;
-        }
-      });
-      setThursdayPurchaseRate(totalPurchaseRate);
+  for(let i = 0; i < 7; i++){
+    if (i === 0) {
+      calculateSalesRate(0, setSundaySalesRate)
     }
-  }, [InwardData]);
+    else if (i === 1) {
+      calculateSalesRate(1, setMondaySalesRate)
+    }
+    else if (i === 2) {
+      calculateSalesRate(2, setTuesdaySalesRate);
+    }
+    else if (i === 3) {
+      calculateSalesRate(3, setWednesdaySalesRate)
+    }
+    else if (i === 4) {
+      calculateSalesRate(4, setThursdaySalesRate)
+    }
+    else if (i === 5) {
+      calculateSalesRate(5, setFridaySalesRate)
+    }
+    else if (i === 6) {
+      calculateSalesRate(6, setSaturdaySalesRate)
+    }
+  }
+  }, [OutwardData]);
+
+
 
   useEffect(() => {
-    let totalPurchaseRate = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 3) {
-          totalPurchaseRate += e.purchase_rate;
-        }
-      });
-      setWednesdayPurchaseRate(totalPurchaseRate);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseRate = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 2) {
-          totalPurchaseRate += e.purchase_rate;
-        }
-      });
-      setTuesdayPurchaseRate(totalPurchaseRate);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseRate = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 1) {
-          totalPurchaseRate += e.purchase_rate;
-        }
-      });
-      setMondayPurchaseRate(totalPurchaseRate);
+     for (let i = 0; i < 7; i++) {
+      if (i === 0) {
+        calculatePurchaseRate(0, setSundayPurchaseRate)
+      }
+      else if (i === 1) {
+        calculatePurchaseRate(1, setMondayPurchaseRate)
+      }
+      else if (i === 2) {
+        calculatePurchaseRate(2, setTuesdayPurchaseRate);
+      }
+      else if (i === 3) {
+        calculatePurchaseRate(3, setWednesdayPurchaseRate)
+      }
+      else if (i === 4) {
+        calculatePurchaseRate(4, setThursdayPurchaseRate)
+      }
+      else if (i === 5) {
+        calculatePurchaseRate(5, setFridayPurchaseRate)
+      }
+      else if (i === 6) {
+        calculatePurchaseRate(6, setSaturdayPurchaseRate)
+      }
     }
   }, [InwardData]);
 
  
 
   useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 0) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setSundayPurchaseQuantity(totalPurchaseQuantity);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 6) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setSaturdayPurchaseQuantity(totalPurchaseQuantity);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 5) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setFridayPurchaseQuantity(totalPurchaseQuantity);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 4) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setThursdayPurchaseQuantity(totalPurchaseQuantity);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 3) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setWednesdayPurchaseQuantity(totalPurchaseQuantity);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 2) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setTuesdayPurchaseQuantity(totalPurchaseQuantity);
-    }
-  }, [InwardData]);
-
-  useEffect(() => {
-    let totalPurchaseQuantity = 0;
-    if (InwardData) {
-      InwardData.forEach((e) => {
-        if (arr[e.market] === 1) {
-          totalPurchaseQuantity += e.purchase_quantity;
-        }
-      });
-      setMondayPurchaseQuantity(totalPurchaseQuantity);
+    for (let i = 0; i < 7; i++) {
+      if (i === 0) {
+        calculatePurchaseQuality(0, setSundayPurchaseQuantity)
+      }
+      else if (i === 1) {
+        calculatePurchaseQuality(1, setMondayPurchaseQuantity)
+      }
+      else if (i === 2) {
+        calculatePurchaseQuality(2, setTuesdayPurchaseQuantity);
+      }
+      else if (i === 3) {
+        calculatePurchaseQuality(3, setWednesdayPurchaseQuantity)
+      }
+      else if (i === 4) {
+        calculatePurchaseQuality(4, setThursdayPurchaseQuantity)
+      }
+      else if (i === 5) {
+        calculatePurchaseQuality(5, setFridayPurchaseQuantity)
+      }
+      else if (i === 6) {
+        calculatePurchaseQuality(6, setSaturdayPurchaseQuantity)
+      }
     }
   }, [InwardData]);
 
@@ -464,7 +270,6 @@ const FarmersHome = () => {
 
       OutwardData.forEach((e) => {
         if (weekdayNumber === arr[e.market]) {
-          console.log('yes')
           totalSalesQuantity += e.sales_quantity;
         }
       });
@@ -532,16 +337,6 @@ const FarmersHome = () => {
             <div className="inwardData">
               <h3 style={{ padding: "1rem 0" }}>Inward Data</h3>
               <div className="farmersdata_container">
-                {/* {InwardData.map((e, i) => {
-                  return (
-                    <div key={i} className="farmerdata_items">
-                      <p>Commodity : {e.commodity}</p>
-                      <p>Market : {e.market}</p>
-                      <p>Purchase Rate : {e.purchase_rate}</p>
-                      <p>Purchase Quantity : {e.purchase_quantity}</p>
-                    </div>
-                  );
-                })} */}
                   <div className="farmerdata_items">
                     <p>Purchase Rate : {purchaseRate}</p>
                   </div>
@@ -567,16 +362,6 @@ const FarmersHome = () => {
             {console.log(salesQuantity)}
               <h3 style={{ padding: "1rem 0" }}>Outward Data</h3>
               <div className="farmersdata_container">
-                {/* {OutwardData.map((e, i) => {
-                  return (
-                    <div key={i} className="farmerdata_items">
-                      <p>Commodity : {e.commodity}</p>
-                      <p>Market : {e.market}</p>
-                      <p>Sales Rate : {e.sales_rate}</p>
-                      <p>Sales Quantity : {e.sales_quantity}</p>
-                    </div>
-                  );
-                })} */}
                   <div className="farmerdata_items">
                     <p>Sales Rate : {salesRate}</p>
                   </div>
