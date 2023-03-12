@@ -554,7 +554,7 @@ export default function Register({ t, languages }) {
                   className="textfield"
                 />
               </Grid>
-              <Grid item xs={6}  >
+              <Grid item xs={9}  >
                 <TextField
                 inputProps={{
       autoComplete: 'off'
@@ -574,7 +574,7 @@ export default function Register({ t, languages }) {
                   autoComplete="nope"
                 />
               </Grid>
-              <Grid item xs ={6}>
+              <Grid item xs ={3}>
               <Button
                 type="button"
                 fullWidth
@@ -584,13 +584,13 @@ export default function Register({ t, languages }) {
                 variant="contained"
                 color="success"
                 size="large"
-                sx={{ mt: 2, mb: 2 }}
+                sx={{ mt: 1, mb: 1 }}
               >
                 <span className="heading">Fetch Otp</span>
               </Button>
               </Grid>
 
-              <Grid item xs={6}  >
+              <Grid item xs={9}  >
               
               <TextField 
               inputProps={{
@@ -615,7 +615,7 @@ export default function Register({ t, languages }) {
             
             
               </Grid>
-              <Grid item xs ={6}>
+              <Grid item xs ={3}>
               {/* <button 
               fullWidth
               className="signup-btn" 
@@ -773,6 +773,10 @@ export default function Register({ t, languages }) {
               {data.type === "farmer" && (
                 <Grid item xs={12}>
                   <ReactTags
+                  inputProps={{
+                    autoComplete: 'off'
+                 }}
+                 fullWidth
                     tags={tags}
                     suggestions={newArray}
                     handleDelete={handleDelete}
@@ -781,6 +785,8 @@ export default function Register({ t, languages }) {
                     allowNew={true}
                     autofocus={false}
                     minQueryLength={1}
+                    className="textfield"
+                    color="success"
                     classNames={{
                       suggestions: 'tag-suggestions'
                     }}

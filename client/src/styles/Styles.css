@@ -301,6 +301,8 @@ li {
   width: 100%;
   border: 1px solid #379237;
   margin-top: 1rem;
+  border-radius: 30px;
+  height: 52px;
 }
 .tag-suggestions {
   max-height: 100px;
@@ -318,6 +320,8 @@ li {
 
   .signup-btn {
     background: linear-gradient(91.3deg, #E03538 17.31%, #C4094C 88.09%) !important;
+
+
   }
 }
 
@@ -524,13 +528,13 @@ li {
   }
 
   .authbox {
+    margin-top: 0;
     width: 80vw;
     height: 80vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    padding: 2rem;
     box-shadow: none;
     border: none;
   }
@@ -552,6 +556,7 @@ li {
     font-family: 'Arturo';
     overflow: auto
   }
+  
 }
 
 @media (max-width: 520px) {
@@ -592,13 +597,14 @@ li {
   }
 
   .authbox {
+    margin-top: 0;
     width: 100%;
-    height: 80vh;
+    height: 65vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    padding: 2rem;
+    padding: 0;
     box-shadow: none;
     border: none;
   }
@@ -629,21 +635,26 @@ li {
   .form-logo {
     width: 100px;
     margin-bottom: 10px;
+    margin-top: 0;
   }
 
   .ReactTags__tagInputField {
-    border-radius: 20px;
+    border-radius: 30px;
   }
   .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorSuccess.MuiInputBase-fullWidth.MuiInputBase-formControl.css-bz6wus-MuiInputBase-root-MuiOutlinedInput-root {
-    border-radius: 35px;
+    border-radius: 30px;
   }
+}
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorSuccess.MuiInputBase-fullWidth.MuiInputBase-formControl.css-bz6wus-MuiInputBase-root-MuiOutlinedInput-root{
+  border-radius: 30px;
 }
 
 /* Added */
 
 .form-logo {
+  margin-top:0;
+  margin-left: 119;
   width: 100px;
-  margin: auto;
   margin-bottom: 10px;
 }
 
@@ -685,6 +696,7 @@ li {
   }
 
   .signup-btn {
+    
     height: 40px;
     border-radius: 20px !important;
     background: linear-gradient(91.3deg, #E03538 17.31%, #C4094C 88.09%);
@@ -711,6 +723,10 @@ li {
     border: 1px solid #80bb65;
     border-radius: 5px;
   }
+  .heading{
+    font-size: 9px;
+    font-family: 'Arturo';
+  }
 }
 
 .main-nav {
@@ -728,10 +744,12 @@ li {
 
 label {
   font-size: 13px !important;
+  border-radius: 10px !important;
 }
 
 input {
   font-size: 15px !important;
+  
 }
 
 
@@ -1021,4 +1039,8 @@ input {
     font-size: 15px !important;
   }
 
+}
+.ReactTags__tags {
+  font-size: medium;
+  font-weight: 500;
 }

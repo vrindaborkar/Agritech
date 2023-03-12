@@ -49,10 +49,9 @@
   align-items: center;
   align-content: space-around;
   justify-content: space-around;
-  grid-template-columns: repeat(2, 30%);
+  grid-template-columns: repeat(2, 25%);
   grid-gap: 10px;
   margin: 70px auto 0px auto;
-
   max-width: 80%;
 }
 .backbtn{
@@ -501,7 +500,7 @@
 
 @media (max-width: 550px) {
   .farmerScreen {
-    margin: 200px 0px;
+    margin: 10rem 0 10rem 0; 
   }
   .places_market_component0 {
     width: 65%;
@@ -611,5 +610,9 @@ sup {
 
 .textfield{
   border-radius: 30px !important;
+}
+.backbtn{
+  width: 10rem;
+  padding: .7rem 0.5rem;
 }
 }

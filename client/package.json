@@ -16,6 +16,8 @@
     "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
     "firebase": "^9.15.0",
+    "flickity": "^3.0.0",
+    "jquery": "^3.6.4",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-countup": "^6.3.1",

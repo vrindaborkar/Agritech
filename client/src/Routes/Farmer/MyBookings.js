@@ -70,10 +70,14 @@ const MyBookings = () => {
 
   return (
     <>
-          <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px', marginTop: -'570px', marginLeft: '10px' }}>
+    <div className='backbtndiv'>
+     <Link className="backbtn green" to="/farmers" sx={{ m: 2 }} style={{ padding: '8px 20px 8px 20px', marginLeft: '30px' }}>
               Back
           </Link>
+          </div>
+         
     {MyStalls?<div className='bookings_container'>
+   
               
     <ToastContainer
         position="top-center"
@@ -127,6 +131,7 @@ const MyBookings = () => {
             </div>
         </div>
     </div>:<Spinner/>}
+ 
     </>
   )
 }
