@@ -7,10 +7,9 @@ import Footer from '../components/Footer';
 import useWindowDimensions from '../components/useWindowDimensions'
 import { useNavigate, Link } from 'react-router-dom';
 import Measures from '../components/Measures';
+import { useTranslation } from "react-i18next";
 
-
-
-const Home = () => {
+const Home = ({t,languages}) => {
 
   const [mobile, setmobile] = useState(false)
   useEffect(() => {
@@ -18,6 +17,12 @@ const Home = () => {
       duration: 600,
     });
   }, [])
+
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
 
   const { width } = useWindowDimensions()
 
@@ -32,12 +37,18 @@ const Home = () => {
   const navigate = useNavigate()
   return (
     <div className='home_container'>
-
+      <select onChange={changeLanguage} value={i18n.language} style={{margin:'10px 10px 10px 5px'}}>
+        {languages.map((lang) => (
+          <option key={lang.code} value={lang.code}>
+            {lang.name}
+          </option>
+        ))}
+      </select>
       <div className='first_section'>
         <div className='first_section_component'>
           <img src="./images/imgbook.png" alt='stall_logo' className='first_image_section' />
           <h1 data-aos="fade-right" className="first_section_header">
-            <span>REVOLUTIONIZING THE STALL </span>
+            <span>{t('tagline1_home')} </span>
             <span>BOOKING FOR DIRECT SELL</span>
           </h1>
           <div data-aos="fade-up" className="first_section_btn">
