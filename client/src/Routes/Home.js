@@ -9,7 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Measures from '../components/Measures';
 import { useTranslation } from "react-i18next";
 
-const Home = ({t,languages}) => {
+const Home = ({ t, languages }) => {
 
   const [mobile, setmobile] = useState(false)
   useEffect(() => {
@@ -37,7 +37,7 @@ const Home = ({t,languages}) => {
   const navigate = useNavigate()
   return (
     <div className='home_container'>
-      <select onChange={changeLanguage} value={i18n.language} style={{margin:'10px 10px 10px 5px'}}>
+      <select onChange={changeLanguage} value={i18n.language} style={{ margin: '10px 10px 10px 5px' }}>
         {languages.map((lang) => (
           <option key={lang.code} value={lang.code}>
             {lang.name}
@@ -80,7 +80,7 @@ const Home = ({t,languages}) => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active carousel22">
-            <img src="./images/7.png"  alt="..." />
+            <img src="./images/7.png" alt="..." />
             <div className="carousel-caption cc">
               {/* <h3 className="Label">First slide label</h3>
          <p className="caption">Some representative placeholder content for the first slide.</p>
@@ -89,7 +89,7 @@ const Home = ({t,languages}) => {
             </div>
           </div>
           <div className="carousel-item carousel22">
-            <img src="./images/1.png"  alt="..." />
+            <img src="./images/1.png" alt="..." />
             <div className="carousel-caption cc">
               {/* <h3 className="Label">Second slide label</h3>
          <p className="caption">Some representative placeholder content for the second slide.</p>
@@ -97,7 +97,7 @@ const Home = ({t,languages}) => {
             </div>
           </div>
           <div className="carousel-item carousel22">
-            <img src="./images/6.png"  alt="..." />
+            <img src="./images/6.png" alt="..." />
             <div className="carousel-caption cc">
               {/* <h3 className="Label">Third slide label</h3>
          <p className="caption">Some representative placeholder content for the third slide.</p>
@@ -115,7 +115,7 @@ const Home = ({t,languages}) => {
         </button>
       </div>
       <div data-aos="fade-left" className="transimgr">
-        <img src="./images/cherry.png" alt="Skytsunami" />
+        <img src="./images/raspberry.png" alt="Skytsunami" />
       </div>
 
       {!mobile ?
@@ -177,7 +177,7 @@ const Home = ({t,languages}) => {
         </div>
       }
       <div data-aos="fade-right" className="transimg">
-        <img src="./images/transpic.png" alt="Skytsunami" />
+        <img src="./images/cherryleft.png" alt="Skytsunami" />
       </div>
 
       <div className='keyfeature_section'>
@@ -213,7 +213,7 @@ const Home = ({t,languages}) => {
         <img className="fourthsec_pic" src="./images/home_vegetables_pic4.webp"></img>
       </div>
       <div data-aos="fade-left" className="transimgr">
-        <img src="./images/strawberry.png" alt="Skytsunami" />
+        <img src="./images/cherryright.png" alt="Skytsunami" />
       </div>
 
       <div className='fifth_section'>
@@ -224,7 +224,7 @@ const Home = ({t,languages}) => {
         </div>
       </div>
       <div data-aos="fade-right" className="transimg">
-        <img src="./images/grapes.png" alt="Skytsunami" />
+        <img src="./images/transpic.png" alt="Skytsunami" />
       </div>
 
       <div className='third_section'>
