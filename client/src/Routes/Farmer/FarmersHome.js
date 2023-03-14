@@ -32,7 +32,6 @@ const FarmersHome = () => {
   const [purchaseQuantity, setPurchaseQuantity] = useState(0);
   const [purchaseRate, setPurchaseRate] = useState(0);
   const today = new Date();
-  const todayFormatted = today.toISOString().slice(0, 10);
   const [mondaySalesQuantity,setMondaySalesQuantity] = useState(0);
   const [tuesdaySalesQuantity, setTuesdaySalesQuantity] = useState(0);
   const [wednesdaySalesQuantity, setWednesdaySalesQuantity] = useState(0);
@@ -106,7 +105,6 @@ const FarmersHome = () => {
     if (OutwardData) {
       OutwardData.forEach((e) => {
         if (arr[e.market] === i) {
-          console.log('yes')
           temp += e.sales_quantity;
         }
       });
@@ -119,7 +117,6 @@ const FarmersHome = () => {
     if (OutwardData) {
       OutwardData.forEach((e) => {
         if (arr[e.market] === i) {
-          console.log('yes')
           temp += e.sales_rate;
         }
       });
@@ -132,7 +129,6 @@ const FarmersHome = () => {
     if (InwardData) {
       InwardData.forEach((e) => {
         if (arr[e.market] === i) {
-          console.log('yes')
           temp += e.purchase_rate;
         }
       });
@@ -145,7 +141,6 @@ const FarmersHome = () => {
     if (InwardData) {
       InwardData.forEach((e) => {
         if (arr[e.market] === i) {
-          console.log('yes')
           temp += e.purchase_quantity;
         }
       });

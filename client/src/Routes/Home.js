@@ -7,10 +7,9 @@ import Footer from '../components/Footer';
 import useWindowDimensions from '../components/useWindowDimensions'
 import { useNavigate, Link } from 'react-router-dom';
 import Measures from '../components/Measures';
+import { useTranslation } from "react-i18next";
 
-
-
-const Home = () => {
+const Home = ({t,languages}) => {
 
   const [mobile, setmobile] = useState(false)
   useEffect(() => {
@@ -18,6 +17,12 @@ const Home = () => {
       duration: 600,
     });
   }, [])
+
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
 
   const { width } = useWindowDimensions()
 
@@ -32,12 +37,18 @@ const Home = () => {
   const navigate = useNavigate()
   return (
     <div className='home_container'>
-
+      <select onChange={changeLanguage} value={i18n.language} style={{margin:'10px 10px 10px 5px'}}>
+        {languages.map((lang) => (
+          <option key={lang.code} value={lang.code}>
+            {lang.name}
+          </option>
+        ))}
+      </select>
       {/* <div className='first_section'>
         <div className='first_section_component'>
           <img src="./images/imgbook.png" alt='stall_logo' className='first_image_section' />
           <h1 data-aos="fade-right" className="first_section_header">
-            <span>REVOLUTIONIZING THE STALL </span>
+            <span>{t('tagline1_home')} </span>
             <span>BOOKING FOR DIRECT SELL</span>
           </h1>
           <div data-aos="fade-up" className="first_section_btn">
@@ -56,7 +67,7 @@ const Home = () => {
           <img className="image_header" alt="hero" src="./images/centerimagenew.png" />
         </div>
 
-      </div> */}
+      </div>  */}
 
 
 
@@ -69,7 +80,7 @@ const Home = () => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active carousel22">
-            <img src="./images/7.png" className="d-block w-100" alt="..." />
+            <img src="./images/7.png"  alt="..." />
             <div className="carousel-caption cc">
               {/* <h3 className="Label">First slide label</h3>
          <p className="caption">Some representative placeholder content for the first slide.</p>
@@ -78,7 +89,7 @@ const Home = () => {
             </div>
           </div>
           <div className="carousel-item carousel22">
-            <img src="./images/1.png" className="d-block w-100" alt="..." />
+            <img src="./images/1.png"  alt="..." />
             <div className="carousel-caption cc">
               {/* <h3 className="Label">Second slide label</h3>
          <p className="caption">Some representative placeholder content for the second slide.</p>
@@ -86,7 +97,7 @@ const Home = () => {
             </div>
           </div>
           <div className="carousel-item carousel22">
-            <img src="./images/6.png" className="d-block w-100" alt="..." />
+            <img src="./images/6.png"  alt="..." />
             <div className="carousel-caption cc">
               {/* <h3 className="Label">Third slide label</h3>
          <p className="caption">Some representative placeholder content for the third slide.</p>
