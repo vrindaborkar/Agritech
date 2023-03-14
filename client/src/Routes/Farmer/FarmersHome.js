@@ -32,12 +32,12 @@ const FarmersHome = () => {
   const [purchaseQuantity, setPurchaseQuantity] = useState(0);
   const [purchaseRate, setPurchaseRate] = useState(0);
   const today = new Date();
-  const [mondaySalesQuantity,setMondaySalesQuantity] = useState(0);
+  const [mondaySalesQuantity, setMondaySalesQuantity] = useState(0);
   const [tuesdaySalesQuantity, setTuesdaySalesQuantity] = useState(0);
   const [wednesdaySalesQuantity, setWednesdaySalesQuantity] = useState(0);
   const [thursdaySalesQuantity, setThursdaySalesQuantity] = useState(0);
   const [fridaySalesQuantity, setFridaySalesQuantity] = useState(0);
-  const [saturdaySalesQuantity , setSaturdaySalesQuantity] = useState(0);
+  const [saturdaySalesQuantity, setSaturdaySalesQuantity] = useState(0);
   const [sundaySalesQuantity, setSundaySalesQuantity] = useState(0);
   const [mondayPurchaseQuantity, setMondayPurchaseQuantity] = useState(0);
   const [tuesdayPurchaseQuantity, setTuesdayPurchaseQuantity] = useState(0);
@@ -62,25 +62,25 @@ const FarmersHome = () => {
   const [sundayPurchaseRate, setSundayPurchaseRate] = useState(0);
   const arr = { 'Hadapsar': 3, 'Kharadi': 4, 'Karve Nagar': 4, 'Bramhasun City': 5, 'Wanawadi': 6, 'Magarpatta': 0, 'Amanora City': 0 }
 
- 
+
   const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const weekdayNumber = today.getDay();
 
   const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'],
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     datasets: [
       {
         label: 'Data',
         backgroundColor: 'green',
         borderColor: 'black',
         borderWidth: 1,
-        data: [mondaySalesQuantity * mondaySalesRate - mondayPurchaseQuantity * mondayPurchaseRate, 
-               tuesdaySalesQuantity * tuesdaySalesRate - tuesdayPurchaseQuantity * tuesdayPurchaseRate, 
-               (wednesdaySalesQuantity * wednesdaySalesRate) - (wednesdayPurchaseQuantity * wednesdayPurchaseRate), 
-               (thursdaySalesQuantity * thursdaySalesRate) - (thursdayPurchaseQuantity * thursdayPurchaseRate), 
-               fridaySalesQuantity * fridaySalesRate - fridayPurchaseQuantity * fridayPurchaseRate, 
-               (saturdaySalesQuantity * saturdaySalesRate) - (saturdayPurchaseQuantity * saturdayPurchaseRate), 
-               (sundaySalesQuantity * sundaySalesRate) - (sundayPurchaseQuantity * sundayPurchaseRate) ]
+        data: [mondaySalesQuantity * mondaySalesRate - mondayPurchaseQuantity * mondayPurchaseRate,
+        tuesdaySalesQuantity * tuesdaySalesRate - tuesdayPurchaseQuantity * tuesdayPurchaseRate,
+        (wednesdaySalesQuantity * wednesdaySalesRate) - (wednesdayPurchaseQuantity * wednesdayPurchaseRate),
+        (thursdaySalesQuantity * thursdaySalesRate) - (thursdayPurchaseQuantity * thursdayPurchaseRate),
+        fridaySalesQuantity * fridaySalesRate - fridayPurchaseQuantity * fridayPurchaseRate,
+        (saturdaySalesQuantity * saturdaySalesRate) - (saturdayPurchaseQuantity * saturdayPurchaseRate),
+        (sundaySalesQuantity * sundaySalesRate) - (sundayPurchaseQuantity * sundayPurchaseRate)]
       }
     ]
   };
@@ -96,11 +96,11 @@ const FarmersHome = () => {
 
     FarmerService.getOutward().then((res) => {
       setOutwardData(res.data);
-       console.log("data ",res.data)
+      console.log("data ", res.data)
     });
   }, []);
 
-  function calculateSalesQuantity(i,y){
+  function calculateSalesQuantity(i, y) {
     let temp = 0;
     if (OutwardData) {
       OutwardData.forEach((e) => {
@@ -150,26 +150,26 @@ const FarmersHome = () => {
 
 
   useEffect(() => {
-    for(let i=0;i<7;i++){
-      if(i===0){
+    for (let i = 0; i < 7; i++) {
+      if (i === 0) {
         calculateSalesQuantity(0, setSundaySalesQuantity)
       }
-      else if(i===1){
+      else if (i === 1) {
         calculateSalesQuantity(1, setMondaySalesQuantity)
       }
-      else if(i===2){
+      else if (i === 2) {
         calculateSalesQuantity(2, setTuesdaySalesQuantity);
       }
-      else if(i===3){
+      else if (i === 3) {
         calculateSalesQuantity(3, setWednesdaySalesQuantity)
       }
-      else if(i===4){
+      else if (i === 4) {
         calculateSalesQuantity(4, setThursdaySalesQuantity)
       }
-      else if(i===5){
+      else if (i === 5) {
         calculateSalesQuantity(5, setFridaySalesQuantity)
       }
-      else if(i===6){
+      else if (i === 6) {
         calculateSalesQuantity(6, setSaturdaySalesQuantity)
       }
     }
@@ -177,35 +177,35 @@ const FarmersHome = () => {
 
 
   useEffect(() => {
-  for(let i = 0; i < 7; i++){
-    if (i === 0) {
-      calculateSalesRate(0, setSundaySalesRate)
+    for (let i = 0; i < 7; i++) {
+      if (i === 0) {
+        calculateSalesRate(0, setSundaySalesRate)
+      }
+      else if (i === 1) {
+        calculateSalesRate(1, setMondaySalesRate)
+      }
+      else if (i === 2) {
+        calculateSalesRate(2, setTuesdaySalesRate);
+      }
+      else if (i === 3) {
+        calculateSalesRate(3, setWednesdaySalesRate)
+      }
+      else if (i === 4) {
+        calculateSalesRate(4, setThursdaySalesRate)
+      }
+      else if (i === 5) {
+        calculateSalesRate(5, setFridaySalesRate)
+      }
+      else if (i === 6) {
+        calculateSalesRate(6, setSaturdaySalesRate)
+      }
     }
-    else if (i === 1) {
-      calculateSalesRate(1, setMondaySalesRate)
-    }
-    else if (i === 2) {
-      calculateSalesRate(2, setTuesdaySalesRate);
-    }
-    else if (i === 3) {
-      calculateSalesRate(3, setWednesdaySalesRate)
-    }
-    else if (i === 4) {
-      calculateSalesRate(4, setThursdaySalesRate)
-    }
-    else if (i === 5) {
-      calculateSalesRate(5, setFridaySalesRate)
-    }
-    else if (i === 6) {
-      calculateSalesRate(6, setSaturdaySalesRate)
-    }
-  }
   }, [OutwardData]);
 
 
 
   useEffect(() => {
-     for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 7; i++) {
       if (i === 0) {
         calculatePurchaseRate(0, setSundayPurchaseRate)
       }
@@ -230,7 +230,7 @@ const FarmersHome = () => {
     }
   }, [InwardData]);
 
- 
+
 
   useEffect(() => {
     for (let i = 0; i < 7; i++) {
@@ -317,77 +317,75 @@ const FarmersHome = () => {
   return (
     <>
 
-<div className="inOutData">
+      <div className="inOutData">
 
-</div>
+      </div>
 
-        <div className="farmers_page">
-        <Link style={{ marginTop: '10px' }} className="backbtn green" to="/farmers" >
-          Back
-        </Link>
+      <div className="farmers_page">
+        <div className="backbtndiv">
+          <Link className="backbtn green" to="/farmers" >
+            Back
+          </Link>
+        </div>
 
-      {InwardData && OutwardData && (
-        <div className="farmers_data">
-          {InwardData.length !== 0 && (
-            <div className="inwardData">
-              <h3 style={{ padding: "1rem 0" }}>Inward Data</h3>
-              <div className="farmersdata_container">
-                  <div className="farmerdata_items">
-                    <p>Purchase Rate : {purchaseRate}</p>
+        {InwardData && OutwardData && (
+          <div className="farmers">
+            <div className="farmers_data">
+              {InwardData.length !== 0 && (
+                <div className="inwardData">
+                  <h3 style={{ padding: "1rem 0" }}>Inward Data</h3>
+                  <div className="farmersdata_container">
+                    <div className="farmerdata_items">
+                      <p>Purchase Rate : {purchaseRate}</p>
+                    </div>
+                    <div className="farmerdata_items">
+                      <p>Purchase Quantity : {purchaseQuantity}</p>
+                    </div>
                   </div>
-                  <div className="farmerdata_items">
-                    <p>Purchase Quantity : {purchaseQuantity}</p>
+                </div>
+
+              )}
+
+              {InwardData.length === 0 && (
+                <div className="inwardData">
+                  <h3 style={{ padding: "1rem 0" }}>Inward Data</h3>
+                  <div className="farmersdata_container">
+                    No Inward Data available!
                   </div>
-              </div>
-            </div>
-            
-          )}
+                </div>
+              )}
 
-          {InwardData.length === 0 && (
-            <div className="inwardData">
-              <h3 style={{ padding: "1rem 0" }}>Inward Data</h3>
-              <div className="farmersdata_container">
-                No Inward Data available!
-              </div>
-            </div>
-          )}
-
-          {OutwardData.length !== 0 && (
-            <div className="outwardData">
-            {console.log(salesQuantity)}
-              <h3 style={{ padding: "1rem 0" }}>Outward Data</h3>
-              <div className="farmersdata_container">
-                  <div className="farmerdata_items">
-                    <p>Sales Rate : {salesRate}</p>
+              {OutwardData.length !== 0 && (
+                <div className="outwardData">
+                  {console.log(salesQuantity)}
+                  <h3 style={{ padding: "1rem 0" }}>Outward Data</h3>
+                  <div className="farmersdata_container">
+                    <div className="farmerdata_items">
+                      <p>Sales Rate : {salesRate}</p>
+                    </div>
+                    <div className="farmerdata_items">
+                      <p>Sales Quantity : {salesQuantity}</p>
+                    </div>
                   </div>
-                  <div className="farmerdata_items">
-                    <p>Sales Quantity : {salesQuantity}</p>
+                </div>
+              )}
+
+              {OutwardData.length === 0 && (
+                <div className="outwardData">
+                  <h3 style={{ padding: "1rem 0" }}>Outward Data</h3>
+                  <div className="farmersdata_container">
+                    No Outward Data available!
                   </div>
-              </div>
+                </div>
+
+              )}
             </div>
-          )}
 
-          {OutwardData.length === 0 && (
-            <div className="outwardData">
-              <h3 style={{ padding: "1rem 0" }}>Outward Data</h3>
-              <div className="farmersdata_container">
-                No Outward Data available!
-              </div>
-            </div>
-            
-          )}
+            <h1>Market Details</h1>
 
-            <div
-              style={
-                {
-                  padding: '20px',
-                  width: '80%'
-                }
-              }
-
-            >
+            <div className="second-row">
               <div className="inwardData">
-                <h3 style={{ padding: "1rem 0" }}>Market Day's</h3>
+                <h3 style={{ padding: "0 0" }}>Market Day's</h3>
                 <div className="farmersdata_container">
                   <div className="farmerdata_items">
                     <p>Monday    : None</p>
@@ -400,29 +398,29 @@ const FarmersHome = () => {
                   </div>
                 </div>
               </div>
-              <Bar
+              <Bar className="bar"
                 data={data}
                 options={options}
               >
 
               </Bar>
-              
-            </div>
-          
-            
-        </div>
-        
-        
-      )}
-      {!InwardData && !OutwardData && <Spinner />}
 
-      
-      
-    </div>
-    
+            </div>
+
+
+          </div>
+
+
+        )}
+        {!InwardData && !OutwardData && <Spinner />}
+
+
+
+      </div>
+
     </>
 
-    
+
   );
 };
 
