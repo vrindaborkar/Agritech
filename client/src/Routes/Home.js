@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div className='home_container'>
 
-      <div className='first_section'>
+      {/* <div className='first_section'>
         <div className='first_section_component'>
           <img src="./images/imgbook.png" alt='stall_logo' className='first_image_section' />
           <h1 data-aos="fade-right" className="first_section_header">
@@ -56,52 +56,54 @@ const Home = () => {
           <img className="image_header" alt="hero" src="./images/centerimagenew.png" />
         </div>
 
-      </div>
+      </div> */}
+
 
 
       {/* corousal */}
-      {/* <div id="carouselExampleCaptions" className="carousel slide " data-bs-ride="carousel">
-   <div className="carousel-indicators">
-     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={0} className="active" aria-current="true" aria-label="Slide 1" />
-     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={1} aria-label="Slide 2" />
-     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={2} aria-label="Slide 3" />
-   </div>
-   <div className="carousel-inner">
-     <div className="carousel-item active carousel22">
-       <img src={centerimg} className="d-block w-100" alt="..." />
-       <div className="carousel-caption cc">
-         <h3 className="Label">First slide label</h3>
+      <div id="carouselExampleCaptions" className="carousel slide " data-bs-ride="carousel">
+        <div className="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={0} className="active" aria-current="true" aria-label="Slide 1" />
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={1} aria-label="Slide 2" />
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={2} aria-label="Slide 3" />
+        </div>
+        <div className="carousel-inner">
+          <div className="carousel-item active carousel22">
+            <img src="./images/7.png" className="d-block w-100" alt="..." />
+            <div className="carousel-caption cc">
+              {/* <h3 className="Label">First slide label</h3>
          <p className="caption">Some representative placeholder content for the first slide.</p>
-         <button className="navigate">Navigate</button>
-       </div>
-     </div>
-     <div className="carousel-item carousel22">
-       <img src="./images/image_7.webp" className="d-block w-100" alt="..." />
-       <div className="carousel-caption cc">
-         <h3 className="Label">Second slide label</h3>
+         <button className="navigate">Book Stall</button>
+         <button className="navigate">Know More</button> */}
+            </div>
+          </div>
+          <div className="carousel-item carousel22">
+            <img src="./images/1.png" className="d-block w-100" alt="..." />
+            <div className="carousel-caption cc">
+              {/* <h3 className="Label">Second slide label</h3>
          <p className="caption">Some representative placeholder content for the second slide.</p>
-         <button className="navigate">Navigate</button>
-       </div>
-     </div>
-     <div className="carousel-item carousel22">
-       <img src={farmer_street} className="d-block w-100" alt="..." />
-       <div className="carousel-caption cc">
-         <h3 className="Label">Third slide label</h3>
+         <button className="navigate">Navigate</button> */}
+            </div>
+          </div>
+          <div className="carousel-item carousel22">
+            <img src="./images/6.png" className="d-block w-100" alt="..." />
+            <div className="carousel-caption cc">
+              {/* <h3 className="Label">Third slide label</h3>
          <p className="caption">Some representative placeholder content for the third slide.</p>
-         <button className="navigate">Navigate</button>
-       </div>
-     </div>
-   </div>
-   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-     <span className="carousel-control-prev-icon" aria-hidden="true" />
-     <span className="visually-hidden">Previous</span>
-   </button>
-   <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-     <span className="carousel-control-next-icon" aria-hidden="true" />
-     <span className="visually-hidden">Next</span>
-   </button>
- </div> */}
-      <div  data-aos="fade-left" className="transimgr">
+         <button className="navigate">Navigate</button> */}
+            </div>
+          </div>
+        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true" />
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div data-aos="fade-left" className="transimgr">
         <img src="./images/cherry.png" alt="Skytsunami" />
       </div>
 
@@ -181,10 +183,10 @@ const Home = () => {
           <img src='./images/pngwing.com.png' alt='img' className='keyfeature_container' />
           <div className='keyfeature_container'>
             <ol class="listed">
-              <li class="" data-aos="fade-right"className="h a">Mobile & web applications</li>
-              <li class="" data-aos="fade-right"className="h a">White labelled products</li>
-              <li class="" data-aos="fade-right"className="h a">Resource management</li>
-              <li class="" data-aos="fade-right"className="h a">On the go tracking</li>
+              <li class="" data-aos="fade-right" className="h a">Mobile & web applications</li>
+              <li class="" data-aos="fade-right" className="h a">White labelled products</li>
+              <li class="" data-aos="fade-right" className="h a">Resource management</li>
+              <li class="" data-aos="fade-right" className="h a">On the go tracking</li>
             </ol>
           </div>
         </div>
