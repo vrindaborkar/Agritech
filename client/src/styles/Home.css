@@ -687,6 +687,9 @@ ol.listed li.a:before {
   left:5rem;
   width:40%;
 }
+.carousel{
+  margin-bottom: 7rem;
+}
 @media only screen and  (max-width: 780px) {
   .cc{
     top:3rem;
@@ -700,7 +703,17 @@ ol.listed li.a:before {
     width:100%;
     height:50%;
   }
+  .carousel-inner{
+    height: 300px;
+  }
+  /* .carousel-control-prev-icon,
+  .carousel-control-next-icon{
+    margin-bottom: rem;
+  } */
 
+  .carousel{
+    height: 320px;
+  }
 }
 .carousel-control-prev,.carousel-control-next{
   width: 5%;
